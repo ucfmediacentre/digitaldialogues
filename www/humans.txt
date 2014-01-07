@@ -1,0 +1,15 @@
+# swarmtv.org/
+# Collaborative, open & Non-hierarchical thinking tool
+
+# TEAM
+
+    <name> -- <role> -- <twitter>
+
+# THANKS
+
+    <name>
+
+# SWARM TV
+
+    HTML5, CSS3
+    jQuery, Modernizr
