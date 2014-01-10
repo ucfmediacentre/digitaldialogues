@@ -5,11 +5,11 @@
         <p id="page_description" > <?php echo $page_info->description; ?> </p>
     </div>
     <div id="editButtons">
-        <p><a href="">Add Page</a></p>
         <p><a href="">Add Text</a></p>
         <p><a href="">Add Image</a></p>
         <p><a href="">Add Audio</a></p>
         <p><a href="">Add Video</a></p>
+        <p><a href="">Add Page</a></p>
         <p><a href="">Add Group</a></p>
     </div>
 </div>
