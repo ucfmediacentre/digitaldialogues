@@ -55,17 +55,17 @@ $active_record = TRUE;
 /*$db['default']['hostname'] = '79.170.40.38';
 $db['default']['username'] = 'web38-swarmtv';
 $db['default']['password'] = '89jhhw7ry';
-$db['default']['database'] = 'web38-swarmtv';
+$db['default']['database'] = 'web38-swarmtv';*/
 
-$db['default']['hostname'] = 'localhost:3306';
+/*$db['default']['hostname'] = 'localhost:3306';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'localdigitaldialogues';*/
 
-
-$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = '212.67.214.82';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '4zqh1AJ1us]7';
+//$db['default']['password'] = '4zqh1AJ1us]7';
+$db['default']['password'] = '*2E5A6816396C2662A24A8FA178249C531DD727FD';
 $db['default']['database'] = 'digitald_data';
 
 $db['default']['dbdriver'] = 'mysql';
