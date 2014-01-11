@@ -15,8 +15,8 @@
 		initElements();
         
 		// sets dblclick to open page_info fancy box
-        //disabled dblclick so that website is newbie friendly!!
-		$('#page_title_wrapper0').dblclick(function(e){
+        //enabled dblclick so that website is newbie friendly!!
+		$('#page_title_wrapper').dblclick(function(e){
             $("#page_info_form_trigger").trigger('click');
 			$('textarea').focus();
 			clearSelection();
@@ -26,6 +26,8 @@
 		// sets dblclick to open element fancy box
         $('#add_element_form_wrapper').dblclick(function(e){
 			$("a#add_element_form_trigger").trigger('click');
+        //$('#add_text_form_wrapper').dblclick(function(e){
+			//$("a#add_text_form_trigger").trigger('click');
 			
 			$('input[name="x"]').val(e.pageX);
 			$('input[name="y"]').val(e.pageY);
@@ -57,6 +59,7 @@
 		
 		// inits element fancy box
 		$("a#add_element_form_trigger").fancybox({
+		//$("a#add_text_form_trigger").fancybox({
 			'overlayOpacity':0,
 			'autoDimensions':true,
 			'showCloseButton':false,
@@ -72,6 +75,7 @@
 		// triggers the element fancy box on double click
 		$('#background').dblclick(function(e){
 			$("a#add_element_form_trigger").trigger('click');
+			//$("a#add_text_form_trigger").trigger('click');
 			
 			$('input[name="x"]').val(e.pageX);
 			$('input[name="y"]').val(e.pageY);

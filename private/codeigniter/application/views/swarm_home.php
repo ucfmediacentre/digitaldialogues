@@ -52,14 +52,20 @@
     </head>
     
     <body>
-        <div style="padding:20px;">
-            <a href="../../pages/view/<?php echo $group; ?>/Home">Home</a>&nbsp;|&nbsp;<a href="../../recentChanges">Recent Changes</a>&nbsp;|&nbsp;<a href="http://ucfmediacentre.co.uk/swarmtv/stream/">Live Stream</a>&nbsp;|&nbsp;<a href="../../pages/view/<?php echo $group; ?>/Shortcodes">Shortcodes</a>&nbsp;|&nbsp;<a href="../../pages/view/<?php echo $group; ?>/Help">Help</a>
-			<form action="" method="get" enctype="multipart/form-data" class="hidden" id="filter_form">
-                <br /><input name="filter" value="<?php echo $filter; ?>" onchange="submit();" />
-				<input type="hidden" value="<?php echo $group; ?>" name="group" />
-                <input type="submit" value="Search Filter"><span id="search_results" > (<?php echo $searchResults; ?>) </span>
-            </form></div><br /><br />
-			<div id="oldBrowser" style="display:none" width="600px">This website is a project designed to work with <strong>HTML5</strong>, so please download a modern browser if you can (its worth the wait - honest!). If you haven't got IT permissions to do this, try Chrome portable (<a href="http://portableapps.com/apps/internet/google_chrome_portable">Chrome Portable</a>). You should be able to use that, OK. Otherwise, go straight to the home page here: <a href="http://ucfmediacentre.co.uk/swarmtv/index.php/pages/view/<?php echo $group; ?>/home">Home</a>, and have a play around there. Thanks very much!<br /><br /><?php echo $listview; ?></div>
+	
+	<div id="page_title_wrapper">
+	    <h1 id="page_title"> <?php echo $group; ?> : Search Map </h1>	
+	</div>
+        
+    <div id="main_pages_wrapper">
+        <a href="../../pages/view/<?php echo $group; ?>/Home">Home</a>&nbsp;|&nbsp;<a href="../../recentChanges?group=<?php echo $group; ?>">Recent Changes</a>&nbsp;|&nbsp;<a href="../../pages/view/<?php echo $group; ?>/Shortcodes">Shortcodes</a>&nbsp;|&nbsp;<a href="../../pages/view/<?php echo $group; ?>/Help">Help</a>
+	<form action="<?php echo base_url(); ?>index.php/swarmtv/map/<?php echo $group; ?>" method="get" enctype="multipart/form-data" id="filter_form">
+            <br />
+            <input name="filter" value="" onchange="submit();" />
+            <input type="submit" value="Search">
+        </form>
+    </div><br /><br />
+			<div id="oldBrowser" style="display:none" width="600px">This website is a project designed to work with <strong>HTML5</strong>, so please download a modern browser if you can (its worth the wait!). If you haven't got IT permissions to do this, try Chrome portable (<a href="http://portableapps.com/apps/internet/google_chrome_portable">Chrome Portable</a>). You should be able to use that, OK. Otherwise, go straight to the home page here: <a href="http://ucfmediacentre.co.uk/swarmtv/index.php/pages/view/<?php echo $group; ?>/home">Home</a>, and have a play around there. Thanks very much!<br /><br /><?php echo $listview; ?></div>
         <canvas class="" style="opacity: 1; display: inline;" id="the-swarm" width="1680" height="350"></canvas>
         <img id="bg" src="<?php echo base_url(); ?>img/default_background.jpg" style="display:none;" />
         <script src="<?php echo base_url(); ?>libraries/arbor/lib/arbor.js"></script>

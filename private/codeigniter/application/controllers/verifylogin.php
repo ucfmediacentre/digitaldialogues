@@ -42,10 +42,10 @@ class VerifyLogin extends CI_Controller {
 		
 		$controller = $this->input->post('controller');
 		$title = $this->input->post('title');
+		$group = $this->input->post('group');
 		
 		// redirect to private area
-		//cpmr is hardcoded at the moment, and needs to be given by the variable in the URL OR the link itself?
-		if (isset($controller) && isset($title)) header('Location: ' . base_url() . 'index.php/' . $controller . '/view/cpmr/' . $title );
+		if (isset($controller) && isset($title) && isset($group)) header('Location: ' . base_url() . 'index.php/' . $controller . '/view/' . $group . '/' . $title );
 				
 		exit();
 	  }

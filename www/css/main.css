@@ -233,7 +233,7 @@ div.element:hover {
 	position:absolute;
 	padding:20px;
 	left:10px;
-	top:50px;
+	top:165px;
 	z-index:2000;
 	background-color:transparent;
 	overflow:visible;
@@ -302,6 +302,18 @@ img {
     text-shadow: none;
 }
 
+
+#main_pages_wrapper{
+	width:400px;
+	position:absolute;
+	padding:20px;
+	left:10px;
+	top:90px;
+	z-index:2010;
+	background-color:transparent;
+	overflow:visible;
+	color: #ccc;
+}
 #page_description{
 	color:#999;
 	margin:0px;
@@ -347,8 +359,8 @@ img {
 	color:#ccc;
 	width:500px;
 	position:absolute;
-	left:260px;
-	top:100px;
+	left:460px;
+	top:200px;
 	z-index:2000;
 	background-color:transparent;
 }

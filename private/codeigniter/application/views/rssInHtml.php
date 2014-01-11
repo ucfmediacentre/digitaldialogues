@@ -7,9 +7,10 @@
 		
 		$directories = explode('/', $url);
 		$page = $directories[sizeof($directories)-1];
+		$page_group = $directories[sizeof($directories)-2];
 		
 		//iterate through all the items found in the rss feed and form output
-		$changesList = $changesList . "<H2>" . $item->get_title() . " on <a href='" . $item->get_link() . "'>" . urldecode($page) . "</a></H2>";
+		$changesList = $changesList . "<H2>" . $item->get_title() . " on <a href='" . $item->get_link() . "'>" . urldecode($page_group) . " : " . urldecode($page) . "</a></H2>";
 		$changesList = $changesList . "Changed: " . $item->get_date() . "<br /><br />";
 		$changesList = $changesList . $item->get_content() . "<br /><br />";
 		$changesList = $changesList . "<hr />";	
@@ -19,7 +20,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>swarm tv: Recent Changes</title>
+        <title>Digital Dialogues : Recent Changes</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -35,12 +36,18 @@
         <script src="<?php echo base_url(); ?>js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
-        <div id="recentChangesTitle"><h1>Recent Changes</h1></div>
+        <div id="recentChangesTitle"><h1><?php echo $group; ?> : Recent Changes</h1><br />
+		<a href="pages/view/<?php echo $group; ?>/Home">Home</a>&nbsp;|&nbsp;<a href="recentChanges?group=<?php echo $group; ?>">Recent Changes</a>&nbsp;|&nbsp;<a href="pages/view/<?php echo $group; ?>/Shortcodes">Shortcodes</a>&nbsp;|&nbsp;<a href="pages/view/<?php echo $group; ?>/Help">Help</a>
+		<form action="<?php echo base_url(); ?>index.php/swarmtv/map/<?php echo $group; ?>" method="get" enctype="multipart/form-data" id="filter_form">
+			<br />
+			<input name="filter" value="" onchange="submit();" />
+			<input type="submit" value="Search">
+		</form>
+	</div>
 		
-		<div>
-			<div id="recentChanges"><strong>RSS feed: http://ucfmediacentre.co.uk/swarmtv/index.php/feed</strong><br /><br /><?php echo $changesList; ?></div>
-		</div>
-		<a id="main_home_button" href="<?php echo base_url(); ?>index.php/swarmtv/map/isea">&nbsp;</a>
+	<div>
+		<div id="recentChanges"><strong>RSS feed: http://digitaldialogues.org/index.php/feed?group=<?php echo $group; ?></strong><br /><br /><?php echo $changesList; ?></div>
+	</div>
 
         <script src="<?php echo base_url(); ?>js/plugins.js"></script>
         <script src="<?php echo base_url(); ?>js/main.js"></script>

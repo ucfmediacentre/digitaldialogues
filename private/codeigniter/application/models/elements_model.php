@@ -380,7 +380,7 @@ class Elements_model extends CI_Model {
             $updates_data = array(
                 'page' => $pages_title,
                 'group' => $pages_group,
-                'summary' =>  $element->type . " " . $action . " on page: " . $pages_title,
+                'summary' =>  $element->type . " " . $action,
                 'elementInHtml' => $elementInHtml,
                 'jsonArray' => json_encode($element),
                 'elements_id' => $elements_id,

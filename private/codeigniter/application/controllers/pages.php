@@ -9,11 +9,11 @@ class Pages extends CI_Controller {
 		//$this->is_logged_in();
 	}
 	
-	public function is_logged_in($page){
+	public function is_logged_in($group, $page){
 		$is_logged_in = $this->session->userdata('logged_in');
 		if (!isset($is_logged_in) || $is_logged_in != true){
 		
-				header('Location: ' . base_url() . 'index.php/verifylogin?controller=pages&title=' . $page);
+				header('Location: ' . base_url() . 'index.php/verifylogin?controller=pages&group=' . $group . '&title=' . $page);
 		
 		}
     }
@@ -47,7 +47,7 @@ class Pages extends CI_Controller {
 		
 		// check security
 		if ($page_details->public == 0){
-				$this->is_logged_in(URLdecode($page_title));
+				$this->is_logged_in(URLdecode($group), URLdecode($page_title));
 				
 				
 				
@@ -69,6 +69,7 @@ class Pages extends CI_Controller {
 			$this->load->view('header', $data);
 			$this->load->view('pages_view/page_view');
 			$this->load->view('pages_view/page_element_form');
+			//$this->load->view('pages_view/page_text_form');
 			$this->load->view('pages_view/page_info_form');
 			$this->load->view('pages_view/page_view_scripts');
 			$this->load->view('footer');

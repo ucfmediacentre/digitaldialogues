@@ -19,6 +19,7 @@
       </td></tr>
 	  <input type="hidden" name="controller" value="<?php echo $_GET['controller'] ?>">
 	  <input type="hidden" name="title" value="<?php echo $_GET['title'] ?>">
+	  <input type="hidden" name="group" value="<?php echo $_GET['group'] ?>">
       <tr><td><br/>
       <input type="submit" value="Login"/>
       </td></tr></table>
