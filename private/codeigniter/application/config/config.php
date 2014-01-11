@@ -18,9 +18,9 @@ $config['base_url']	= 'http://localhost/~media/swarmTVlive/www/swarmtv';
 //$config['base_url']	= 'http://localhost/~media/swarmTVlive/www/swarmtv';
 $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"], 0, 5)) == 'https' ? 'https://' : 'http://';  */
 
-//$config['base_url']	= $protocol;                                     
+$config['base_url']	= $protocol;                                     
 
-$config['base_url']	= 'http://localhost/digitaldialogues/www';
+//$config['base_url']	= 'http://localhost/digitaldialogues/www';
 
 /*
 |--------------------------------------------------------------------------
