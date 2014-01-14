@@ -9,7 +9,7 @@ class Links_model extends CI_Model {
         
         $this->load->database();
         $this->load->helper('url');
-		$this->load->library('Shortcodes');
+	$this->load->library('Shortcodes');
     }
 	
 	// saves the new links to the database

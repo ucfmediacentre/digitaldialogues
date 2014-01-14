@@ -79,8 +79,7 @@ a#main_home_button:hover{
 	color:#fff;
 }
 
-#add_element_form,
-#page_info_form {
+.input_form {
 	width:465px;
 	color:#006; 
 	background-color:#e0e0f0; 
@@ -94,8 +93,7 @@ a#main_home_button:hover{
 	vertical-align:top;
 } 
       
-#add_element_form h2,
-#page_info_form h2 { 
+.input_form h2 { 
 	font-size:30px; 
 	font-weight:bold;
     margin-top:0px;  
@@ -124,8 +122,11 @@ a#main_home_button:hover{
 	display:block;  
 }
 
-#add_element_form textarea,
-#page_info_form textarea {  
+.input_form label {  
+	display:block;  
+}
+
+.input_form textarea {  
 	width:450px;  
 	font-size:15px;   
 	margin-bottom:10px;  
@@ -140,14 +141,12 @@ a#main_home_button:hover{
 	text-indent:5px; 
 }
 
-#add_element_form textarea:focus,
-#page_info_form textarea:focus {  
+.input_form textarea:focus {  
 	border: 1px solid #006;  
 	background-color: #f8f8ff;  
 }  
 
-#add_element_form label,
-#page_info_form label{ 
+.input_form label{ 
         font-size:15px; 
 }
 	
@@ -374,16 +373,12 @@ img {
 	width:auto;
 }
 
-#submit_element {
-  float:right;
-}
-
 ::selection {
     background: #b3d4fc;
     text-shadow: none;
 }
 
-.submit_button {
+.submit_element {
   float:right;  
   width: 85px;
   height: 25px;  

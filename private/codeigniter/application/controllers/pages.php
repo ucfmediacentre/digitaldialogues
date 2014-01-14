@@ -68,8 +68,13 @@ class Pages extends CI_Controller {
 			// load view with data
 			$this->load->view('header', $data);
 			$this->load->view('pages_view/page_view');
-			$this->load->view('pages_view/page_element_form');
-			//$this->load->view('pages_view/page_text_form');
+			$this->load->view('pages_view/new_element_form');
+			$this->load->view('pages_view/new_text_form');
+			$this->load->view('pages_view/new_image_form');
+			$this->load->view('pages_view/new_audio_form');
+			$this->load->view('pages_view/new_video_form');
+			$this->load->view('pages_view/new_page_form');
+			$this->load->view('pages_view/new_group_form');
 			$this->load->view('pages_view/page_info_form');
 			$this->load->view('pages_view/page_view_scripts');
 			$this->load->view('footer');
@@ -87,6 +92,22 @@ class Pages extends CI_Controller {
 	{
 		$this->load->model('Pages_model');
 		return $this->Pages_model->update();
+		//redirect('/pages/view/'.$group.'/'.$page_title, 'location');
+	}
+	
+	// updates the page_info and returns "1" if successful
+	public function add_page()
+	{
+		$this->load->model('Pages_model');
+		return $this->Pages_model->add_page();
+		//redirect('/pages/view/'.$group.'/'.$page_title, 'location');
+	}
+	
+	// updates the group database and returns "1" if successful
+	public function add_group()
+	{
+		$this->load->model('Pages_model');
+		return $this->Pages_model->add_group();
 		//redirect('/pages/view/'.$group.'/'.$page_title, 'location');
 	}
 	

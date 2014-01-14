@@ -15,18 +15,126 @@
 		initElements();
         
 		// sets dblclick to open page_info fancy box
-        //enabled dblclick so that website is newbie friendly!!
 		$('#page_title_wrapper').dblclick(function(e){
-            $("#page_info_form_trigger").trigger('click');
+		        $("#page_info_form_trigger").trigger('click');
 			$('textarea').focus();
 			clearSelection();
 		});
         
+		// inits page_info fancy box
+		$("a#page_info_form_trigger").fancybox({
+			'overlayOpacity':0,
+			'autoDimensions':true,
+			'showCloseButton':false,
+		});
         
-		// sets dblclick to open element fancy box
-        $('#add_element_form_wrapper').dblclick(function(e){
-			$("a#add_element_form_trigger").trigger('click');
-        //$('#add_text_form_wrapper').dblclick(function(e){
+		// sets click to open text fancy box
+		$('#add_text_form_wrapper').click(function(e){
+			$("a#add_text_form_trigger").trigger('click');
+			$('input[name="x"]').val(e.pageX);
+			$('input[name="y"]').val(e.pageY);
+			$('textarea').focus();
+			clearSelection();
+		});
+		
+		// inits text fancy box
+		$("a#add_text_form_trigger").fancybox({
+			'overlayOpacity':0,
+			'autoDimensions':true,
+			'showCloseButton':false,
+		});
+		
+		// sets click to open image fancy box
+		$('#add_image_form_wrapper').click(function(e){
+			$("a#add_image_form_trigger").trigger('click');
+			$('input[name="x"]').val(e.pageX);
+			$('input[name="y"]').val(e.pageY);
+			$('textarea').focus();
+			clearSelection();
+		});
+		
+		// inits image fancy box
+		$("a#add_image_form_trigger").fancybox({
+			'overlayOpacity':0,
+			'autoDimensions':true,
+			'showCloseButton':false,
+		});
+		
+		// sets click to open audio fancy box
+		$('#add_audio_form_wrapper').click(function(e){
+			$("a#add_audio_form_trigger").trigger('click');
+			$('input[name="x"]').val(e.pageX);
+			$('input[name="y"]').val(e.pageY);
+			$('textarea').focus();
+			clearSelection();
+		});
+		
+		// inits audio fancy box
+		$("a#add_audio_form_trigger").fancybox({
+			'overlayOpacity':0,
+			'autoDimensions':true,
+			'showCloseButton':false,
+		});
+		
+		// sets click to open video fancy box
+		$('#add_video_form_wrapper').click(function(e){
+			$("a#add_video_form_trigger").trigger('click');
+			$('input[name="x"]').val(e.pageX);
+			$('input[name="y"]').val(e.pageY);
+			$('textarea').focus();
+			clearSelection();
+		});
+		
+		// inits video fancy box
+		$("a#add_video_form_trigger").fancybox({
+			'overlayOpacity':0,
+			'autoDimensions':true,
+			'showCloseButton':false,
+		});
+		
+		// sets click to open audio fancy box
+		$('#add_page_form_wrapper').click(function(e){
+			$("a#add_page_form_trigger").trigger('click');
+			$('input[name="x"]').val(e.pageX);
+			$('input[name="y"]').val(e.pageY);
+			$('textarea').focus();
+			clearSelection();
+		});
+		
+		// inits audio fancy box
+		$("a#add_page_form_trigger").fancybox({
+			'overlayOpacity':0,
+			'autoDimensions':true,
+			'showCloseButton':false,
+		});
+		
+		// sets click to open audio fancy box
+		$('#add_group_form_wrapper').click(function(e){
+			$("a#add_group_form_trigger").trigger('click');
+			$('input[name="x"]').val(e.pageX);
+			$('input[name="y"]').val(e.pageY);
+			$('textarea').focus();
+			clearSelection();
+		});
+		
+		// inits audio fancy box
+		$("a#add_group_form_trigger").fancybox({
+			'overlayOpacity':0,
+			'autoDimensions':true,
+			'showCloseButton':false,
+		});
+		
+		// inits element fancy box
+		$("a#add_element_form_trigger").fancybox({
+			'overlayOpacity':0,
+			'autoDimensions':true,
+			'showCloseButton':false,
+		});
+	
+		// triggers the element fancy box on double click
+		$('#background').dblclick(function(e){
+		        //$("#add_element_form_wrapper").replaceWith("<div>Hello world!</div>");
+			$("a#add_element_form_trigger").trigger('click');    
 			//$("a#add_text_form_trigger").trigger('click');
 			
 			$('input[name="x"]').val(e.pageX);
@@ -40,47 +148,125 @@
 			// Stop the page from navigating away from this page
 			e.preventDefault();		
 			
-            // get the values from the form
+		        // get the values from the form
 			var idVal = $('input[name="id"]').val();
 			var titleVal = $('input[name="title"]').val();
-            var descriptionVal = $('textarea[name="description"]').val();
-			var groupVal = $('input[name="group"]').val();
+                        var descriptionVal = $('textarea[name="description"]').val();
 			var keywordsVal = $('input[name="keywords"]').val();
-			var publicVal = $('input[name="public"]').val();
+			var groupVal = $('input[name="group"]').val();
 			
 			// Post the values to the pages controller
-            $.post(base_url + "index.php/pages/update", { id: idVal , group: groupVal , title: titleVal , description: descriptionVal, keywords: keywordsVal, public: publicVal },
-				function(data) {
+                        $.post(base_url + "index.php/pages/update", { id: idVal , group: groupVal , title: titleVal , description: descriptionVal, keywords: keywordsVal},
+		        function(data) {
 				// Refresh page
-                window.location.href = base_url+"index.php/pages/view/"+groupVal+"/"+titleVal;
+                                window.location.href = base_url+"index.php/pages/view/"+groupVal+"/"+titleVal;
 			});
             
 		});
 		
-		// inits element fancy box
-		$("a#add_element_form_trigger").fancybox({
-		//$("a#add_text_form_trigger").fancybox({
-			'overlayOpacity':0,
-			'autoDimensions':true,
-			'showCloseButton':false,
-		});
-        
-		// inits page_info fancy box
-        $("a#page_info_form_trigger").fancybox({
-			'overlayOpacity':0,
-			'autoDimensions':true,
-			'showCloseButton':false,
-		});
-	
-		// triggers the element fancy box on double click
-		$('#background').dblclick(function(e){
-			$("a#add_element_form_trigger").trigger('click');
-			//$("a#add_text_form_trigger").trigger('click');
+		// submits Ajax for updating new page into database
+		$('#submit_new_page').click(function(e){
+			// Stop the page from navigating away from this page
+			e.preventDefault();		
 			
-			$('input[name="x"]').val(e.pageX);
-			$('input[name="y"]').val(e.pageY);
-			$('textarea').focus();
-			clearSelection();
+		        // get the values from the form
+			var titleVal = $('input[name="new_page_title"]').val();
+                        var descriptionVal = $('textarea[name="new_page_description"]').val();
+			var keywordsVal = $('input[name="new_page_keywords"]').val();
+			var groupVal = $('input[name="group"]').val();
+			var currentPageVal = $('input[name="current_page_title"]').val();
+			var currentPageIdVal = $('input[name="current_page_id"]').val();
+			
+			// Post the values to the pages controller
+                        $.post(base_url + "index.php/pages/add_page", { title: titleVal, description: descriptionVal, keywords: keywordsVal, group: groupVal, currentPageTitle: currentPageVal, currentPageId: currentPageIdVal },
+		        function(data) {
+				// Refresh page
+                                window.location.href = base_url+"index.php/pages/view/"+groupVal+"/"+currentPageVal;
+			});
+            
+		});
+		
+		// submits Ajax for updating new group into the database
+		$('#submit_new_group').click(function(e){
+			// Stop the page from navigating away from this page
+			e.preventDefault();		
+			
+		        // get the values from the form
+			var newGroupVal = $('input[name="new_group_title"]').val();
+                        var participationVal = $('input[name="participation"]:checked').val();
+			var currentPageVal = $('input[name="current_page"]').val();
+			var currentGroupVal = $('input[name="current_group"]').val();
+			var currentPageIdVal = $('input[name="current_page_id"]').val();
+			
+			//alert(newGroupVal + " | " + participationVal + " | " + currentPageVal + " | " + currentGroupVal + " | " + currentPageIdVal);
+			
+			// Post the values to the pages controller
+                        $.post(base_url + "index.php/pages/add_group", { newGroup: newGroupVal, participation: participationVal, currentPage: currentPageVal, currentGroup: currentGroupVal, currentPageId: currentPageIdVal },
+		        function(data) {
+				// Refresh page
+                                window.location.href = base_url+"index.php/pages/view/"+currentGroupVal+"/"+currentPageVal;
+			});
+            
+		});
+		
+		//fills out element form from TEXT submit 
+		$('#submit_text').click(function(e){
+			// Stop the page from navigating away from this page
+			e.preventDefault();		
+			
+		        // get the values from the text form and put them into the element form
+			$('#element_text').val($('#text_form_text').val());
+			$('#element_x').val(parseInt(100+(Math.random()*200)));
+			$('#element_y').val(parseInt(200+(Math.random()*300)));
+			
+			//trigger element form click
+			$("#submit_element").trigger('click');    
+            
+		});
+		
+		//fills out element form from IMAGE submit 
+		$('#submit_image').click(function(e){
+			// Stop the page from navigating away from this page
+			e.preventDefault();
+			
+		        // get the values from the image form and put them into the element form
+			$('#element_file').get(0).files[0] = $('#image_file').get(0).files[0];
+			$('#element_x').val(parseInt(100+(Math.random()*200)));
+			$('#element_y').val(parseInt(200+(Math.random()*300)));
+			
+			//trigger element form click
+			$("#submit_element").trigger('click');    
+            
+		});
+		
+		//fills out element form from AUDIO submit 
+		$('#submit_audio').click(function(e){
+			// Stop the page from navigating away from this page
+			e.preventDefault();
+			
+		        // get the values from the image form and put them into the element form
+			$('#element_file').get(0).files[0] = $('#audio_file').get(0).files[0];
+			$('#element_x').val(parseInt(100+(Math.random()*200)));
+			$('#element_y').val(parseInt(200+(Math.random()*300)));
+			
+			//trigger element form click
+			$("#submit_element").trigger('click');    
+            
+		});
+		
+		//fills out element form from VIDEO submit 
+		$('#submit_video').click(function(e){
+			// Stop the page from navigating away from this page
+			e.preventDefault();
+			
+		        // get the values from the image form and put them into the element form
+			$('#element_file').get(0).files[0] = $('#video_file').get(0).files[0];
+			$('#element_x').val(parseInt(100+(Math.random()*200)));
+			$('#element_y').val(parseInt(200+(Math.random()*300)));
+			
+			//trigger element form click
+			$("#submit_element").trigger('click');    
+            
 		});
 		
 		// creates functions for double clicking elements
@@ -91,10 +277,10 @@
 			// Only allow inline editing for text elements
 			if( $(this).hasClass('text') )
 			{
-                // updates text to editable state
-                var jsonIndex = $(this).find('div').attr('jsonindex');
-                var content_container = $(this).find('.text-content');
-                $(content_container).html(page_elements_json[jsonIndex]['editableContents']); 
+				// updates text to editable state
+				var jsonIndex = $(this).find('div').attr('jsonindex');
+				var content_container = $(this).find('.text-content');
+				$(content_container).html(page_elements_json[jsonIndex]['editableContents']); 
                 
 				// make content editable and disable drag
 				$(this).find('.text-content').attr('contenteditable','true');
@@ -130,8 +316,8 @@
 		$('#submit_element').click(function(e){
 			e.preventDefault();
 			
-            $("#loadingPrompt").css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
-            $.fancybox.showActivity();
+		        $("#loadingPrompt").css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
+		        $.fancybox.showActivity();
 		
 			// get all the form values
 			var element_file = $('#element_file').get(0).files[0];

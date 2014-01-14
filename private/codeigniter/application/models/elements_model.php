@@ -200,12 +200,15 @@ class Elements_model extends CI_Model {
                 $execute = shell_exec($createFirstFrame);
                 
                 //get duration as well
-                $result = preg_match('/Duration: (.*?),/', $output, $matches); 
+                $result = preg_match('/Duration: (.*?),/', $output, $matches);
+		$hours = 0;
+		$mins = 0;
+		$secs = 0;
                 if (isset ( $matches[0] )) {  
                     $vals = (explode ( ':', $matches[1] ));  
-                    $hours = $vals[0] ? trim($vals[0]) : null;  
-                    $mins = $vals[1] ? $vals[1] : null;   
-                    $secs = $vals[2] ? $vals[2] : null;
+                    $hours = $vals[0] ? trim($vals[0]) : 0;  
+                    $mins = $vals[1] ? $vals[1] : 0;   
+                    $secs = $vals[2] ? $vals[2] : 0;
                 }
                 $duration = ($hours * 3600) + ($mins * 60) + $secs;
                 

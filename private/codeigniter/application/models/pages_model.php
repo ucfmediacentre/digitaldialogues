@@ -218,6 +218,148 @@ class Pages_model extends CI_Model {
    		return $this->db->insert_id();
    }
    
+   // creates a page from a click on the Add: Page link
+   public function add_page()
+   {
+		// first insert user's requirements in to database
+		//collect variables from the form
+   		$title = $this->input->post('title');
+   		$description = $this->input->post('description');
+   		$keywords = $this->input->post('keywords');
+   		$group = $this->input->post('group');
+   		$currentPageTitle = $this->input->post('currentPageTitle');
+   		$currentPageId = $this->input->post('currentPageId');
+   		
+		// add the new page to the database
+	   	$data = array(
+		    'title' => URLdecode($title),
+		    'description' => $description,
+		    'keywords' => $keywords,
+		    'group' => $group
+   		);
+		$this->db->insert('pages', $data); 
+   		$added_page_id = $this->db->insert_id();
+		
+		// then insert link on the current Page
+		// first create the link to the new page
+	   	$data = array(
+		    'linkTitle' => URLdecode($title),
+		    'linkTitleGroup' => $group,
+		    'pageTitle' => $currentPageTitle,
+		    'pageTitleGroup' => $group
+   		);
+		$this->db->insert('links', $data);
+   		$linkAway_id = $this->db->insert_id();
+		
+		// now create the link coming back from the new page
+	   	$data = array(
+		    'linkTitle' => URLdecode($currentPageTitle),
+		    'linkTitleGroup' => $group,
+		    'pageTitle' => URLdecode($title),
+		    'pageTitleGroup' => $group
+   		);
+		$this->db->insert('links', $data);
+   		$linkBack_id = $this->db->insert_id();
+		
+		//Now create the elements with links in them
+		// First the link away element with the correct link id
+	   	$data = array(
+		    'contents' => "[[" . $linkAway_id . "]]",
+		    'pages_id' => $currentPageId,
+		    'type' => "text",
+		    'x' => rand(200,500),
+		    'y' => rand(150,400)
+   		);
+		$this->db->insert('elements', $data);
+   		$elementAway_id = $this->db->insert_id();
+		
+		// update the elements_id in the links table
+		$data = array(
+		    'elementsId' => $elementAway_id
+		);
+		$this->db->where('id', $linkAway_id);
+		$this->db->update('links', $data);
+		
+		//Now create the link on the new page back to the original page
+		// Then the link back element with the correct link id
+	   	$data = array(
+		    'contents' => "[[" . $linkBack_id . "]]",
+		    'pages_id' => $added_page_id,
+		    'type' => "text",
+		    'x' => rand(200,500),
+		    'y' => rand(150,400)
+   		);
+		$this->db->insert('elements', $data);
+   		$elementBack_id = $this->db->insert_id();
+		
+		// update the elements_id in the links table
+		$data = array(
+		    'elementsId' => $elementBack_id
+		);
+		$this->db->where('id', $linkBack_id);
+		$this->db->update('links', $data);
+		
+   		return $this->db->insert_id();
+		
+   }
+   
+   // creates a group from a click on the Add: Group link
+   public function add_group()
+   {
+		// first insert user's requirements into the group database
+		//collect variables from the form
+		
+   		$newGroup = $this->input->post('newGroup');
+   		$participation = $this->input->post('participation');
+   		$currentPage = $this->input->post('currentPage');
+   		$currentGroup = $this->input->post('currentGroup');
+   		$currentPageId = $this->input->post('currentPageId');
+   		
+		// add the new group to the database
+	   	$data = array(
+		    'title' => URLdecode($newGroup),
+		    'participation' => $participation
+   		);
+		$this->db->insert('groups', $data); 
+   		$added_group_id = $this->db->insert_id();
+		
+		// Then create a new Home page for this group
+		// add the new page to the database
+	   	$data = array(
+		    'title' => "Home",
+		    'group' => $newGroup
+   		);
+		$this->db->insert('pages', $data); 
+   		$added_page_id = $this->db->insert_id();
+		
+		//Now create the elements with links in them
+		// First the link away element with the correct link id
+	   	$data = array(
+		    'contents' => "[[swarm::" . $newGroup . "]]",
+		    'pages_id' => $currentPageId,
+		    'type' => "text",
+		    'x' => rand(200,500),
+		    'y' => rand(150,400)
+   		);
+		$this->db->insert('elements', $data);
+   		$elementAway_id = $this->db->insert_id();
+		
+		//Now create the link on the new page back to the original page
+		// Then the link back element with the correct link id
+	   	$data = array(
+		    'contents' => "[[swarm::" . $currentGroup . "]]",
+		    'pages_id' => $added_page_id,
+		    'type' => "text",
+		    'x' => rand(200,500),
+		    'y' => rand(150,400)
+   		);
+		$this->db->insert('elements', $data);
+   		$elementBack_id = $this->db->insert_id();
+		
+   		return $this->db->insert_id();
+		
+   }
+   
    // updates page_info in the `pages` table & returns "1" if successful
    public function update()
    {
