@@ -19,9 +19,9 @@ class Pages extends CI_Controller {
     }
 	
 	// initial testing to display page name
-	public function index($page_name)
+	public function index($page_name = "home")
 	{
-	 	echo $page_name;
+	 	header('Location: ' . base_url() . 'index.php/pages/view/' . $group . '/' . $page_name);
 	}
 	
 	
