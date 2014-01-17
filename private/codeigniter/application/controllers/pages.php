@@ -30,10 +30,10 @@ class Pages extends CI_Controller {
 	{
 		$this->load->helper('url');
 		
-		//test to see if page requested is recent changes, if so go there
+		/*test to see if page requested is recent changes, if so go there
 		if (strtoupper(urldecode($page_title)) === "RECENT CHANGES" | strtoupper ($page_title) === "RECENTCHANGES") {
 			redirect('/'.$group.'/recentChanges', 'location');
-		}
+		}*/
 		
 		if ($page_title === NULL){
 				$page_title = "home";
@@ -45,13 +45,18 @@ class Pages extends CI_Controller {
 		$this->load->model('Groups_model');
 		$group_details= $this->Groups_model->get_group_details($group);
 		
-		// check security
+		// check security (logged in)
 		if ($group_details->openness == 'private'){
 				$this->is_logged_in(URLdecode($group), URLdecode($page_title));
-				
-				
-				
 		}
+		
+		$user_id = $this->session->userdata('user_id');
+		
+		// check permissions for group
+		$access = $this->Groups_model->check_user($group, $user_id);
+		// check the user id in session vs the groups list of users
+		
+		//if (!$access) exit;
 		
 		// get the page information from the db.php
 		$this->load->model('Pages_model');

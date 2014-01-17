@@ -17,7 +17,7 @@
 	  </td><td>
       <input type="password" size="20" id="password" name="password"/>
       </td></tr>
-	  <input type="hidden" name="controller" value="<?php echo $_GET['controller'] ?>">
+	  <input type="hidden" name="controller" value="<?php if (isset($_GET['controller'])) echo $_GET['controller']; ?>">
 	  <input type="hidden" name="title" value="<?php echo $_GET['title'] ?>">
 	  <input type="hidden" name="group" value="<?php echo $_GET['group'] ?>">
       <tr><td><br/>

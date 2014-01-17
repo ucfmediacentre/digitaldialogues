@@ -25,4 +25,38 @@ class Groups_model extends CI_Model {
    			return false;
    		}
    }
+   
+   function check_user($group, $user_id){
+	
+	// presume no access
+	$access = false;
+	
+	$query = $this->db->get_where('groups', array('title' => $group), 1);
+	
+	$result = $query->row();
+	
+	// check to see if the user is the creator of the group
+	if ($result->creator_id == $user_id){
+	    
+	    // allow access
+	    $access = true;
+	    
+	// if not the creator do they have access to the group?    
+	}else{
+	    
+	    $users = $result->user_ids;
+	    
+	    // break user id string into an array
+	    $users = explode(',', $users);
+	    
+	    // check to see if user id is present in array
+	    foreach ($users as $user){
+		
+		// allow access
+		if ($user == $user_id) $access = true;
+	    }
+	    
+	}
+	return $access;
+   }
 }
