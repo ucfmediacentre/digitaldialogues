@@ -168,8 +168,8 @@ class Links_model extends CI_Model {
 										case "shortcode":
 												$this->shortcodes->replaceShortCode($i, '[['.$link->getValue().']]');
 												break;
-										case "swarm":
-												$this->shortcodes->replaceShortCode($i, '<a href="' . base_url() . 'index.php/pages/view/' . $link->getValue() . '/Home">' . $link->getValue() . '::Home</a>');
+										case "group":
+												$this->shortcodes->replaceShortCode($i, '<a href="' . base_url() . 'index.php/pages/view/' . $link->getValue() . '/home">' . $link->getValue() . ' : Home</a>');
 												break;
 										case "twitter":
 												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><a href="https://twitter.com/' . $link->getValue() . '" class="twitter-follow-button" data-show-count="false">Follow @' . $link->getValue() . '</a></div><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");</script>');

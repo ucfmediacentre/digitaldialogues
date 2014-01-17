@@ -2,7 +2,7 @@
 
 class Swarmtv extends CI_Controller {
 
-	public function index($group="main")
+	public function index($group="public")
 	{
 		$this->load->helper('url');
 		redirect('/swarmtv/map/'.$group, 'location');	

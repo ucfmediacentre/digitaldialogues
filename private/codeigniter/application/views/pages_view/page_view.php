@@ -5,7 +5,7 @@
         <p id="page_description" > <?php echo $page_info->description; ?> </p>
     </div>
     <div id="main_pages_wrapper">
-        <a href="../../../pages/view/<?php echo $page_info->group; ?>/Home">Home</a>&nbsp;|&nbsp;<a href="../../../recentChanges?group=<?php echo $page_info->group; ?>">Recent Changes</a>&nbsp;|&nbsp;<a href="../../../pages/view/Help/Home">Help</a>
+        <a href="../../../pages/view/<?php echo $page_info->group; ?>/Home">Home</a>&nbsp;|&nbsp;<a href="../../../recentChanges?group=<?php echo $page_info->group; ?>">Recent Changes</a>&nbsp;|&nbsp;<a href="../../../pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="../../../pages/view/help/home">Help</a>
 	<form action="<?php echo base_url(); ?>index.php/swarmtv/map/<?php echo $page_info->group; ?>" method="get" enctype="multipart/form-data" id="filter_form">
             <br />
             <input name="filter" value="" onchange="submit();" />

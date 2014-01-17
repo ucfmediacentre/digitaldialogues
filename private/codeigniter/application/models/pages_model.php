@@ -314,11 +314,24 @@ class Pages_model extends CI_Model {
    		$currentPage = $this->input->post('currentPage');
    		$currentGroup = $this->input->post('currentGroup');
    		$currentPageId = $this->input->post('currentPageId');
+		
+		// search database to see if this group already exists
+   		$this->db->where('title', $newGroup);
+   		$query = $this->db->get('groups');
+		
+		if ($query->num_rows() > 0)
+		{
+		   $group_exists = "TRUE";
+		   return "A group called $newGroup already exists";
+		}else
+		{
+		   $group_exists = "FALSE";
+		}
    		
 		// add the new group to the database
 	   	$data = array(
 		    'title' => URLdecode($newGroup),
-		    'participation' => $participation
+		    'openness' => $participation
    		);
 		$this->db->insert('groups', $data); 
    		$added_group_id = $this->db->insert_id();
@@ -335,7 +348,7 @@ class Pages_model extends CI_Model {
 		//Now create the elements with links in them
 		// First the link away element with the correct link id
 	   	$data = array(
-		    'contents' => "[[swarm::" . $newGroup . "]]",
+		    'contents' => "[[group::" . $newGroup . "]]",
 		    'pages_id' => $currentPageId,
 		    'type' => "text",
 		    'x' => rand(200,500),
@@ -347,7 +360,7 @@ class Pages_model extends CI_Model {
 		//Now create the link on the new page back to the original page
 		// Then the link back element with the correct link id
 	   	$data = array(
-		    'contents' => "[[swarm::" . $currentGroup . "]]",
+		    'contents' => "[[group::" . $currentGroup . "]]",
 		    'pages_id' => $added_page_id,
 		    'type' => "text",
 		    'x' => rand(200,500),

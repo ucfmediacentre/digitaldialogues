@@ -3,7 +3,7 @@
     
     <head>
         <meta charset="utf-8">
-        <title>swarm tv</title>
+        <title>Digital Dialogues</title>
         <script src="<?php echo base_url(); ?>js/vendor/jquery-1.8.3.min.js"></script>
         <style type="text/css">
             html, body {
@@ -58,7 +58,7 @@
 	</div>
         
     <div id="main_pages_wrapper">
-        <a href="../../pages/view/<?php echo $group; ?>/Home">Home</a>&nbsp;|&nbsp;<a href="../../recentChanges?group=<?php echo $group; ?>">Recent Changes</a>&nbsp;|&nbsp;<a href="../../pages/view/<?php echo $group; ?>/Shortcodes">Shortcodes</a>&nbsp;|&nbsp;<a href="../../pages/view/<?php echo $group; ?>/Help">Help</a>
+        <a href="../../pages/view/<?php echo $group; ?>/home">Home</a>&nbsp;|&nbsp;<a href="../../recentChanges?group=<?php echo $group; ?>">Recent Changes</a>&nbsp;|&nbsp;<a href="../../pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="../../pages/view/<?php echo $group; ?>/help">Help</a>
 	<form action="<?php echo base_url(); ?>index.php/swarmtv/map/<?php echo $group; ?>" method="get" enctype="multipart/form-data" id="filter_form">
             <br />
             <input name="filter" value="" onchange="submit();" />

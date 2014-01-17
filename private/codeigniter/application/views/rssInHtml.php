@@ -37,7 +37,7 @@
     </head>
     <body>
         <div id="recentChangesTitle"><h1><?php echo $group; ?> : Recent Changes</h1><br />
-		<a href="pages/view/<?php echo $group; ?>/Home">Home</a>&nbsp;|&nbsp;<a href="recentChanges?group=<?php echo $group; ?>">Recent Changes</a>&nbsp;|&nbsp;<a href="pages/view/<?php echo $group; ?>/Shortcodes">Shortcodes</a>&nbsp;|&nbsp;<a href="pages/view/<?php echo $group; ?>/Help">Help</a>
+		<a href="pages/view/<?php echo $group; ?>/Home">Home</a>&nbsp;|&nbsp;<a href="recentChanges?group=<?php echo $group; ?>">Recent Changes</a>&nbsp;|&nbsp;<a href="pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="pages/view/help/home</a>
 		<form action="<?php echo base_url(); ?>index.php/swarmtv/map/<?php echo $group; ?>" method="get" enctype="multipart/form-data" id="filter_form">
 			<br />
 			<input name="filter" value="" onchange="submit();" />

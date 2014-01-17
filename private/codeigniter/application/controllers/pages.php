@@ -36,23 +36,26 @@ class Pages extends CI_Controller {
 		}
 		
 		if ($page_title === NULL){
-				$page_title = $group;
-				$group = "main";
+				$page_title = "home";
+				$group = "public";
 				redirect('/pages/view/'.$group.'/'.$page_title, 'location');
 		}
 		
-		// get the page information from the db.php
-		$this->load->model('Pages_model');
-		$page_details= $this->Pages_model->get_page($group, URLdecode($page_title));
+		// get the group information from the db.php
+		$this->load->model('Groups_model');
+		$group_details= $this->Groups_model->get_group_details($group);
 		
 		// check security
-		if ($page_details->public == 0){
+		if ($group_details->openness == 'private'){
 				$this->is_logged_in(URLdecode($group), URLdecode($page_title));
 				
 				
 				
 		}
 		
+		// get the page information from the db.php
+		$this->load->model('Pages_model');
+		$page_details= $this->Pages_model->get_page($group, URLdecode($page_title));
 		
 		$data['page_info'] = $page_details;
 		
