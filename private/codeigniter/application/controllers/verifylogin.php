@@ -85,13 +85,13 @@ class VerifyLogin extends CI_Controller {
     else
     {
       $this->form_validation->set_message('check_database', 'Invalid username or password');
-      return false;
+      return FALSE;
     }
   }
   
-  function log_out(){
+  function log_out($controller, $group, $title){
 	$this->session->sess_destroy();
-	$this->index();
+	$this->index($controller, $group, $title);
   }
 }
 ?>

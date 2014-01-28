@@ -31,9 +31,10 @@
 		<![endif]-->
     </head>
   <body>
-    <h1>Please log in:</h1>
+    <h1>Please log in to visit "<?php echo $group . ' : ' . $title; ?>"</h1>
     <?php echo validation_errors(); ?>
     <?php echo form_open('verifylogin'); ?>
+    <div id="main_pages_wrapper">
 	<table><tr><td align="right">
       <label for="username">Username:</label>
 	  </td><td>
@@ -57,7 +58,9 @@
 	  <input type="hidden" name="group" value="<?php echo $group ?>">
       <tr><td><br/>
       <input type="submit" value="Login"/>
-      </td></tr></table>
+      </td></tr></table><br />
+        <a href="<?php echo base_url(); ?>index.php/pages/view/public/home">public : Home</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/help/home">Help</a>
+    </div>
     </form>
   </body>
 </html>
