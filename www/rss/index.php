@@ -3,7 +3,7 @@
     
     header("Content-Type: application/rss+xml; charset=ISO-8859-1");
     
-	include '../../../dbInfoSwarmTV.php';
+	include '../../../dbInfoDigitalDialogues.php';
       
     DEFINE ('DB_USER', $_SESSION['userName']);  
 	DEFINE ('DB_PASSWORD', $_SESSION['pword']);  
@@ -13,11 +13,11 @@
 	$rssfeed = '<?xml version="1.0" encoding="ISO-8859-1"?>';
 	$rssfeed .= '<rss version="2.0">';
 	$rssfeed .= '<channel>';
-	$rssfeed .= '<title>FU Swarm TV RSS feed</title>';
-	$rssfeed .= '<link>http://www.ucfmediacentre.co.uk/swarmtv/</link>';
-	$rssfeed .= '<description>Latest edits on Swarm TV</description>';
+	$rssfeed .= '<title>FU Digital Dialogues RSS feed</title>';
+	$rssfeed .= '<link>http://digitaldialogues.org/</link>';
+	$rssfeed .= '<description>Latest edits on Digital Dialogues</description>';
 	$rssfeed .= '<language>en-us</language>';
-	$rssfeed .= '<copyright>Copyright (C) 2013 swarmtv.org</copyright>';
+	$rssfeed .= '<copyright>Copyright (C) 2013 digitaldialogues.org</copyright>';
 	$connection = @mysql_connect(DB_HOST, DB_USER, DB_PASSWORD)
         or die('Could not connect to database');
     mysql_select_db(DB_NAME)

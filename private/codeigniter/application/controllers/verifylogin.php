@@ -8,18 +8,27 @@ class VerifyLogin extends CI_Controller {
     $this->load->model('user','',TRUE);
   }
 
-  function index($controller = null, $page = null)
+  function index($controller = null, $group = null, $title = null)
   {
+	
     //This method will have the credentials validation
     $this->load->library('form_validation');
-
-    $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+	
+	if ($controller == null) $controller = $this->input->get('controller');
+	if ($title == null) $title = $this->input->get('title');
+	if ($group == null) $group = $this->input->get('group');
+	
+	$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
     $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
 	
     if($this->form_validation->run() == FALSE)
     {
       //Field validation failed.  User redirected to login page
-      $this->load->view('login_view');
+		$data['controller'] = $controller;
+		$data['group'] = $group;
+		$data['title'] = $title;
+		$this->load->view('login_view', $data);
+	  
     }
     else
     {
@@ -38,7 +47,6 @@ class VerifyLogin extends CI_Controller {
 		);
 		
 		$this->session->set_userdata($data);
-		
 		
 		$controller = $this->input->post('controller');
 		$title = $this->input->post('title');

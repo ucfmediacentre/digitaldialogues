@@ -41,7 +41,7 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">Ableton Live</a>
-		  <a id="main_home_button" href="../index.php/swarmtv/map/isea">&nbsp;</a>
+		  <a id="main_home_button" href="../index.php/search/map/public">&nbsp;</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Username: <a href="#" id="username"class="navbar-link"> </a>

@@ -48,12 +48,12 @@ class Clip extends CI_Controller {
 		$filename = substr($filename, 0, -4);
 		
 		//Jem's local URLs
-		//$videoDirectory = "/Users/media/Sites/swarmTVlive/www/swarmtv/assets/video/";
-		//$videopostersDirectory = "/Users/media/Sites/swarmTVlive/www/swarmtv/assets/videoposters/";
+		//$videoDirectory = "/Users/media/Sites/digitaldialogues/www/assets/video/";
+		//$videopostersDirectory = "/Users/media/Sites/digitaldialogues/www/assets/videoposters/";
 		
 		//public server's URLs
-		$videoDirectory = "/var/www/swarmtv/assets/video/";
-		$videopostersDirectory = "/var/www/swarmtv/assets/videoposters/";
+		$videoDirectory = "/var/www/assets/video/";
+		$videopostersDirectory = "/var/www/assets/videoposters/";
                 
 		//create new image size
 		$sizeRatio = $record->width/$record->height;

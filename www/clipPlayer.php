@@ -1,6 +1,6 @@
 <?php
 session_start();
-//normal page passes URL in the form of http://swarmtv.org/viewer.php?id=123
+//normal page passes URL in the form of http://digitaldialogues.org/viewer.php?id=123
 include_once "../../dbinfo.php";
 
 //get variables from URL

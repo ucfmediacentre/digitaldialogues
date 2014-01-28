@@ -2,7 +2,7 @@
 /**
  * Shortcodes class
  *
- * @package	SwarmTv
+ * @package	Digital Dialogues
  * @subpackage	Libraries
  * @category	shortcodes
  * @author	Alcwyn Parker
@@ -155,7 +155,7 @@ class Shortcodes{
 /**
  * Shortcode class
  *
- * @package	SwarmTv
+ * @package	Digital Dialogues
  * @subpackage	Libraries
  * @category	shortcodes
  * @author	Alcwyn Parker

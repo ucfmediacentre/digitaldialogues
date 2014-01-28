@@ -1,5 +1,5 @@
-# swarmtv.org/
-# Collaborative, open & Non-hierarchical thinking tool
+# digitaldialogues.org/
+# Collaborative, Open & Non-hierarchical thinking 
 
 # TEAM
 
@@ -9,7 +9,7 @@
 
     <name>
 
-# SWARM TV
+# DIGITAL DIALOGUES
 
     HTML5, CSS3
     jQuery, Modernizr

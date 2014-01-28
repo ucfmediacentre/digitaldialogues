@@ -144,7 +144,7 @@ class Elements_model extends CI_Model {
             case 'audio':
                 //create OGA version
                 //Jem's URL
-                //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/swarmTVlive/www/swarmtv/assets/audio/".$full_name;
+                //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/audio/".$full_name;
                  
                 //Public server's URL
                 $createOgvVersion = "ffmpeg2theora /var/www/assets/audio/".$full_name;
@@ -156,7 +156,7 @@ class Elements_model extends CI_Model {
             case 'video':
                 //create OGV version
                 //Jem's URL
-                //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/swarmTVlive/www/swarmtv/assets/video/".$full_name;
+                //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/video/".$full_name;
                  
                 //Public server's URL
                 $createOgvVersion = "ffmpeg2theora /var/www/assets/video/".$full_name;
@@ -167,8 +167,8 @@ class Elements_model extends CI_Model {
                 $filename = $full_name;
                 $filename = substr($filename, 0, -4);
                 //Jem's URLs
-                //$videoDirectory = "/Users/media/Sites/swarmTVlive/www/swarmtv/assets/video/";
-                //$videopostersDirectory = "/Users/media/Sites/swarmTVlive/www/swarmtv/assets/videoposters/";
+                //$videoDirectory = "/Users/media/Sites/digitaldialogues/www/assets/video/";
+                //$videopostersDirectory = "/Users/media/Sites/digitaldialogues/www/assets/videoposters/";
                 
                 //Public server URLs
                 $videoDirectory = "/var/www/assets/video/";
