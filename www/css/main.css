@@ -79,6 +79,10 @@ a#main_home_button:hover{
 	color:#fff;
 }
 
+.error {
+  color:#c00; 
+}
+
 .input_form {
 	width:465px;
 	color:#006; 

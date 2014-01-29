@@ -24,10 +24,10 @@ class VerifyLogin extends CI_Controller {
     if($this->form_validation->run() == FALSE)
     {
       //Field validation failed.  User redirected to login page
-		$data['controller'] = $controller;
-		$data['group'] = $group;
-		$data['title'] = $title;
-		$this->load->view('login_view', $data);
+	  $data['controller'] = $controller;
+	  $data['group'] = $group;
+	  $data['title'] = $title;
+	  $this->load->view('login_view', $data);
 	  
     }
     else
@@ -75,8 +75,8 @@ class VerifyLogin extends CI_Controller {
       foreach($result as $row)
       {
         $sess_array = array(
-          'id' => $row->user_id,
-          'user_email' => $row->user_email
+		  'id' => $row->user_id,
+		  'user_email' => $row->user_email
         );
         $this->session->set_userdata('logged_in', $sess_array);
       }
