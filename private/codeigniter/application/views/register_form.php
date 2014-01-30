@@ -6,7 +6,7 @@
   <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Login</title>
+	<title>Register</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 
@@ -31,16 +31,32 @@
 	<![endif]-->
   </head>
   <body>
-    <h1>Log In:</h1>
+    <h1>Register:</h1>
     <div id="main_pages_wrapper">
 	  <span class="error"><?php echo validation_errors(); ?></span>
-	  <?php echo form_open('verifylogin'); ?>
+	  <?php echo form_open('register'); ?>
 	  <table>
 		<tr>
 		  <td align="right">
 			<label for="username">Username:</label>
 		  </td><td>
-			<input type="text" size="36" id="username" name="username"/>
+			<input type="text" size="36" id="username" name="username" value="<?php echo set_value('username'); ?>" />
+			<br />
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+			&nbsp;
+		  </td><td>
+			&nbsp;
+			<br />
+		  </td>
+		</tr>
+		<tr>
+		  <td align="right">
+			<label for="email">E-mail:</label>
+		  </td><td>
+			<input type="text" size="36" id="email" name="email" value="<?php echo set_value('email'); ?>" />
 			<br />
 		  </td>
 		</tr>
@@ -56,7 +72,23 @@
 		  <td align="right">
 			<label for="password">Password:</label>
 		  </td><td>
-			<input type="password" size="36" id="password" name="password"/>
+			<input type="password" size="36" id="password" name="password" value="<?php echo set_value('password'); ?>" />
+			<br />
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+			&nbsp;
+		  </td><td>
+			&nbsp;
+			<br />
+		  </td>
+		</tr>
+		<tr>
+		  <td align="right">
+			<label for="passconf" style="white-space: nowrap">Confirm Password:</label>
+		  </td><td>
+			<input type="password" size="36" id="passconf" name="passconf" value="<?php echo set_value('passconf'); ?>" />
 			<br />
 			<input type="hidden" name="controller" value="<?php if (isset($controller)) echo $controller; ?>">
 			<input type="hidden" name="title" value="<?php echo $title; ?>">
@@ -64,14 +96,14 @@
 		  </td>
 		</tr>
 		<tr>
-		  <td></td><td align="right">
+		  <td></td><td  align="right">
 			<br/>
-			<input type="submit" value="Login"/>
+			<input type="submit" value="Login" />
 		  </td>
 		</tr>
 	  </table>
 	  <br />
-	  <a href="<?php echo base_url(); ?>index.php/pages/view/public/home">public : Home</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/help/home">Help</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/register/index/pages/<?php echo $group ?>/<?php echo $title; ?>">Register</a>
+	  <a href="<?php echo base_url(); ?>index.php/pages/view/public/home">public : Home</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/help/home">Help</a>&nbsp;|&nbsp;<a href="<?php echo base_url() . 'index.php/verifylogin/index/pages/' . $group . '/' . $title; ?>">Log In</a>
     </div>
     </form>
   </body>

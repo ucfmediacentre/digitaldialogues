@@ -5,7 +5,7 @@ class VerifyLogin extends CI_Controller {
   function __construct()
   {
     parent::__construct();
-    $this->load->model('user','',TRUE);
+    $this->load->model('users_model','',TRUE);
   }
 
   function index($controller = null, $group = null, $title = null)
