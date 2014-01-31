@@ -91,7 +91,7 @@ class VerifyLogin extends CI_Controller {
   
   function log_out($controller, $group, $title){
 	$this->session->sess_destroy();
-	$this->index($controller, $group, $title);
+	header('Location: ' . base_url() . 'index.php/' . $controller . '/view/' . $group . '/' . $title );
   }
 }
 ?>
