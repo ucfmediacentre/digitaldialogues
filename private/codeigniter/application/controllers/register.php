@@ -40,7 +40,11 @@ class Register extends CI_Controller {
 		  
 		  $user_id=$this->Users_model->new_user($username, $email, $password);
 		  
-		  // view regostration success page
+		  //send email to registering user
+		  $this->load->helper('email');
+		  send_email('$email', 'Digital Dialogues registration link', 'In order to complete your registration, please click on the following link: <a href="digitaldialogues.org/index.php/register/confirmation/$username/$password">www.digitaldialogues.org/$username</a>');
+		  
+		  // view registration success page
 		  $this->load->view('register_success', $data);
 		}
 	}

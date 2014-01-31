@@ -29,6 +29,6 @@
 
 	<h1>Your registration was successfully submitted.</h1>
 	
-	<p>You will receive an email shortly with a link to confrim your email address. In order to register fully you will need to click on that link.</p><p><a href="<?php echo base_url(); ?>index.php/pages/view/public/home">public : Home</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/help/home">Help</a>&nbsp;|&nbsp;<a href="<?php echo base_url() . 'index.php/verifylogin/index/pages/' . $group . '/' . $title; ?>">Log In</a></p>
+	<p>Thank you for registering. You will receive an email shortly with a link to confirm your email address. In order to complete your registration, you will need to click on that link within 24 hours.</p><p><a href="<?php echo base_url(); ?>index.php/pages/view/public/home">public : Home</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/help/home">Help</a>&nbsp;|&nbsp;<a href="<?php echo base_url() . 'index.php/verifylogin/index/pages/' . $group . '/' . $title; ?>">Log In</a></p>
   </body>
 </html>
