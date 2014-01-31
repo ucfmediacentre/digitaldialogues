@@ -32,7 +32,7 @@ class VerifyLogin extends CI_Controller {
     }
     else
     {
-	  $valid_user = $this->user->login($this->input->post('username'), $this->input->post('password'));
+	  $valid_user = $this->users_model->login($this->input->post('username'), $this->input->post('password'));
 	  
 	  if ($valid_user == false){
 		$this->index();
@@ -67,7 +67,7 @@ class VerifyLogin extends CI_Controller {
     $username = $this->input->post('username');
     
     //query the database
-    $result = $this->user->login($username, $password);
+    $result = $this->users_model->login($username, $password);
     
     if($result)
     {
@@ -76,7 +76,7 @@ class VerifyLogin extends CI_Controller {
       {
         $sess_array = array(
 		  'id' => $row->user_id,
-		  'user_email' => $row->user_email
+		  'user_name' => $row->user_name
         );
         $this->session->set_userdata('logged_in', $sess_array);
       }
