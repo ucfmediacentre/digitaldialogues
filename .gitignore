@@ -13,6 +13,7 @@ run
 
 log/
 tmp
+!www/*
 private/codeigniter/application/config/database.php
 private/codeigniter/application/config/config.php
 *.DS_Store
