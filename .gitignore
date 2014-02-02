@@ -11,13 +11,8 @@ lock
 run
 
 
-!www/libraries/arbor/lib/
 log/
 tmp
-www/*.*
-www/*/
-!www/.htaccess
-!www/
 private/codeigniter/application/config/database.php
 private/codeigniter/application/config/config.php
 *.DS_Store
