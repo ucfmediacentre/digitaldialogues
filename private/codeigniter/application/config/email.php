@@ -1,4 +1,6 @@
-$config['protocol'] = 'postfix';
-$config['mailpath'] = '/usr/sbin/postfix';
-$config['charset'] = 'iso-8859-1';
-$config['wordwrap'] = TRUE;
+<?php
+  $config['protocol'] = 'sendmail';
+  $config['mailpath'] = '/usr/sbin/sendmail';
+  $config['wordwrap'] = FALSE;
+  $config['mailtype'] = 'html';
+?>
