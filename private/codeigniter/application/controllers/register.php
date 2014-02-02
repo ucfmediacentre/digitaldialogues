@@ -38,11 +38,60 @@ class Register extends CI_Controller {
 		  $email = $this->input->post('email');
 		  $password = $this->input->post('password');
 		  
-		  $user_id=$this->Users_model->new_user($username, $email, $password);
+		  //$user_id=$this->Users_model->new_user($username, $email, $password);
 		  
 		  //send email to registering user
-		  $this->load->helper('email');
-		  send_email('$email', 'Digital Dialogues registration link', 'In order to complete your registration, please click on the following link: <a href="digitaldialogues.org/index.php/register/confirmation/$username/$password">www.digitaldialogues.org/$username</a>');
+		  /*$config['protocol'] = 'postfix';
+		  $config['mailpath'] = '/usr/sbin/postfix';
+		  $config['charset'] = 'iso-8859-1';
+		  $config['wordwrap'] = TRUE;*/
+		  //$this->load->helper('email', $config);
+		  
+		  $this->load->library('email');
+		  
+		  $config['protocol'] = 'postfix';
+$config['mailpath'] = '/usr/sbin/postfix';
+$config['wordwrap'] = TRUE;
+
+$this->email->initialize($config);
+
+$this->email->from('admin@digitaldialogues.org', 'admin');
+$this->email->to('jemmackay@gmail.com');
+$this->email->cc('jem@swarmtv.org');
+$this->email->bcc('info@jemmackay.co.uk');
+
+$this->email->subject('Email Test');
+$this->email->message('Testing the email class.');
+
+$this->email->send();
+
+echo $this->email->print_debugger();
+		  
+		  //send_email($email, 'Digital Dialogues registration link', 'In order to complete your registration, please click on the following link: <a href="digitaldialogues.org/index.php/register/confirmation/$username/$password">www.digitaldialogues.org/$username</a>');
+		  //mail($email, 'Digital Dialogues registration link', 'In order to complete your registration, please click on the following link: <a href="digitaldialogues.org/index.php/register/confirmation/$username/$password">www.digitaldialogues.org/$username</a>');
+		  /*$config = Array(
+            'protocol' => 'postfix',
+            'mailpath' => 'usr/sbin/postfix'
+            );
+$this->load->library('email', $config);
+$this->email->set_newline("\r\n");
+
+//Add file directory if you need to attach a file
+//$this->email->attach($file_dir_name);
+
+$this->email->from('admin@digitaldialogues.org', 'Admin');
+$this->email->to('jemmackay@gmail.com'); 
+
+$this->email->subject('Email Subject');
+$this->email->message('Email Message'); 
+
+if($this->email->send()){
+   //Success email Sent
+   echo $this->email->print_debugger();
+}else{
+   //Email Failed To Send
+   echo $this->email->print_debugger();
+}*/
 		  
 		  // view registration success page
 		  $this->load->view('register_success', $data);

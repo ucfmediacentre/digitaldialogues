@@ -62,11 +62,11 @@ $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'localdigitaldialogues';*/
 
-$db['default']['hostname'] = '212.67.214.82';
+$db['default']['hostname'] = 'digitaldialogues.org';
 $db['default']['username'] = 'root';
 //$db['default']['password'] = '4zqh1AJ1us]7';
 $db['default']['password'] = '*2E5A6816396C2662A24A8FA178249C531DD727FD';
-$db['default']['database'] = 'digitald_data';
+$db['default']['database'] = 'digitaldialogues';
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

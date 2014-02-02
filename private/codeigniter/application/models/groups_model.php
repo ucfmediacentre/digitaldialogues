@@ -44,7 +44,7 @@ class Groups_model extends CI_Model {
 	// if not the creator do they have access to the group?    
 	}else{
 	    
-	  $users = $result->user_ids;
+	  $users = $result->user_id;
 	  
 	  // break user id string into an array
 	  $users = explode(',', $users);
