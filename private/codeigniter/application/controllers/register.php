@@ -64,7 +64,10 @@ class Register extends CI_Controller
 		$this->db->where('verification_code', $user_vericode);
 		$data['Active_status'] = 1;
 		$this->db->update('users', $data);
-
+		
+		
+		// view verification success page
+		$this->load->view('verification_success');
 	}
 }
 
