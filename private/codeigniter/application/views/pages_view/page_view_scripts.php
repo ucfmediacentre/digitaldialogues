@@ -151,7 +151,7 @@
 		        // get the values from the form
 			var idVal = $('input[name="id"]').val();
 			var titleVal = $('input[name="title"]').val();
-                        var descriptionVal = $('textarea[name="description"]').val();
+            var descriptionVal = $('textarea[name="description"]').val();
 			var keywordsVal = $('input[name="keywords"]').val();
 			var groupVal = $('input[name="group"]').val();
 			
@@ -171,7 +171,7 @@
 			
 		        // get the values from the form
 			var titleVal = $('input[name="new_page_title"]').val();
-                        var descriptionVal = $('textarea[name="new_page_description"]').val();
+            var descriptionVal = $('textarea[name="new_page_description"]').val();
 			var keywordsVal = $('input[name="new_page_keywords"]').val();
 			var groupVal = $('input[name="group"]').val();
 			var currentPageVal = $('input[name="current_page_title"]').val();
@@ -191,17 +191,18 @@
 			// Stop the page from navigating away from this page
 			e.preventDefault();		
 			
-		        // get the values from the form
+		    // get the values from the form
 			var newGroupVal = $('input[name="new_group_title"]').val();
-                        var participationVal = $('input[name="participation"]:checked').val();
+            var participationVal = $('input[name="participation"]:checked').val();
 			var currentPageVal = $('input[name="current_page"]').val();
 			var currentGroupVal = $('input[name="current_group"]').val();
 			var currentPageIdVal = $('input[name="current_page_id"]').val();
+			var userIdVal = $('input[name="userId"]').val();
 			
 			//alert(newGroupVal + " | " + participationVal + " | " + currentPageVal + " | " + currentGroupVal + " | " + currentPageIdVal);
 			
 			// Post the values to the pages controller
-                        $.post(base_url + "index.php/pages/add_group", { newGroup: newGroupVal, participation: participationVal, currentPage: currentPageVal, currentGroup: currentGroupVal, currentPageId: currentPageIdVal },
+                        $.post(base_url + "index.php/groups/add_group", { newGroup: newGroupVal, participation: participationVal, currentPage: currentPageVal, currentGroup: currentGroupVal, currentPageId: currentPageIdVal, userId: userIdVal },
 		        function(data) {
 				// Refresh page
                                 window.location.href = base_url+"index.php/pages/view/"+currentGroupVal+"/"+currentPageVal;

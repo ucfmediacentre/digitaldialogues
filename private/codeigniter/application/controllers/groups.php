@@ -33,6 +33,79 @@ class Groups extends CI_Controller {
 		if (!$access) exit;
 	
     }
+	
+   // creates a group from a click on the Add: Group link
+   public function add_group()
+   {
+		// first insert user's requirements into the group database
+		//collect variables from the form
+		
+   		$newGroup = $this->input->post('newGroup');
+   		$participation = $this->input->post('participation');
+   		$currentPage = $this->input->post('currentPage');
+   		$currentGroup = $this->input->post('currentGroup');
+   		$currentPageId = $this->input->post('currentPageId');
+		$userId = $this->input->post('userId');
+   		
+		
+		// search database to see if this group already exists
+   		$this->db->where('title', $newGroup);
+   		$query = $this->db->get('groups');
+		
+		if ($query->num_rows() > 0)
+		{
+		   $group_exists = "TRUE";
+		   return "A group called $newGroup already exists";
+		}else
+		{
+		   $group_exists = "FALSE";
+		}
+   		
+		// add the new group to the database
+	   	$data = array(
+		    'title' => URLdecode($newGroup),
+		    'openness' => $participation,
+			'creator_id' => $userId
+   		);
+		$this->db->insert('groups', $data); 
+   		$added_group_id = $this->db->insert_id();
+		
+		// Then create a new Home page for this group
+		// add the new page to the database
+	   	$data = array(
+		    'title' => "Home",
+		    'group' => $newGroup
+   		);
+		$this->db->insert('pages', $data); 
+   		$added_page_id = $this->db->insert_id();
+		
+		//Now create the elements with links in them
+		// First the link away element with the correct link id
+	   	$data = array(
+		    'contents' => "[[group::" . $newGroup . "]]",
+		    'pages_id' => $currentPageId,
+		    'type' => "text",
+		    'x' => rand(200,500),
+		    'y' => rand(150,400)
+   		);
+		$this->db->insert('elements', $data);
+   		$elementAway_id = $this->db->insert_id();
+		
+		//Now create the link on the new page back to the original page
+		// Then the link back element with the correct link id
+	   	$data = array(
+		    'contents' => "[[group::" . $currentGroup . "]]",
+		    'pages_id' => $added_page_id,
+		    'type' => "text",
+		    'x' => rand(200,500),
+		    'y' => rand(150,400)
+   		);
+		$this->db->insert('elements', $data);
+   		$elementBack_id = $this->db->insert_id();
+		
+   		return $this->db->insert_id();
+		
+    }
 }
 
 

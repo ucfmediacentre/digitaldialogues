@@ -26,6 +26,7 @@ class Groups_model extends CI_Model {
 	  }
    }
    
+   
    function check_user($group, $user_id){
 	
 	// presume no access

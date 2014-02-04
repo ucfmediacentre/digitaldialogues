@@ -112,8 +112,8 @@ class Pages extends CI_Controller {
 	// updates the group database and returns "1" if successful
 	public function add_group()
 	{
-	  $this->load->model('Pages_model');
-	  return $this->Pages_model->add_group();
+	  $this->load->model('Groups_model');
+	  return $this->Groups_model->add_group();
 	  //redirect('/pages/view/'.$group.'/'.$page_title, 'location');
 	}
 	
