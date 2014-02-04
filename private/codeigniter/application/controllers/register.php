@@ -12,10 +12,7 @@ class Register extends CI_Controller
 	}
 
 	// setting up a new user in the database
-
-	public
-
-	function index($controller = null, $group = null, $title = null)
+	public function index($controller = null, $group = null, $title = null)
 	{
 		$this->load->helper(array(
 			'form',
@@ -44,19 +41,30 @@ class Register extends CI_Controller
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
 
-			// $user_id=$this->Users_model->new_user($username, $email, $password);
+			$user_vericode=$this->Users_model->new_user_vericode($username, $email, $password);
 
 			$this->load->library('email');
 			$this->email->from('admin@digitaldialogues.org', 'Admin');
 			$this->email->to($email);
-			$this->email->subject('Digital Dialogues registration link');
-			$message = '<html><body>In order to complete your registration for Digital Dialogues, please click on the following link: <a href="digitaldialogues.org/index.php/register/confirmation/' . $username . '">digitalDialogues.org/' . $username . '</a></body></html>';
+			$this->email->subject('Digital Dialogues verification link');
+			$message = '<html><body>In order to verify your registration for Digital Dialogues, please click on the following link: <a href="http://www.digitaldialogues.org/index.php/register/confirmation/' . $user_vericode . '">digitalDialogues.org/' . $user_vericode . '</a></body></html>';
 			$this->email->message($message);
 			$this->email->send();
 
 			// view registration success page
 			$this->load->view('register_success', $data);
 		}
+	}
+	
+	
+	// setting up a new user in the database
+	public function confirmation($user_vericode)
+	{
+		$this->load->database();
+		$this->db->where('verification_code', $user_vericode);
+		$data['Active_status'] = 1;
+		$this->db->update('users', $data);
+
 	}
 }
 

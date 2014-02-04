@@ -23,18 +23,22 @@ Class Users_model extends CI_Model
 	}
 	
 	
-	public function new_user($username, $email, $password)
+	public function new_user_vericode($username, $email, $password)
 	{
+	  
+		// create random cerification code based on microseconds
+		$vericode = sha1(microtime());
 		// entry of new information into the database
    		$data = array(
    			'user_name' => $username,
    			'user_email' => $email,
+   			'verification_code' => $vericode,
    			'user_pass' => sha1($password)
    			);
 
 		$this->db->insert('users', $data); 
    		
-   		return $this->db->insert_id();
+   		return $vericode;
 
 	}
 }

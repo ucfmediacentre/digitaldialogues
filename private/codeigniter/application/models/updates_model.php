@@ -13,10 +13,10 @@ class Updates_model extends CI_Model {
     // get all postings  
     function getUpdates($group = "public")  
     {
-	$limit = 100;
+		$limit = 100;
         $this->db->order_by('pubDate', 'desc');
-	$this->db->where('group', $group);
-	return $this->db->get('updates', $limit);  
+		$this->db->where('group', $group);
+		return $this->db->get('updates', $limit);  
     }
 	
 	
