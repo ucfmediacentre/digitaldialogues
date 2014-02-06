@@ -36,14 +36,19 @@
         <script src="<?php echo base_url(); ?>js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
-        <div id="recentChangesTitle"><h1><?php echo $group; ?> : Recent Changes</h1><br />
-		<a href="pages/view/<?php echo $group; ?>/Home">Home</a>&nbsp;|&nbsp;<a href="recentChanges?group=<?php echo $group; ?>">Recent Changes</a>&nbsp;|&nbsp;<a href="pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="pages/view/help/home</a>
-		<form action="<?php echo base_url(); ?>index.php/search/map/<?php echo $group; ?>" method="get" enctype="multipart/form-data" id="filter_form">
+        <div id="recentChangesTitle"><h1><?php echo $group; ?> : Recent Changes</h1><br /></div>
+		<div id="main_pages_wrapper">
+		  <a href="pages/view/<?php echo $group; ?>/Home">Home</a>&nbsp;|&nbsp;<a href="recentChanges?group=<?php echo $group; ?>">Recent Changes</a>&nbsp;|&nbsp;<?php if ($this->session->userdata('logged_in') != 1){
+			  echo '<a href="verifylogin/index/pages/' . $group . '/home">Log In</a>';  
+		  } else {
+			  echo $this->session->userdata('username') . ' <a href="verifylogin/log_out/pages/' . $group . '/home">Log Out</a>';
+		  } ?>&nbsp;|&nbsp;<a href="pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="pages/view/help/home">Help</a>
+		  <form action="<?php echo base_url(); ?>index.php/search/map/<?php echo $group; ?>" method="get" enctype="multipart/form-data" id="filter_form">
 			<br />
 			<input name="filter" value="" onchange="submit();" />
 			<input type="submit" value="Search">
-		</form>
-	</div>
+		  </form>
+		</div>
 		
 	<div>
 		<div id="recentChanges"><strong>RSS feed: http://digitaldialogues.org/index.php/feed?group=<?php echo $group; ?></strong><br /><br /><?php echo $changesList; ?></div>

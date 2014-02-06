@@ -307,7 +307,7 @@ img {
 
 
 #main_pages_wrapper{
-	width:400px;
+	//width:400px;
 	position:absolute;
 	padding:20px;
 	left:10px;
@@ -328,7 +328,7 @@ img {
 }
 
 #page_title_wrapper{
-	width:800px;
+	//width:800px;
 	position:absolute;
 	padding:20px;
 	left:10px;

@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Message extends CI_Controller
+class Messages extends CI_Controller
 
 {
 	public
@@ -30,8 +30,27 @@ class Message extends CI_Controller
 		$data['fromUser'] = $username;
 		$data['group'] = $group;
 		
-		$this->load->model('Message_model');
+		$this->load->model('Messages_model');
 		$this->Message_model->joinGroup_message($toUser, $username, $group);
+	}
+	
+	// set up viewer to browse messages
+	public function view($username) {
+	  
+		// check to see if user is logged in as the right person
+		if ($this->session->userdata('username') != $username) {
+			window.history.back();
+			return;
+		}
+		
+		//get all messages from the database
+		$this->load->model('Messages_model');
+		$data['messages'] = $this->Messages_model->get_all_messages($username);
+		$data['username'] = $username;
+		
+		// pass data into messages_view.php
+		$this->load->view('messages_view', $data);
+		
 	}
 }
 
