@@ -41,11 +41,11 @@ class Pages extends CI_Controller {
 	  // check security (logged in) and save state of openness to the session
 	  $this->load->library('session');
 	  $this->session->set_userdata('openness', NULL);
-	         if ($group_details->openness == 'public'){	
-		$this->session->set_userdata('openness', 'public');	
-	  }else{
-		$this->is_logged_in(URLdecode($group), URLdecode($page_title));
-		$this->session->set_userdata('openness', 'private');
+	  if ($group_details->openness == 'public'){	
+		  $this->session->set_userdata('openness', 'public');	
+	  } else {
+		  $this->is_logged_in(URLdecode($group), URLdecode($page_title));
+		  $this->session->set_userdata('openness', 'private');
 	  }
 	  
 	  $user_id = $this->session->userdata('user_id');
