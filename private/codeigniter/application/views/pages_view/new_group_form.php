@@ -13,6 +13,7 @@
 		<input type="hidden" name="current_page" value="<?php echo $page_info->title; ?>"/>
 		<input type="hidden" name="current_page_id" value="<?php echo $page_info->id; ?>"/>
 		<input type="hidden" name="current_group" value="<?php echo $page_info->group; ?>"/>
+		<input type="hidden" name="userId" value="<?php echo $this->session->userdata('user_id'); ?>"/>
 		
 		<div id="loadingPrompt">Loading...</div>
 	</form>

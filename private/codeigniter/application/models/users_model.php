@@ -41,5 +41,21 @@ Class Users_model extends CI_Model
    		return $vericode;
 
 	}
+	
+	public function get_user($userId)
+	{
+   		$this->db->where('user_id', $userId);
+   		$this->db->select('user_name');
+   		$query = $this->db->get('users');
+		
+		if ($query->num_rows() > 0)
+		{
+		   $row = $query->row(); 
+			return $row->user_name;
+		}else
+		{
+			return null;
+		}
+	}
 }
 ?>

@@ -40,7 +40,7 @@
 		  <td align="right">
 			<label for="username">Username:</label>
 		  </td><td>
-			<input type="text" size="36" id="username" name="username"/>
+			<input type="text" size="36" id="username" name="username" value="<?php echo $this->session->userdata('username'); ?>" />
 			<br />
 		  </td>
 		</tr>

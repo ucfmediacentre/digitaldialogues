@@ -36,11 +36,11 @@ class Pages_model extends CI_Model {
     		$listview = $listview . '<a href="' . base_url("pages/view/" . $row->group . "/" . $row->title) . '">' . $row->title . '</a><br />';
 		}
 		return $listview;
-    }
-    
-   // gets all the details of a specified page
-   function get_page($group, $page_name)
-   {
+	  }
+	  
+	 // gets all the details of a specified page
+	 function get_page($group, $page_name)
+	 {
 		$this->db->where('group', $group);
    		$result = $this->db->get_where('pages', array('title' =>$page_name), 1);
 		
@@ -51,11 +51,11 @@ class Pages_model extends CI_Model {
    		{
    			return false;
    		}
-   }
-   
-   // gets all the pages in an array that have something to do with a specified string
-   function get_filtered_pages($group, $string)
-   {
+	}
+	
+	// gets all the pages in an array that have something to do with a specified string
+	function get_filtered_pages($group, $string)
+	{
 		if ($string != "") {
 			//build up SQL statement that finds any page title that has something to do with the filtered string, including links!
 			$sql = "SELECT DISTINCT pages.title ";
@@ -89,11 +89,11 @@ class Pages_model extends CI_Model {
    		{
    			return false;
    		}
-   }
-   
-   // gets all the pages in an array that have something to do with a specified string
-   function get_filtered_list($group, $string)
-   {
+	}
+	
+	// gets all the pages in an array that have something to do with a specified string
+	function get_filtered_list($group, $string)
+	{
 		if ($string != "") {
 			//build up SQL statement that finds any page title that has something to do with the filtered string, including links!
 			$sql = "SELECT DISTINCT pages.title ";
@@ -127,21 +127,21 @@ class Pages_model extends CI_Model {
     		$listview = $listview . '<a href="' . base_url("index.php/pages/view/" . $group . "/" . $row->title ) . '">' . $row->title . '</a>&nbsp;|&nbsp;';
 		}
 		return $listview;
-   }
-   
-   // returns a json array of all details to do with a specified page
-   function get_titles($group)
-   {
+	}
+	
+	// returns a json array of all details to do with a specified page
+	function get_titles($group)
+	{
    		$this->db->select('title');
 		$this->db->where('group', $group);
 		$query = $this->db->get('pages');
 		$result = $query->result_array();
 		return json_encode($result);
-   }
-   
-   // gets the page title of a page with a specified id
-   function get_title($id)
-   {
+	}
+	
+	// gets the page title of a page with a specified id
+	function get_title($id)
+	{
    		$this->db->where('id', $id);
    		$this->db->select('title');
    		$query = $this->db->get('pages');
@@ -154,11 +154,11 @@ class Pages_model extends CI_Model {
 		{
 			return null;
 		}
-   }
-   
-   // gets the page title of a page with a specified id
-   function get_group($id)
-   {
+	}
+	
+	// gets the page title of a page with a specified id
+	function get_group($id)
+	{
    		$this->db->where('id', $id);
    		$this->db->select('group');
    		$query = $this->db->get('pages');
@@ -171,11 +171,11 @@ class Pages_model extends CI_Model {
 		{
 			return null;
 		}
-   }
-   
-   // gets the page title of a page with a specified id
-   function get_page_from_element($elementId)
-   {
+	}
+	
+	// gets the page title of a page with a specified id
+	function get_page_from_element($elementId)
+	{
    		$this->db->where('id', $elementId);
    		$this->db->select('pages_id');
    		$query = $this->db->get('elements');
@@ -202,11 +202,11 @@ class Pages_model extends CI_Model {
 			return null;
 		}
 		
-   }
-   
-   // creates a page with a specified title
-   public function insert_page($group, $page_title)
-   {
+	}
+	
+	// creates a page with a specified title
+	public function insert_page($group, $page_title)
+	{
    		//$row = array('pages'=>'title','$page_title');
    		$data = array(
    			'group' => $group,
@@ -216,11 +216,11 @@ class Pages_model extends CI_Model {
 		$this->db->insert('pages', $data); 
    		
    		return $this->db->insert_id();
-   }
-   
-   // creates a page from a click on the Add: Page link
-   public function add_page()
-   {
+	}
+	
+	// creates a page from a click on the Add: Page link
+	public function add_page()
+	{
 		// first insert user's requirements in to database
 		//collect variables from the form
    		$title = $this->input->post('title');
@@ -229,149 +229,107 @@ class Pages_model extends CI_Model {
    		$group = $this->input->post('group');
    		$currentPageTitle = $this->input->post('currentPageTitle');
    		$currentPageId = $this->input->post('currentPageId');
-   		
-		// add the new page to the database
-	   	$data = array(
-		    'title' => URLdecode($title),
-		    'description' => $description,
-		    'keywords' => $keywords,
-		    'group' => $group
-   		);
-		$this->db->insert('pages', $data); 
-   		$added_page_id = $this->db->insert_id();
 		
+		// check to see if this page name already exists
+   		$this->db->where('title', $title);
+   		$this->db->select('title');
+   		$query = $this->db->get('pages');
+		
+		if ($query->num_rows() > 0)
+		{
+			// page already exists so don't insert new page into database
+			// just insert links on the right pages
+			
+		} else {
+			
+			// page doesn't exist so put the new page into the database
+			$this->db->where('id', $pageId);
+			$this->db->select('title');
+			$query = $this->db->get('pages');
+			
+			if ($query->num_rows() > 0)
+			{
+				$row = $query->row(); 
+				return $row->title;
+			} else {
+				return null;
+			}
+			
+			// add the new page to the database
+			$data = array(
+				'title' => URLdecode($title),
+				'description' => $description,
+				'keywords' => $keywords,
+				'group' => $group
+			);
+			
+			$this->db->insert('pages', $data); 
+			$added_page_id = $this->db->insert_id();
+			
+		}
+			
 		// then insert link on the current Page
 		// first create the link to the new page
-	   	$data = array(
-		    'linkTitle' => URLdecode($title),
-		    'linkTitleGroup' => $group,
-		    'pageTitle' => $currentPageTitle,
-		    'pageTitleGroup' => $group
-   		);
+		$data = array(
+			'linkTitle' => URLdecode($title),
+			'linkTitleGroup' => $group,
+			'pageTitle' => $currentPageTitle,
+			'pageTitleGroup' => $group
+		);
 		$this->db->insert('links', $data);
-   		$linkAway_id = $this->db->insert_id();
+		$linkAway_id = $this->db->insert_id();
 		
 		// now create the link coming back from the new page
-	   	$data = array(
-		    'linkTitle' => URLdecode($currentPageTitle),
-		    'linkTitleGroup' => $group,
-		    'pageTitle' => URLdecode($title),
-		    'pageTitleGroup' => $group
-   		);
+		$data = array(
+			'linkTitle' => URLdecode($currentPageTitle),
+			'linkTitleGroup' => $group,
+			'pageTitle' => URLdecode($title),
+			'pageTitleGroup' => $group
+		);
 		$this->db->insert('links', $data);
-   		$linkBack_id = $this->db->insert_id();
+		$linkBack_id = $this->db->insert_id();
 		
 		//Now create the elements with links in them
 		// First the link away element with the correct link id
-	   	$data = array(
-		    'contents' => "[[" . $linkAway_id . "]]",
-		    'pages_id' => $currentPageId,
-		    'type' => "text",
-		    'x' => rand(200,500),
-		    'y' => rand(150,400)
-   		);
+		$data = array(
+			'contents' => "[[" . $linkAway_id . "]]",
+			'pages_id' => $currentPageId,
+			'type' => "text",
+			'x' => rand(200,500),
+			'y' => rand(150,400)
+		);
 		$this->db->insert('elements', $data);
-   		$elementAway_id = $this->db->insert_id();
+		$elementAway_id = $this->db->insert_id();
 		
 		// update the elements_id in the links table
 		$data = array(
-		    'elementsId' => $elementAway_id
+			'elementsId' => $elementAway_id
 		);
 		$this->db->where('id', $linkAway_id);
 		$this->db->update('links', $data);
 		
 		//Now create the link on the new page back to the original page
 		// Then the link back element with the correct link id
-	   	$data = array(
-		    'contents' => "[[" . $linkBack_id . "]]",
-		    'pages_id' => $added_page_id,
-		    'type' => "text",
-		    'x' => rand(200,500),
-		    'y' => rand(150,400)
-   		);
+		$data = array(
+			'contents' => "[[" . $linkBack_id . "]]",
+			'pages_id' => $added_page_id,
+			'type' => "text",
+			'x' => rand(200,500),
+			'y' => rand(150,400)
+		);
 		$this->db->insert('elements', $data);
-   		$elementBack_id = $this->db->insert_id();
+		$elementBack_id = $this->db->insert_id();
 		
 		// update the elements_id in the links table
 		$data = array(
-		    'elementsId' => $elementBack_id
+			'elementsId' => $elementBack_id
 		);
 		$this->db->where('id', $linkBack_id);
 		$this->db->update('links', $data);
 		
-   		return $this->db->insert_id();
-		
-   }
-   
-   // creates a group from a click on the Add: Group link
-   public function add_group()
-   {
-		// first insert user's requirements into the group database
-		//collect variables from the form
-		
-   		$newGroup = $this->input->post('newGroup');
-   		$participation = $this->input->post('participation');
-   		$currentPage = $this->input->post('currentPage');
-   		$currentGroup = $this->input->post('currentGroup');
-   		$currentPageId = $this->input->post('currentPageId');
-		
-		// search database to see if this group already exists
-   		$this->db->where('title', $newGroup);
-   		$query = $this->db->get('groups');
-		
-		if ($query->num_rows() > 0)
-		{
-		   $group_exists = "TRUE";
-		   return "A group called $newGroup already exists";
-		}else
-		{
-		   $group_exists = "FALSE";
-		}
-   		
-		// add the new group to the database
-	   	$data = array(
-		    'title' => URLdecode($newGroup),
-		    'openness' => $participation
-   		);
-		$this->db->insert('groups', $data); 
-   		$added_group_id = $this->db->insert_id();
-		
-		// Then create a new Home page for this group
-		// add the new page to the database
-	   	$data = array(
-		    'title' => "Home",
-		    'group' => $newGroup
-   		);
-		$this->db->insert('pages', $data); 
-   		$added_page_id = $this->db->insert_id();
-		
-		//Now create the elements with links in them
-		// First the link away element with the correct link id
-	   	$data = array(
-		    'contents' => "[[group::" . $newGroup . "]]",
-		    'pages_id' => $currentPageId,
-		    'type' => "text",
-		    'x' => rand(200,500),
-		    'y' => rand(150,400)
-   		);
-		$this->db->insert('elements', $data);
-   		$elementAway_id = $this->db->insert_id();
-		
-		//Now create the link on the new page back to the original page
-		// Then the link back element with the correct link id
-	   	$data = array(
-		    'contents' => "[[group::" . $currentGroup . "]]",
-		    'pages_id' => $added_page_id,
-		    'type' => "text",
-		    'x' => rand(200,500),
-		    'y' => rand(150,400)
-   		);
-		$this->db->insert('elements', $data);
-   		$elementBack_id = $this->db->insert_id();
-		
-   		return $this->db->insert_id();
-		
-   }
+		return $this->db->insert_id();
+			
+	}
    
    // updates page_info in the `pages` table & returns "1" if successful
    public function update()

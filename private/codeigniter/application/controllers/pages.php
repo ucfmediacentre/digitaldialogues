@@ -41,7 +41,7 @@ class Pages extends CI_Controller {
 	  // check security (logged in) and save state of openness to the session
 	  $this->load->library('session');
 	  $this->session->set_userdata('openness', NULL);
-	  if ($group_details->openness == 'public'){	
+	         if ($group_details->openness == 'public'){	
 		$this->session->set_userdata('openness', 'public');	
 	  }else{
 		$this->is_logged_in(URLdecode($group), URLdecode($page_title));
@@ -54,7 +54,20 @@ class Pages extends CI_Controller {
 	  $access = $this->Groups_model->check_user($group, $user_id);
 	  // check the user id in session vs the groups list of users
 	  
-	  //if (!$access) exit;
+	  if (!$access) {
+		  // user is logged in but is not yet allowed into the group
+		  // So user is offered opportunity to request access but stays on previous page
+		  if ($this->session->userdata('openness') != 'public'){
+			  
+			  $data['group'] = $group;
+			  $data['title'] = $page_title;
+			  
+			  $this->load->view('header');
+			  $this->load->view('pages_view/entry_request', $data);
+			  $this->load->view('footer');
+			  return;
+		  }
+	  }
 	  
 	  // get the page information from the db.php
 	  $this->load->model('Pages_model');
@@ -98,7 +111,6 @@ class Pages extends CI_Controller {
 	{
 	  $this->load->model('Pages_model');
 	  return $this->Pages_model->update();
-	  //redirect('/pages/view/'.$group.'/'.$page_title, 'location');
 	}
 	
 	// updates the page_info and returns "1" if successful
@@ -106,15 +118,13 @@ class Pages extends CI_Controller {
 	{
 	  $this->load->model('Pages_model');
 	  return $this->Pages_model->add_page();
-	  //redirect('/pages/view/'.$group.'/'.$page_title, 'location');
 	}
 	
 	// updates the group database and returns "1" if successful
 	public function add_group()
 	{
-	  $this->load->model('Pages_model');
-	  return $this->Pages_model->add_group();
-	  //redirect('/pages/view/'.$group.'/'.$page_title, 'location');
+	  $this->load->model('Groups_model');
+	  return $this->Groups_model->add_group();
 	}
 	
 	// displays success on uploading an image and the image name
