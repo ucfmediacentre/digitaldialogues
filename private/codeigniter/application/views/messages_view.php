@@ -39,7 +39,7 @@
     <body>
         <div id="messagesTitle"><h1>Messages for <?php echo $username ?></h1><br /></div>
 		<div id="main_pages_wrapper">
-			<a href="pages/view/public/home">public : Home</a>&nbsp;|&nbsp;<a href="pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="pages/view/help/home">Help</a>
+			<a href="../../pages/view/public/home">public : Home</a>&nbsp;|&nbsp;<a href="../../pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="../../pages/view/help/home">Help</a>
 		</div>
 		
 		<div>
