@@ -31,7 +31,7 @@ class Messages extends CI_Controller
 		$data['group'] = $group;
 		
 		$this->load->model('Messages_model');
-		$this->Message_model->joinGroup_message($toUser, $username, $group);
+		$this->Messages_model->joinGroup_message($toUser, $username, $group);
 	}
 	
 	// set up viewer to browse messages
