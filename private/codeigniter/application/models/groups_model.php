@@ -13,7 +13,7 @@ class Groups_model extends CI_Model {
     }
     
    // gets all the details of a specified page
-   function get_group_details($group)
+   public function get_group_details($group)
    {
 	  $result = $this->db->get_where('groups', array('title' =>$group), 1);
 	  
@@ -26,8 +26,38 @@ class Groups_model extends CI_Model {
 	  }
    }
    
+   // updates user_info in the `groups` table
+   public function addUserToGroup($requesterId, $group)
+   {
+   		// get user_id and then add this user
+		$this->db->select('user_id');
+		$this->db->where('title', $group);
+		$this->db->from('groups');
+		$query=$this->db->get();
+		
+		$row = $query->row(); 
+		$user_ids = $row->user_id;
+		
+		// search user_id access to see if new user_id already exists in the list
+		$accessList = explode(',', $user_ids);
+		
+		foreach($accessList as $key) {    
+			if ($key == $requesterId) return;    
+		}
+		
+		// add the new user's id to the user_id access list
+		$user_ids = $user_ids.",".$requesterId;
+		
+	   	$data = array(
+               'user_id' => $user_ids
+            );
+
+		$this->db->where('title', $group);
+		$this->db->update('groups', $data);
+   }
    
-   function check_user($group, $user_id){
+   
+   public function check_user($group, $user_id){
 	
 	// presume no access
 	$access = false;

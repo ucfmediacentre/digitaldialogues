@@ -20,7 +20,7 @@
 function notifyCreator(){
 	$.ajax({
 		type: "post",
-		url: "<?php echo base_url(); ?>index.php/message/group_request/<?php echo $this->session->userdata('username').'/'.$group; ?>",
+		url: "<?php echo base_url(); ?>index.php/messages/group_request/<?php echo $this->session->userdata('username').'/'.$group; ?>",
 		
 		success:function(data){
 			console.log(data);

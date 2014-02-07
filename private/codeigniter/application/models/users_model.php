@@ -57,5 +57,21 @@ Class Users_model extends CI_Model
 			return null;
 		}
 	}
+	
+	public function get_userId($user)
+	{
+   		$this->db->where('user_name', $user);
+   		$this->db->select('user_id');
+   		$query = $this->db->get('users');
+		
+		if ($query->num_rows() > 0)
+		{
+		   $row = $query->row(); 
+			return $row->user_id;
+		}else
+		{
+			return null;
+		}
+	}
 }
 ?>

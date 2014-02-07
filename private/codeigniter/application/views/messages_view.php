@@ -10,10 +10,10 @@
 		$read = $item['read'];
 		
 		// iterate through all the items found in the messages array and form output
-		$messagesList = $messagesList . "<H2>" . $subject . "</H2>";
-		$messagesList = $messagesList . "From: " . $fromName . "<br /><br />";
-		$messagesList = $messagesList . "Date: " . $dateTime . "<br /><br />";
-		$messagesList = $messagesList . $body . "<br /><br />";
+		$messagesList = $messagesList . "<H2 style='color:gray;'>" . $subject . "</H2>";
+		$messagesList = $messagesList . "<span  style='color:gray;'><From: " . $fromName . "<br />";
+		$messagesList = $messagesList . "Date: " . $dateTime . "</span><br /><br />";
+		$messagesList = $messagesList . $body . "<br />";
 		$messagesList = $messagesList . "<hr />";	
 	endforeach; 
 ?>

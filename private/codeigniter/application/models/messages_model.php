@@ -21,8 +21,8 @@ class Messages_model extends CI_Model {
 		$data = array(
 			'toName' => $toUser,
 			'fromName' => $fromUser,
-			'subject' => 'Request to join group "'.$group.'"',
-			'body' => 'Hi '.$toUser.', '.$fromUser.' would like to join the "'.$group.'" group. If you are happy about this, please <a href="'.base_url().'index.php/users/addUserToGroup/'.$fromUser.'/'.$group.'">click here</a>.',
+			'subject' => 'Request to join group: '.$group,
+			'body' => 'Hi '.$toUser.', '.$fromUser.' would like to join the group: '.$group.'. Please <a href="'.base_url().'index.php/users/addUserToGroup/'.$fromUser.'/'.$group.'" onclick="alert(&quot;'.$fromUser.' will now be allowed into group: '.$group.'&quot;)"; >click here</a>, if this is Ok.',
 			'dateTime' => date("Y-m-d H:i:s")
 		);
 			  
@@ -40,8 +40,6 @@ class Messages_model extends CI_Model {
 		$this->db->order_by("dateTime","desc");
 		$this->db->from('messages');
 		$query=$this->db->get();
-		
-		//$query = $this->db->get_where('messages', array('toName' => $username));
 		
     	$messages = $query->result_array();
 		
