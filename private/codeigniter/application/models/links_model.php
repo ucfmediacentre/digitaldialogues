@@ -169,7 +169,27 @@ class Links_model extends CI_Model {
 												$this->shortcodes->replaceShortCode($i, '[['.$link->getValue().']]');
 												break;
 										case "group":
-												$this->shortcodes->replaceShortCode($i, '<a href="' . base_url() . 'index.php/pages/view/' . $link->getValue() . '/home">' . $link->getValue() . ' : Home</a>');
+												$linkGroup = $link->getValue();
+												// test to see whether the user has access to this group
+												// 1. test to see if group is public
+												$this->load->model('Groups_model');
+												$access = $this->Groups_model->isGroupPublic($linkGroup);
+												if ($access == FALSE){
+													// 2. test to see if user is included in groups access user_id list
+													$this->load->model('Users_model');
+													//check session username is not FALSE
+													if ($this->session->userdata('username') == FALSE) $this->session->set_userdata('username', "");
+													
+													$currentUser_id = $this->Users_model->get_userId($this->session->userdata('username'));
+													$access = $this->Groups_model->isUserInGroup($currentUser_id, $linkGroup);
+													
+												}
+												
+												if ($access == TRUE){
+													$this->shortcodes->replaceShortCode($i, '<a href="' . base_url() . 'index.php/pages/view/' . $linkGroup . '/home">' . $linkGroup . ' : Home</a>');
+												} else {
+													$this->shortcodes->replaceShortCode($i, '<a href="' . base_url() . 'index.php/pages/view/' . $linkGroup . '/home">' . $linkGroup . ' : Home</a>&nbsp;<img src="' . base_url() . 'img/padlock.gif">');
+												}
 												break;
 										case "twitter":
 												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><a href="https://twitter.com/' . $link->getValue() . '" class="twitter-follow-button" data-show-count="false">Follow @' . $link->getValue() . '</a></div><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");</script>');
