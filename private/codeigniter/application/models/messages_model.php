@@ -22,7 +22,7 @@ class Messages_model extends CI_Model {
 			'toName' => $toUser,
 			'fromName' => $fromUser,
 			'subject' => 'Request to join group: '.$group,
-			'body' => 'Hi '.$toUser.', '.$fromUser.' would like to join the group: '.$group.'. Please <a href="'.base_url().'index.php/users/addUserToGroup/'.$fromUser.'/'.$group.'" onclick="alert(&quot;'.$fromUser.' will now be allowed into group: '.$group.'&quot;)"; >click here</a>, if this is Ok.',
+			'body' => 'Hi '.$toUser.', '.$fromUser.' would like to join the group: '.$group.'. Please <a href="'.base_url().'index.php/users/addUserToGroup/'.$toUser.'/'.$fromUser.'/'.$group.'" onclick="alert(&quot;'.$fromUser.' will now be allowed into group: '.$group.'&quot;)"; >click here</a>, if this is Ok.',
 			'dateTime' => date("Y-m-d H:i:s")
 		);
 			  
@@ -34,9 +34,9 @@ class Messages_model extends CI_Model {
     }
    
 	// retreives all messages belonging to $username
-	public function get_all_messages($username) {
-		$this->db->select('*');
+	public function get_all_unread_messages($username) {
 		$this->db->where('toName', $username);
+		$this->db->where('unread', "Y");
 		$this->db->order_by("dateTime","desc");
 		$this->db->from('messages');
 		$query=$this->db->get();
@@ -44,5 +44,54 @@ class Messages_model extends CI_Model {
     	$messages = $query->result_array();
 		
     	return $messages;
+	}
+	
+	// retreives all messages belonging to $username
+	public function get_all_messages($username) {
+		$this->db->where('toName', $username);
+		$this->db->where('deleted', "N");
+		$this->db->order_by("dateTime","desc");
+		$this->db->from('messages');
+		$query=$this->db->get();
+		
+    	$messages = $query->result_array();
+		
+    	return $messages;
+	} 
+	
+	// deletes a message
+	
+	// retrieves all messages belonging to $username
+	public function delete_message($message_id, $username) {
+		
+		// Mark messages now as deleted
+	   	$data = array(
+               'deleted' => 'Y'
+            );
+
+		$this->db->where('message_id', $message_id);
+		$this->db->from('messages');
+		$this->db->update('messages', $data);
+		
+    	$messages = $this->get_all_messages($username);
+		
+		return $messages;
+	}
+	
+	// Marks a message as being read
+	public function mark_as_read($message_id, $username) {
+		
+		// Mark unread message now as read
+	   	$data = array(
+               'unread' => 'N'
+            );
+
+		$this->db->where('toName', $username);
+		$this->db->where('message_id', $message_id);
+		$this->db->update('messages', $data);
+		
+    	$messages = $this->get_all_unread_messages($username);
+		
+		return $messages;
 	}
 }
