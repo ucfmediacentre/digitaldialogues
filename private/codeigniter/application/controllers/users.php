@@ -8,18 +8,17 @@ class Users extends CI_Controller {
 	}
 	
 	// provides access to a user in a group 
-	public function addUserToGroup($user, $group)
+	public function addUserToGroup($username, $requester, $group)
 	{
 		
 		// check to see if user is logged in as the right person
-		if (!$this->session->userdata('username')) {
-			window.history.back();
+		if ($this->session->userdata('username') != $username) {
 			return;
 		}
-		
+
 		// get the Id of who needs to be added
 		$this->load->model('Users_model');
-		$requesterId = $this->Users_model->get_userId($user);
+		$requesterId = $this->Users_model->get_userId($requester);
 		
 		$this->load->model('Groups_model');
 		$this->Groups_model->addUserToGroup($requesterId, $group);
