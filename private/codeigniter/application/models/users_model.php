@@ -60,6 +60,7 @@ Class Users_model extends CI_Model
 	
 	public function get_userId($user)
 	{
+		// make sure you don't search for the value of FALSE, which happens if user is not logged in
    		$this->db->where('user_name', $user);
    		$this->db->select('user_id');
    		$query = $this->db->get('users');

@@ -65,7 +65,8 @@ class Groups extends CI_Controller {
 	   	$data = array(
 		    'title' => URLdecode($newGroup),
 		    'openness' => $participation,
-			'creator_id' => $userId
+			'creator_id' => $userId,
+			'user_id' => $userId
    		);
 		$this->db->insert('groups', $data); 
    		$added_group_id = $this->db->insert_id();
