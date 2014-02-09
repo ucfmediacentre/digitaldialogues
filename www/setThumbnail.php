@@ -29,7 +29,7 @@ $videoDirectory = "/var/www/assets/video/";
 $videopostersDirectory = "/var/www/assets/videoposters/";
 
 //create Terminal string for ffmpeg and execute it
-$makeFrameString = "/usr/local/bin/ffmpeg -i " . $videoDirectory . $filename . ".mp4";
+$makeFrameString = "/usr/bin/ffmpeg -i " . $videoDirectory . $filename . ".mp4";
 $makeFrameString = $makeFrameString . " -vframes 1 -an -s 200x115 -ss " . $currentPos . " ";
 $makeFrameString = $makeFrameString . $videopostersDirectory . $filename . ".jpg";
 $execute = shell_exec($makeFrameString);
