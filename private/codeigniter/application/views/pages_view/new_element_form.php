@@ -14,6 +14,7 @@
 		<input type="hidden" name="pages_id" id="element_pages_id" value="<?php echo $page_info->id; ?>"/>
 		<input type="hidden" name="x" id="element_x" value="400"/>
 		<input type="hidden" name="y" id="element_y" value="400"/>
+		<input type="hidden" name="mediaType" id="mediaType" value=""/>
 		
 		<div id="loadingPrompt">Loading...</div>
 	</form>
