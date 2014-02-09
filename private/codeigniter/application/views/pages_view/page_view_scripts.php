@@ -245,7 +245,7 @@
 			// Stop the page from navigating away from this page
 			e.preventDefault();
 			
-		        // get the values from the image form and put them into the element form
+		        // get the values from the audio form and put them into the element form
 			$('#element_file').get(0).files[0] = $('#audio_file').get(0).files[0];
 			$('#element_x').val(parseInt(100+(Math.random()*200)));
 			$('#element_y').val(parseInt(200+(Math.random()*300)));
@@ -260,7 +260,7 @@
 			// Stop the page from navigating away from this page
 			e.preventDefault();
 			
-		        // get the values from the image form and put them into the element form
+		    // get the values from the video form and put them into the element form
 			$('#element_file').get(0).files[0] = $('#video_file').get(0).files[0];
 			$('#element_x').val(parseInt(100+(Math.random()*200)));
 			$('#element_y').val(parseInt(200+(Math.random()*300)));

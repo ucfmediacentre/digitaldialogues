@@ -112,6 +112,28 @@ class Messages extends CI_Controller
 		$this->load->view('messages_view', $data);
 		
 	}
+	
+	// set up viewer to browse messages
+	public function create($username) {
+	  
+		// check to see if user is logged in as the right person
+		if ($this->session->userdata('username') != $username) {
+			window.history.back();
+			return;
+		}
+		
+		// get a list of all community members
+		
+		//get all messages from the database
+		/*$this->load->model('Messages_model');
+		$data['messages'] = $this->Messages_model->mark_as_read($message_id, $username);
+		$data['username'] = $username;
+		$data['type'] = "Unread messages";*/
+		
+		// pass data into messages_view.php
+		//$this->load->view('messages_view', $data);
+		
+	}
 }
 
 /* End of file pages.php */
