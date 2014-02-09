@@ -231,7 +231,7 @@
 			e.preventDefault();
 			
 		    // get the values from the image form and put them into the element form
-			$('#element_file').get(0).files[0] = $('#image_file').get(0).files[0];
+			$('#mediaType').val("image");
 			$('#element_x').val(parseInt(100+(Math.random()*200)));
 			$('#element_y').val(parseInt(200+(Math.random()*300)));
 			
@@ -246,7 +246,7 @@
 			e.preventDefault();
 			
 		    // get the values from the audio form and put them into the element form
-			$('#element_file').get(0).files[0] = $('#audio_file').get(0).files[0];
+			$('#mediaType').val("audio");
 			$('#element_x').val(parseInt(100+(Math.random()*200)));
 			$('#element_y').val(parseInt(200+(Math.random()*300)));
 			
@@ -261,7 +261,7 @@
 			e.preventDefault();
 			
 		    // get the values from the video form and put them into the element form
-			$('#element_file').get(0).files[0] = $('#video_file').get(0).files[0];
+			$('#mediaType').val("video");
 			$('#element_x').val(parseInt(100+(Math.random()*200)));
 			$('#element_y').val(parseInt(200+(Math.random()*300)));
 			
@@ -317,11 +317,28 @@
 		$('#submit_element').click(function(e){
 			e.preventDefault();
 			
-		        $("#loadingPrompt").css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
-		        $.fancybox.showActivity();
+			$("#loadingPrompt").css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
+			$.fancybox.showActivity();
 		
 			// get all the form values
-			var element_file = $('#element_file').get(0).files[0];
+			
+			//sort out which type of file should be sent. This is put into a hidden field in the element form
+			var element_file;
+			switch($('#mediaType').val())
+			{
+			case "image":
+				element_file = $('#image_file').get(0).files[0];
+				break;
+			case "audio":
+				element_file = $('#audio_file').get(0).files[0];
+				break;
+			case "video":
+				element_file = $('#video_file').get(0).files[0];
+				break;
+			default:
+			  element_file = $('#element_file').get(0).files[0];
+			}
+			
 			var element_description = $('#element_text').val();
 			var pages_id = $('input[name="pages_id"]').val();
 			var x = $('input[name="x"]').val();
