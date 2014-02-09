@@ -147,7 +147,7 @@ class Elements_model extends CI_Model {
                 //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/audio/".$full_name;
                  
                 //Public server's URL
-                $createOgvVersion = "ffmpeg2theora /var/www/assets/audio/".$full_name;
+                $createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/audio/".$full_name;
                 
                 $execute = shell_exec($createOgvVersion);
                 $renameOgvToOga = "mv /var/www/assets/audio/".$unique_name.".ogv /var/www/assets/audio/".$unique_name.".oga";
@@ -159,7 +159,7 @@ class Elements_model extends CI_Model {
                 //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/video/".$full_name;
                  
                 //Public server's URL
-                $createOgvVersion = "ffmpeg2theora /var/www/assets/video/".$full_name;
+                $createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$full_name;
                 
                 $execute = shell_exec($createOgvVersion);
                 
@@ -176,7 +176,7 @@ class Elements_model extends CI_Model {
                 $sizeString = "";
                 
                 //get width & height from the file
-                $movieDetails = "/usr/local/bin/ffmpeg -i " . $videoDirectory . $filename . ".mp4 -vstats 2>&1";
+                $movieDetails = "/usr/bin/ffmpeg -i " . $videoDirectory . $filename . ".mp4 -vstats 2>&1";
                 $output = shell_exec ( $movieDetails );
                 $result = preg_match( '/ [0-9]+x[0-9]+[, ]/', $output, $matches );
                 if (isset ( $matches[0] )) {  
@@ -194,7 +194,7 @@ class Elements_model extends CI_Model {
                 if ($sizeString == "x115") $sizeString = "200x115";
                 
                 //create first frame jpg and put it in "assets/videoposters"
-                $createFirstFrame = "/usr/local/bin/ffmpeg -i " . $videoDirectory . $filename . ".mp4";
+                $createFirstFrame = "/usr/bin/ffmpeg -i " . $videoDirectory . $filename . ".mp4";
                 $createFirstFrame = $createFirstFrame . " -vframes 1 -an -s ".$sizeString." -ss 1 ";
                 $createFirstFrame = $createFirstFrame . $videopostersDirectory . $filename . ".jpg";
                 $execute = shell_exec($createFirstFrame);

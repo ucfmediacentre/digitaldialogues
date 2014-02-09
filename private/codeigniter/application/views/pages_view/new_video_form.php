@@ -2,7 +2,8 @@
 	
 	<form id="add_video_form" class="input_form">
 		<h2>New Video</h2>
-		<input type="file" name="video_file" id="video_file" ;/>
+		<p>Maximum size: 100Mb<br />Format: .mp4</p>
+		<input type="file" name="video_file" id="video_file" />
 		<br /><br />
 		<input type="submit" id="submit_video" value="Submit" class="submit_element"  />
 		
