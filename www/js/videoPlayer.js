@@ -49,8 +49,8 @@ $(document).ready(function() {
 	$('a.videoLink').each(function(){
 		var parameters = $(this).attr('href').split("/");
 		//codeigniter parameters for width and height
-        var dWidth  = parseInt(parameters[7]);
-		var dHeight     =  parseInt(parameters[8]);  
+        var dWidth  = parseInt(parameters[8]);
+		var dHeight     =  parseInt(parameters[9]);  
 		$(this).fancybox({  
 			'width':dWidth,  
 			'height':dHeight, 
