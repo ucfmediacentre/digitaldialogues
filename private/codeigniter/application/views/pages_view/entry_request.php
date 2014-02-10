@@ -6,8 +6,8 @@
 			<input type="hidden" name="title" value="<?php echo $title; ?>">
 			<input type="hidden" name="group" value="<?php echo $group ?>">
 			<br /><br />
-			<input type="button" value="Cancel" onclick="window.history.back();" />
-			<input type="submit" value="Ok"  onclick="notifyCreator(); alert('Your request has been sent to the creator of this group.'); window.history.back();" />
+			<input type="button" value="Cancel" onclick="goBack();" />
+			<input type="submit" value="Ok"  onclick="notifyCreator(); alert('Your request has been sent to the creator of this group.'); goBack();" />
 			<br /><br />
   <a href="../../../pages/view/public/home">public : Home</a>&nbsp;|&nbsp;<?php if ($this->session->userdata('logged_in') != 1){
 		echo '<a href="../../../verifylogin/index/pages/' . $group . '/' . $title . '">Log In</a>';  
@@ -17,18 +17,29 @@
   </div>
 </div>
 <script>
-function notifyCreator(){
-	$.ajax({
-		type: "post",
-		url: "<?php echo base_url(); ?>index.php/messages/group_request/<?php echo $this->session->userdata('username').'/'.$group; ?>",
+	function notifyCreator(){
+		$.ajax({
+			type: "post",
+			url: "<?php echo base_url(); ?>index.php/messages/group_request/<?php echo $this->session->userdata('username').'/'.$group; ?>",
+			
+			success:function(data){
+				console.log(data);
+			},
+			error:function(data){
+				console.log(data);
+			}
+			
+		});
 		
-		success:function(data){
-			console.log(data);
-		},
-		error:function(data){
-			console.log(data);
+		
+	}
+	
+	function goBack() {
+	  
+		if (defined('window')) {
+			window.history.back();
+		} else {
+			redirect(base_url().'index.php/pages/view/public/home', 'location');
 		}
-		
-	});
-}
+	}
 </script>
