@@ -58,6 +58,29 @@ class Messages_model extends CI_Model {
 		
     	return $messages;
 	}
+
+	public function get_new_messages_number($username) {
+		
+		$this->db->where('toName', $username);
+		$this->db->where('unread', "Y");
+		$this->db->from('messages');
+		$messageCount=$this->db->count_all_results();
+		
+    	return $messageCount;
+		
+	}
+	
+	
+	public function update_session_messages_number($username) {
+		
+		$this->db->where('toName', $username);
+		$this->db->where('unread', "Y");
+		$this->db->from('messages');
+		$messageCount=$this->db->count_all_results();
+    	
+		$this->session->set_userdata('messageCount', $messageCount);
+		
+	}
 	
 	// retrieves all members belonging to community
 	public function get_all_members() {
@@ -76,7 +99,8 @@ class Messages_model extends CI_Model {
 		
 		// Mark messages now as deleted
 	   	$data = array(
-               'deleted' => 'Y'
+               'deleted' => 'Y',
+			   'unread' => 'N'
             );
 
 		$this->db->where('message_id', $message_id);
@@ -101,6 +125,8 @@ class Messages_model extends CI_Model {
 		$this->db->update('messages', $data);
 		
     	$messages = $this->get_all_unread_messages($username);
+		
+		$this->update_session_messages_number($username);
 		
 		return $messages;
 	}
