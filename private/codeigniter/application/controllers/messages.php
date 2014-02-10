@@ -116,7 +116,7 @@ class Messages extends CI_Controller
 		$data['type'] = "All messages";
 		
 		// pass data into messages_view.php
-		$this->load->view('messages_view', $data);
+		redirect(base_url().'index.php/messages/view_all/'.$username, 'location');
 		
 	}
 	

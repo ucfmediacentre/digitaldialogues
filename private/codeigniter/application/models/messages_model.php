@@ -108,6 +108,7 @@ class Messages_model extends CI_Model {
 		$this->db->update('messages', $data);
 		
     	$messages = $this->get_all_messages($username);
+		$this->update_session_messages_number($username);
 		
 		return $messages;
 	}
@@ -125,7 +126,6 @@ class Messages_model extends CI_Model {
 		$this->db->update('messages', $data);
 		
     	$messages = $this->get_all_unread_messages($username);
-		
 		$this->update_session_messages_number($username);
 		
 		return $messages;
