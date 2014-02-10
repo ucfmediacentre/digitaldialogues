@@ -2,7 +2,11 @@
 	
 	$messagesList = '';
 	if (count($messages) == 0){
-		$messagesList = "<H2 style='color:gray;'>You have no messages</H2>";
+		if ($type == 'All messages') {
+			$messagesList = "<H2 style='color:gray;'>You have no messages</H2>";
+		} else {
+			$messagesList = "<H2 style='color:gray;'>You have no new messages</H2>";
+		}
 		$message_id="0";
 	} else {
 		foreach($messages as $item):
