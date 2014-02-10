@@ -34,7 +34,7 @@
     <h1>Log In:</h1>
     <div id="main_pages_wrapper">
 	  <span class="error"><?php echo validation_errors(); ?></span>
-	  <?php echo form_open('verifylogin'); ?>
+	  <?php echo form_open('verifylogin/index/pages/' . $group . '/' . $title); ?>
 	  <table>
 		<tr>
 		  <td align="right">

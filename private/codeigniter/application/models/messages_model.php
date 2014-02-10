@@ -46,7 +46,7 @@ class Messages_model extends CI_Model {
     	return $messages;
 	}
 	
-	// retreives all messages belonging to $username
+	// retrieves all messages belonging to $username
 	public function get_all_messages($username) {
 		$this->db->where('toName', $username);
 		$this->db->where('deleted', "N");
@@ -57,9 +57,19 @@ class Messages_model extends CI_Model {
     	$messages = $query->result_array();
 		
     	return $messages;
-	} 
+	}
 	
-	// deletes a message
+	// retrieves all members belonging to community
+	public function get_all_members() {
+		$this->db->select('user_name');
+		$this->db->order_by("user_name","asc");
+		$this->db->from('users');
+		$query=$this->db->get();
+		
+    	$members = $query->result_array();
+		
+    	return $members;
+	} 
 	
 	// retrieves all messages belonging to $username
 	public function delete_message($message_id, $username) {
