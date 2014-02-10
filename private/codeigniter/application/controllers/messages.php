@@ -60,7 +60,7 @@ class Messages extends CI_Controller
 		
 		
 		// load view with data
-		$this->load->view('header', $data);
+		/*$this->load->view('header', $data);
 		$this->load->view('pages_view/page_view');
 		$this->load->view('pages_view/new_element_form');
 		$this->load->view('pages_view/new_text_form');
@@ -71,7 +71,7 @@ class Messages extends CI_Controller
 		$this->load->view('pages_view/new_group_form');
 		$this->load->view('pages_view/page_info_form');
 		$this->load->view('pages_view/page_view_scripts');
-		$this->load->view('footer');
+		$this->load->view('footer');*/
 		
 	}
 	// set up viewer to browse messages
@@ -139,7 +139,7 @@ class Messages extends CI_Controller
 		$data['type'] = "Unread messages";
 		
 		// pass data into messages_view.php
-		$this->load->view('messages_view', $data);
+		redirect(base_url().'index.php/messages/view/'.$username, 'location');
 		
 	}
 	

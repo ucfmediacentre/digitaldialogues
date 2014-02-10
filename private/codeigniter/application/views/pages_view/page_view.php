@@ -8,7 +8,13 @@
 	<a href="../../../pages/view/<?php echo $page_info->group; ?>/Home">Home</a>&nbsp;|&nbsp;<a href="../../../recentChanges?group=<?php echo $page_info->group; ?>">Recent Changes</a>&nbsp;|&nbsp;<?php if ($this->session->userdata('logged_in') != 1){
 		echo '<a href="../../../verifylogin/index/pages/' . $page_info->group . '/' . $page_info->title . '">Log In</a>';  
 	} else {
-		echo $this->session->userdata('username') . ' <a href="../../../verifylogin/log_out/pages/' . $page_info->group . '/' . $page_info->title . '">Log Out</a>&nbsp;|&nbsp;<a href="../../../messages/view/'.$this->session->userdata('username').'">Messages</a>';
+		if ($this->session->userdata('messageCount') == 1) {
+			$messageLink = 'Message';
+		} else {
+			$messageLink = 'Messages';
+		}
+		
+		echo $this->session->userdata('username') . ' <a href="../../../verifylogin/log_out/pages/' . $page_info->group . '/' . $page_info->title . '">Log Out</a>&nbsp;|&nbsp;' . $this->session->userdata('messageCount')  . '&nbsp;<a href="../../../messages/view/'.$this->session->userdata('username').'">'.$messageLink.'</a>';
 	} ?>&nbsp;|&nbsp;<a href="../../../pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="../../../pages/view/help/home">Help</a>
 	<form action="<?php echo base_url(); ?>index.php/search/map/<?php echo $page_info->group; ?>" method="get" enctype="multipart/form-data" id="filter_form">
 	  <br />

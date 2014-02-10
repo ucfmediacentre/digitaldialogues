@@ -71,16 +71,23 @@ class VerifyLogin extends CI_Controller {
     
     if($result)
     {
-      $sess_array = array();
-      foreach($result as $row)
-      {
-        $sess_array = array(
-		  'id' => $row->user_id,
-		  'user_name' => $row->user_name
-        );
-        $this->session->set_userdata('logged_in', $sess_array);
-      }
-      return TRUE;
+		
+		// Load up the session variables
+		$sess_array = array();
+		foreach($result as $row)
+		{
+			$sess_array = array(
+				'id' => $row->user_id,
+				'user_name' => $row->user_name,
+			);
+			$this->session->set_userdata('logged_in', $sess_array);
+			
+			// At the same time set the session variable of the count of unread messages at the moment
+			$this->load->model('messages_model');
+			$messageCount = $this->messages_model->get_new_messages_number($username);
+			$this->session->set_userdata('messageCount', $messageCount);
+		}
+		return TRUE;
     }
     else
     {
