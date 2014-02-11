@@ -6,7 +6,7 @@
   </div>
   <div id="main_pages_wrapper">
 	<a href="../../../pages/view/<?php echo $page_info->group; ?>/Home">Home</a>&nbsp;|&nbsp;<a href="../../../recentChanges?group=<?php echo $page_info->group; ?>">Recent Changes</a>&nbsp;|&nbsp;<?php if ($this->session->userdata('logged_in') != 1){
-		echo '<a href="https://digitaldialogues.org/index.php/verifylogin/index/pages/' . $page_info->group . '/' . $page_info->title . '">Log In</a>';  
+		echo '<a href="../../../verifylogin/index/pages/' . $page_info->group . '/' . $page_info->title . '">Log In</a>';  
 	} else {
 		if ($this->session->userdata('messageCount') == 1) {
 			$messageLink = 'Message';

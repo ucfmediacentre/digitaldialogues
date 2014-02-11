@@ -122,16 +122,15 @@
 	});
     
 })($);
-</script>
 
-<!-- Google Analytics -->
-<script>
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  
-	ga('create', 'UA-47930876-1', 'digitaldialogues.org');
-	ga('send', 'pageview');
-  
+function delete_message(message_id, username) {
+	var answer = confirm("Are you sure you want to delete this message?");
+	if (answer) {
+		window.location.replace("<?php echo base_url() . 'index.php/messages/delete_message/' ?>" + message_id + "/" + username);
+	}
+}
+
+function mark_as_read(message_id, username) {
+	window.location.replace("<?php echo base_url() . 'index.php/messages/mark_as_read/' ?>" + message_id + "/" + username);
+}
 </script>

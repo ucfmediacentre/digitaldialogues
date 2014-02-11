@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Digital Dialogues: <?php if (isset($page_info->title)) echo $page_info->title; ?> </title>
+        <title>Digital Dialogues: <?php echo $title; ?> </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 

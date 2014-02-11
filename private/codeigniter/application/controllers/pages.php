@@ -83,6 +83,7 @@ class Pages extends CI_Controller {
 		
 		$page_elements = $this->Elements_model->get_all_elements($page_details->id);
 		$data['page_elements'] = $page_elements;
+		$data['title'] = $page_title;
 		
 		// load view with data
 		$this->load->view('header', $data);
