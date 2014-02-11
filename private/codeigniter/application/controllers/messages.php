@@ -48,30 +48,44 @@ class Messages extends CI_Controller
 		
 		//get all messages from the database
 		$this->load->model('Messages_model');
-		$data['messages'] = $this->Messages_model->get_all_unread_messages($username);
 		$data['community'] = $this->Messages_model->get_all_members();
 		$data['username'] = $username;
 		$data['type'] = "Unread messages";
 		
+		//initialise message list
+		$messages = $this->Messages_model->get_all_unread_messages($username);
+		$messagesList = '';
+		if (count($messages) == 0){
+			$messagesList = "<H2 style='color:gray;'>You have no new messages</H2>";
+			$message_id="0";
+		} else {
+			foreach($messages as $item):
+				//get details of each message
+				$subject = $item['subject'];
+				$fromName = $item['fromName'];
+				$body = $item['body'];
+				$dateTime = $item['dateTime'];
+				$unread = $item['unread'];
+				$message_id = $item['message_id'];
+				
+				// iterate through all the items found in the messages array and form output
+				$messagesList = $messagesList . "<H2 style='color:gray;'>" . $subject . "&nbsp;<input type='button' value='Mark as read' style='font-size:12px; width:7em;  height:0.5em;' onclick='mark_as_read($message_id, &#39;$username&#39;)'></H2>";
+				$messagesList = $messagesList . "<span  style='color:gray;'><From: " . $fromName . "<br />";
+				$messagesList = $messagesList . "Date: " . $dateTime . "</span><br /><br />";
+				$messagesList = $messagesList . $body . "<br />";
+				$messagesList = $messagesList . "<hr />";	
+			endforeach; 
+		}
+		$data['messagesList'] = $messagesList;
+		
+		$data['title'] = 'Unread messages for ' . $username;
+		
 		// pass data into messages_view.php
+		$this->load->view('header', $data);
 		$this->load->view('messages_view', $data);
 		$this->load->view('pages_view/new_message_form');
 		$this->load->view('message_view_scripts');
-		
-		
-		// load view with data
-		/*$this->load->view('header', $data);
-		$this->load->view('pages_view/page_view');
-		$this->load->view('pages_view/new_element_form');
-		$this->load->view('pages_view/new_text_form');
-		$this->load->view('pages_view/new_image_form');
-		$this->load->view('pages_view/new_audio_form');
-		$this->load->view('pages_view/new_video_form');
-		$this->load->view('pages_view/new_page_form');
-		$this->load->view('pages_view/new_group_form');
-		$this->load->view('pages_view/page_info_form');
-		$this->load->view('pages_view/page_view_scripts');
-		$this->load->view('footer');*/
+		$this->load->view('footer');
 		
 	}
 	// set up viewer to browse messages
@@ -89,11 +103,41 @@ class Messages extends CI_Controller
 		//get all messages from the database
 		$this->load->model('Messages_model');
 		$data['messages'] = $this->Messages_model->get_all_messages($username);
+		
+		//initialise message list
+		$messages = $this->Messages_model->get_all_unread_messages($username);
+		$messagesList = '';
+		if (count($messages) == 0){
+			$messagesList = "<H2 style='color:gray;'>You have no messages</H2>";
+			$message_id="0";
+		} else {
+			foreach($messages as $item):
+				//get details of each message
+				$subject = $item['subject'];
+				$fromName = $item['fromName'];
+				$body = $item['body'];
+				$dateTime = $item['dateTime'];
+				$unread = $item['unread'];
+				$message_id = $item['message_id'];
+				
+				// iterate through all the items found in the messages array and form output
+				$messagesList = $messagesList . "<H2 style='color:gray;'>" . $subject . "&nbsp;<input type='button' value='Delete' style='font-size:12px; width:4em;  height:0.5em;' onclick='delete_message($message_id, &#39;$username&#39;)'></H2>";
+				$messagesList = $messagesList . "<span  style='color:gray;'><From: " . $fromName . "<br />";
+				$messagesList = $messagesList . "Date: " . $dateTime . "</span><br /><br />";
+				$messagesList = $messagesList . $body . "<br />";
+				$messagesList = $messagesList . "<hr />";	
+			endforeach; 
+		}
+		$data['messagesList'] = $messagesList;
 		$data['username'] = $username;
-		$data['type'] = "All messages";
+		$data['title'] = 'All messages for ' . $username;
 		
 		// pass data into messages_view.php
+		$this->load->view('header', $data);
 		$this->load->view('messages_view', $data);
+		$this->load->view('pages_view/new_message_form');
+		$this->load->view('message_view_scripts');
+		$this->load->view('footer');
 		
 	}
 	
