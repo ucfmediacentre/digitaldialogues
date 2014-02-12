@@ -15,7 +15,7 @@
 		}
 		
 		echo $this->session->userdata('username') . ' <a href="../../../verifylogin/log_out/pages/' . $page_info->group . '/' . $page_info->title . '">Log Out</a>&nbsp;|&nbsp;' . $this->session->userdata('messageCount')  . '&nbsp;<a href="../../../messages/view/'.$this->session->userdata('username').'">'.$messageLink.'</a>';
-	} ?>&nbsp;|&nbsp;<a href="../../../pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="../../../pages/view/help/home">Help</a>
+	} ?>&nbsp;|&nbsp;<a href="../../../pages/view/public/sandpit">Sandpit</a>&nbsp;|&nbsp;<a href="../../../pages/view/public/help">Help</a>
 	<form action="<?php echo base_url(); ?>index.php/search/map/<?php echo $page_info->group; ?>" method="get" enctype="multipart/form-data" id="filter_form">
 	  <br />
 	  <input name="filter" value="" onchange="submit();" />

@@ -103,7 +103,7 @@
 		</tr>
 	  </table>
 	  <br />
-	  <a href="<?php echo base_url(); ?>index.php/pages/view/public/home">public : Home</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/help/home">Help</a>&nbsp;|&nbsp;<a href="<?php echo base_url() . 'index.php/verifylogin/index/pages/' . $group . '/' . $title; ?>">Log In</a>
+	  <a href="<?php echo base_url(); ?>index.php/pages/view/public/home">public : Home</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/public/sandpit">Sandpit</a>&nbsp;|&nbsp;<a href="<?php echo base_url(); ?>index.php/pages/view/public/help">Help</a>&nbsp;|&nbsp;<a href="<?php echo base_url() . 'index.php/verifylogin/index/pages/' . $group . '/' . $title; ?>">Log In</a>
     </div>
     </form>
 	<script>

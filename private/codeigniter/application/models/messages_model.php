@@ -32,7 +32,31 @@ class Messages_model extends CI_Model {
 		
 		return $added_message_id;
     }
-   
+	
+	// creates a page from a click on the Add: Page link
+	public function send_message()
+	{
+		// first insert user's requirements into database
+		//collect variables from the form
+   		$toName = $this->input->post('toUser');
+   		$subject = $this->input->post('subject');
+   		$body = $this->input->post('body');
+   		$fromName = $this->input->post('fromUser');
+			
+		// add the new messaage to the database
+		$data = array(
+			'toName' => $toName,
+			'fromName' => $fromName,
+			'subject' => $subject,
+			'body' => $body,
+			'dateTime' => date("Y-m-d H:i:s")
+		);
+		
+		$this->db->insert('messages', $data); 
+		return $this->db->insert_id();
+			
+	}
+	
 	// retreives all messages belonging to $username
 	public function get_all_unread_messages($username) {
 		$this->db->where('toName', $username);
