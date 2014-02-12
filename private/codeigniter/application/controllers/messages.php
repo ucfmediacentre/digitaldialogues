@@ -127,7 +127,7 @@ class Messages extends CI_Controller
 		$data['messages'] = $this->Messages_model->get_all_messages($username);
 		
 		//initialise message list
-		$messages = $this->Messages_model->get_all_unread_messages($username);
+		$messages = $this->Messages_model->get_all_messages($username);
 		$messagesList = '';
 		if (count($messages) == 0){
 			$messagesList = "<H2 style='color:gray;'>You have no messages</H2>";
