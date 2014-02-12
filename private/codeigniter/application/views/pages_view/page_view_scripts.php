@@ -158,8 +158,8 @@
 			// Post the values to the pages controller
                         $.post(base_url + "index.php/pages/update", { id: idVal , group: groupVal , title: titleVal , description: descriptionVal, keywords: keywordsVal},
 		        function(data) {
-				// Refresh page
-                                window.location.href = base_url+"index.php/pages/view/"+groupVal+"/"+titleVal;
+				  // Refresh page
+                    window.location.href = base_url+"index.php/pages/view/"+groupVal+"/"+titleVal;
 			});
             
 		});

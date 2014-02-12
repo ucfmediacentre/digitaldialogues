@@ -42,7 +42,7 @@
 			  echo '<a href="verifylogin/index/pages/' . $group . '/home">Log In</a>';  
 		  } else {
 			  echo $this->session->userdata('username') . ' <a href="verifylogin/log_out/pages/' . $group . '/home">Log Out</a>';
-		  } ?>&nbsp;|&nbsp;<a href="pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="pages/view/help/home">Help</a>
+		  } ?>&nbsp;|&nbsp;<a href="pages/view/public/sandpit">Sandpit</a>&nbsp;|&nbsp;<a href="pages/view/public/help">Help</a>
 		  <form action="<?php echo base_url(); ?>index.php/search/map/<?php echo $group; ?>" method="get" enctype="multipart/form-data" id="filter_form">
 			<br />
 			<input name="filter" value="" onchange="submit();" />

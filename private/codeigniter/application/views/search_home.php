@@ -58,7 +58,7 @@
 	</div>
         
     <div id="main_pages_wrapper">
-        <a href="../../pages/view/<?php echo $group; ?>/home">Home</a>&nbsp;|&nbsp;<a href="../../recentChanges?group=<?php echo $group; ?>">Recent Changes</a>&nbsp;|&nbsp;<a href="../../pages/view/sandpit/home">Sandpit</a>&nbsp;|&nbsp;<a href="../../pages/view/<?php echo $group; ?>/help">Help</a>
+        <a href="../../pages/view/<?php echo $group; ?>/home">Home</a>&nbsp;|&nbsp;<a href="../../recentChanges?group=<?php echo $group; ?>">Recent Changes</a>&nbsp;|&nbsp;<a href="../../pages/view/public/sandpit">Sandpit</a>&nbsp;|&nbsp;<a href="../../pages/view/public/help">Help</a>
 	<form action="<?php echo base_url(); ?>index.php/search/map/<?php echo $group; ?>" method="get" enctype="multipart/form-data" id="filter_form">
             <br />
             <input name="filter" value="" onchange="submit();" />

@@ -25,13 +25,15 @@ class Messages extends CI_Controller
 		$this->load->model('Users_model');
 		$toUser = $this->Users_model->get_user($toId);
 		
-		// send the info needed to the message table
-		$data['toUser'] = $toUser;
-		$data['fromUser'] = $requester;
-		$data['group'] = $group;
-		
 		$this->load->model('Messages_model');
 		$this->Messages_model->joinGroup_message($toUser, $requester, $group);
+	}
+	
+	// updates the page_info and returns "1" if successful
+	public function send_message()
+	{
+	  $this->load->model('Messages_model');
+	  return $this->Messages_model->send_message();
 	}
 	
 	// set up viewer to browse messages
@@ -48,7 +50,17 @@ class Messages extends CI_Controller
 		
 		//get all messages from the database
 		$this->load->model('Messages_model');
-		$data['community'] = $this->Messages_model->get_all_members();
+		
+		//get list of members as an options string
+		$members = $this->Messages_model->get_all_members();
+		$membersOptions = '';
+		foreach($members as $item):
+			//get details of each message
+			$member = $item['user_name'];
+			$membersOptions = $membersOptions . '<option value="' . $member . '">' . $member . '</option>';
+		endforeach; 
+		$data['members'] = $membersOptions;
+		
 		$data['username'] = $username;
 		$data['type'] = "Unread messages";
 		
@@ -77,7 +89,6 @@ class Messages extends CI_Controller
 			endforeach; 
 		}
 		$data['messagesList'] = $messagesList;
-		
 		$data['title'] = 'Unread messages for ' . $username;
 		
 		// pass data into messages_view.php
@@ -102,6 +113,17 @@ class Messages extends CI_Controller
 		
 		//get all messages from the database
 		$this->load->model('Messages_model');
+		
+		//get list of members as an options string
+		$members = $this->Messages_model->get_all_members();
+		$membersOptions = '';
+		foreach($members as $item):
+			//get details of each message
+			$member = $item['user_name'];
+			$membersOptions = $membersOptions . '<option value="' . $member . '">' . $member . '</option>';
+		endforeach; 
+		$data['members'] = $membersOptions;
+		
 		$data['messages'] = $this->Messages_model->get_all_messages($username);
 		
 		//initialise message list
@@ -184,27 +206,6 @@ class Messages extends CI_Controller
 		
 		// pass data into messages_view.php
 		redirect(base_url().'index.php/messages/view/'.$username, 'location');
-		
-	}
-	
-	// set up viewer to send a message
-	public function create($username) {
-	  
-		// check to see if user is logged in as the right person
-		if ($this->session->userdata('username') != $username) {
-			if (defined('window')) {
-				window.history.back();
-			} else {
-				redirect(base_url().'index.php/pages/view/public/home', 'location');
-			}
-		}
-		
-		// get a list of all community members
-		$this->load->model('Messages_model');
-		$data['members'] = $this->Messages_model->get_all_members();
-		
-		// pass data into messages_view.php
-		$this->load->view('messages_view', $data);
 		
 	}
 }
