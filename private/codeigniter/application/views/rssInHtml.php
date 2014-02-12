@@ -51,7 +51,7 @@
 		</div>
 		
 	<div>
-		<div id="recentChanges"><strong>RSS feed: http://digitaldialogues.org/index.php/feed?group=<?php echo $group; ?></strong><br /><br /><?php echo $changesList; ?></div>
+		<div id="recentChanges"><strong>RSS feed: <?php echo base_url() ?>index.php/feed?group=<?php echo $group; ?></strong><br /><br /><?php echo $changesList; ?></div>
 	</div>
 
         <script src="<?php echo base_url(); ?>js/plugins.js"></script>
