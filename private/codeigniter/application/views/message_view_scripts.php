@@ -61,4 +61,15 @@
 	}
     
 })($);
+	
+	function delete_message(message_id, username) {
+		var answer = confirm("Are you sure you want to delete this message?");
+		if (answer) {
+			window.location.replace("<?php echo base_url() . 'index.php/messages/delete_message/' ?>" + message_id + "/" + username);
+		}
+	}
+	
+	function mark_as_read(message_id, username) {
+		window.location.replace("<?php echo base_url() . 'index.php/messages/mark_as_read/' ?>" + message_id + "/" + username);
+	}
 </script>
