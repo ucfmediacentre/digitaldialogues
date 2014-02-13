@@ -232,6 +232,7 @@ class Pages_model extends CI_Model {
 		
 		// check to see if this page name already exists
    		$this->db->where('title', $title);
+   		$this->db->where('group', $group);
    		$this->db->select('title');
    		$query = $this->db->get('pages');
 		
@@ -239,21 +240,9 @@ class Pages_model extends CI_Model {
 		{
 			// page already exists so don't insert new page into database
 			// just insert links on the right pages
-			
+			$page_exists = "TRUE";
+		   return "A page called $title already exists in this group";
 		} else {
-			
-			// page doesn't exist so put the new page into the database
-			$this->db->where('id', $pageId);
-			$this->db->select('title');
-			$query = $this->db->get('pages');
-			
-			if ($query->num_rows() > 0)
-			{
-				$row = $query->row(); 
-				return $row->title;
-			} else {
-				return null;
-			}
 			
 			// add the new page to the database
 			$data = array(
