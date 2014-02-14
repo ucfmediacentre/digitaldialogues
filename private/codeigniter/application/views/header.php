@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>libraries/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>libraries/fineuploader.jquery-3.0/fineuploader.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>libraries/jquery-ui-1.9.2.custom/css/eggplant/jquery-ui-1.9.2.custom.min.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="<?php echo base_url(); ?>css/colorPicker.css" type="text/css" />
         
         <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
         <script src="<?php echo base_url(); ?>js/vendor/jquery-1.8.3.min.js"></script>
@@ -25,6 +26,7 @@
 		<script src="<?php echo base_url(); ?>js/vendor/jquery.ui.touch-punch.min.js"></script>
         <script src="<?php echo base_url(); ?>js/vendor/modernizr-2.6.2.min.js"></script>
         <script src="<?php echo base_url(); ?>js/popcorn.js"></script>
+		<script src="<?php echo base_url(); ?>js/jquery.colorPicker.min.js"/></script>
 		<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<link rel="stylesheet" type="text/css" href="includes/videoPlayer_ie.css" />
