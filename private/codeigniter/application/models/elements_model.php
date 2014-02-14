@@ -263,11 +263,13 @@ class Elements_model extends CI_Model {
 		if (array_key_exists('contents', $post_data))
 		{
 			$contents = $post_data['contents'];
+			$colour = $post_data['color'];
             //$contents = htmlspecialchars($contents, ENT_QUOTES); Do we need this?
             $contents = str_replace ("\n", "<br>", $contents );
 			
 			$this->data['contents'] = $contents;
 			$this->data['type'] = 'text';
+			$this->data['color'] = $colour;
 		}
 		
 		// check pages_id
@@ -387,7 +389,8 @@ class Elements_model extends CI_Model {
                 'elementInHtml' => $elementInHtml,
                 'jsonArray' => json_encode($element),
                 'elements_id' => $elements_id,
-                'pages_id' => $element->pages_id
+                'pages_id' => $element->pages_id,
+                'username' => $this->session->userdata('username')
             );
             
             //insert new record into updates table

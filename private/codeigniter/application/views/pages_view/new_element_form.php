@@ -7,6 +7,7 @@
 		<h2>New Element</h2>	
 		<label for="element_file">File:</label>
 		<input type="file" id="element_file" /><br /><br />
+		Text Colour:&nbsp;&nbsp;<input id="element_colour" type="text" name="element_colour" value="#cccccc" /><br />
 		<label for="element_text">Text:</label>
 		<textarea id="element_text"></textarea>
 		<input type="submit" class="submit_element" id="submit_element" value="Submit" />

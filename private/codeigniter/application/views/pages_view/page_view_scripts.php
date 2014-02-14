@@ -180,8 +180,7 @@
 			// Post the values to the pages controller
                         $.post(base_url + "index.php/pages/add_page", { title: titleVal, description: descriptionVal, keywords: keywordsVal, group: groupVal, currentPageTitle: currentPageVal, currentPageId: currentPageIdVal },
 		        function(data) {
-				// Refresh page
-                                window.location.href = base_url+"index.php/pages/view/"+groupVal+"/"+currentPageVal;
+                    window.location.href = base_url+"index.php/pages/view/"+groupVal+"/"+currentPageVal;
 			});
             
 		});
@@ -204,8 +203,7 @@
 			// Post the values to the pages controller
                         $.post(base_url + "index.php/groups/add_group", { newGroup: newGroupVal, participation: participationVal, currentPage: currentPageVal, currentGroup: currentGroupVal, currentPageId: currentPageIdVal, userId: userIdVal },
 		        function(data) {
-				// Refresh page
-                                window.location.href = base_url+"index.php/pages/view/"+currentGroupVal+"/"+currentPageVal;
+                window.location.href = base_url+"index.php/pages/view/"+currentGroupVal+"/"+currentPageVal;
 			});
             
 		});
@@ -217,6 +215,7 @@
 			
 		        // get the values from the text form and put them into the element form
 			$('#element_text').val($('#text_form_text').val());
+			$('#element_colour').val($('#text_colour').val());
 			$('#element_x').val(parseInt(100+(Math.random()*200)));
 			$('#element_y').val(parseInt(200+(Math.random()*300)));
 			
@@ -340,6 +339,7 @@
 			}
 			
 			var element_description = $('#element_text').val();
+			var element_colour = $('#element_colour').val();
 			var pages_id = $('input[name="pages_id"]').val();
 			var x = $('input[name="x"]').val();
 			var y = $('input[name="y"]').val();
@@ -376,6 +376,7 @@
 			}
 			
 			fd.append('pages_id', pages_id);
+			fd.append('color', element_colour);
 			fd.append('x', x);
 			fd.append('y', y);
 			
@@ -674,6 +675,10 @@
         });
         return (JSON.stringify(acc));
     }
-    
+	
+	// function for changing text colour
+	$('#text_colour').colorPicker();
+	$('#element_colour').colorPicker();
+	
 })($);
 </script>

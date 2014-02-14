@@ -316,7 +316,7 @@ class Pages_model extends CI_Model {
 		$this->db->where('id', $linkBack_id);
 		$this->db->update('links', $data);
 		
-		return $this->db->insert_id();
+		return 'You have successfully created a page called "' . $title . '"';
 			
 	}
    
