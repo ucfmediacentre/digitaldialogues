@@ -238,6 +238,17 @@
 			
 		    // get the values from the image form and put them into the element form
 			$('#mediaType').val("image");
+			// work out whether user's image should be editable.
+			var image_editable;
+			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
+			if (loggedIn != 1) {
+				image_editable = "Y";
+			} else if ($( "input:checked" ).length > 2) {
+				image_editable = "Y";
+			} else {
+				image_editable = "N";
+			}
+			$('#element_editable').val(image_editable);
 			$('#element_x').val(parseInt(100+(Math.random()*200)));
 			$('#element_y').val(parseInt(200+(Math.random()*300)));
 			
@@ -253,6 +264,17 @@
 			
 		    // get the values from the audio form and put them into the element form
 			$('#mediaType').val("audio");
+			// work out whether user's audio should be editable.
+			var audio_editable;
+			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
+			if (loggedIn != 1) {
+				audio_editable = "Y";
+			} else if ($( "input:checked" ).length > 2) {
+				audio_editable = "Y";
+			} else {
+				audio_editable = "N";
+			}
+			$('#element_editable').val(audio_editable);
 			$('#element_x').val(parseInt(100+(Math.random()*200)));
 			$('#element_y').val(parseInt(200+(Math.random()*300)));
 			
@@ -268,6 +290,17 @@
 			
 		    // get the values from the video form and put them into the element form
 			$('#mediaType').val("video");
+			// work out whether user's video should be editable.
+			var video_editable;
+			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
+			if (loggedIn != 1) {
+				video_editable = "Y";
+			} else if ($( "input:checked" ).length > 2) {
+				video_editable = "Y";
+			} else {
+				video_editable = "N";
+			}
+			$('#element_editable').val(video_editable);
 			$('#element_x').val(parseInt(100+(Math.random()*200)));
 			$('#element_y').val(parseInt(200+(Math.random()*300)));
 			
