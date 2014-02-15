@@ -217,7 +217,8 @@
 			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
 			if (loggedIn != 1) {
 				text_editable = "Y";
-			} else if ($( "input:checked" ).length > 2) {
+			} else if ($( "input:checked" ).length > 5) {
+				//there are 6 checked items on the page - most of them are hidden
 				text_editable = "Y";
 			} else {
 				text_editable = "N";
@@ -243,7 +244,8 @@
 			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
 			if (loggedIn != 1) {
 				image_editable = "Y";
-			} else if ($( "input:checked" ).length > 2) {
+			} else if ($( "input:checked" ).length > 5) {
+				//there are 6 checked items on the page - most of them are hidden
 				image_editable = "Y";
 			} else {
 				image_editable = "N";
@@ -269,7 +271,8 @@
 			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
 			if (loggedIn != 1) {
 				audio_editable = "Y";
-			} else if ($( "input:checked" ).length > 2) {
+			} else if ($( "input:checked" ).length > 5) {
+				//there are 6 checked items on the page - most of them are hidden
 				audio_editable = "Y";
 			} else {
 				audio_editable = "N";
@@ -295,7 +298,8 @@
 			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
 			if (loggedIn != 1) {
 				video_editable = "Y";
-			} else if ($( "input:checked" ).length > 2) {
+			} else if ($( "input:checked" ).length > 5) {
+				//there are 6 checked items on the page - most of them are hidden
 				video_editable = "Y";
 			} else {
 				video_editable = "N";
@@ -384,7 +388,8 @@
 			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
 			if (loggedIn != 1) {
 				element_editable = "Y";
-			} else if ($( "input:checked" ).length > 2) {
+			} else if ($( "input:checked" ).length > 5) {
+				//there are 6 checked items on the page (most of them are hidden)
 				element_editable = "Y";
 			} else {
 				element_editable = "N";
