@@ -256,6 +256,7 @@ class Elements_model extends CI_Model {
             $description = str_replace ("\n", "<br>", $description );
             if ($description !== " " && $description !== "") {
                 $this->data['description'] = $description;
+			$this->data['editable'] = $editable;
             }
 		}
 		
