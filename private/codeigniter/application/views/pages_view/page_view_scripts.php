@@ -424,12 +424,12 @@
 			{
 				fd.append('file', element_file);
 				fd.append('description', element_description);
-				fd.append('editable', element_editable);
 			}else
 			{
 				fd.append('contents', element_description);
 			}
 			
+			fd.append('author', username);
 			fd.append('pages_id', pages_id);
 			fd.append('color', element_colour);
 			fd.append('editable', element_editable);
