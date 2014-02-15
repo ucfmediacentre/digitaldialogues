@@ -145,13 +145,13 @@ class Links_model extends CI_Model {
 												$this->shortcodes->replaceShortCode($i, '<a href='.chr(39).'mailto:' . $link->getValue() . chr(39).'>'.$link->getValue().'</a>');
 												break;
 										case "youtube":
-												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe width="320" height="300" src="http://www.youtube.com/embed/'.$link->getValue().'" frameborder="0" allowfullscreen></iframe></div>');
+												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe width="320" height="300" src="https://www.youtube.com/embed/'.$link->getValue().'" frameborder="0" allowfullscreen></iframe></div>');
 												break;
 										case "vimeo":
-												$this->shortcodes->replaceShortCode($i, '<iframe src="http://player.vimeo.com/video/'.$link->getValue().'" width="320" height="320" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+												$this->shortcodes->replaceShortCode($i, '<iframe src="https://player.vimeo.com/video/'.$link->getValue().'" width="320" height="320" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
 												break;
 										case "livestream":
-												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe width="320" height="320" src="http://cdn.livestream.com/embed/'.$link->getValue().'?layout=4&amp;height=300&amp;width=320&amp;autoplay=false" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe></div>');
+												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe width="320" height="320" src="https://cdn.livestream.com/embed/'.$link->getValue().'?layout=4&amp;height=300&amp;width=320&amp;autoplay=false" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe></div>');
 												break;
 										case "stream43":
 												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe src="'.base_url().'stream/client/live43.html" width="670" height="534" frameborder="0" allowtransparency="true" noresize="noresize" scrolling="no"></iframe></div>');
@@ -160,10 +160,10 @@ class Links_model extends CI_Model {
 												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe src="'.base_url().'stream/client/live169.html" width="670" height="414" frameborder="0" allowtransparency="true" noresize="noresize" scrolling="no"></iframe></div>');
 												break;
 										case "qik":
-												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,115,0" width="144" height="176x" id="qikPlayer" align="middle"><param name="allowScriptAccess" value="sameDomain" /><param name="allowFullScreen" value="true" /><param name="movie" value="https://assets0.qik.com/swfs/qikPlayer5.swf?1364300979" /><param name="quality" value="high" /><param name="bgcolor" value="#000000" /><param name="FlashVars" value="username='.$link->getValue().'" /><embed src="https://assets0.qik.com/swfs/qikPlayer5.swf?1364300979" quality="high" bgcolor="#000000" width="144" height="176" name="qikPlayer" align="middle" allowScriptAccess="sameDomain" allowFullScreen="true" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" FlashVars="username='.$link->getValue().'"></embed></object></div>');
+												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,115,0" width="144" height="176x" id="qikPlayer" align="middle"><param name="allowScriptAccess" value="sameDomain" /><param name="allowFullScreen" value="true" /><param name="movie" value="https://assets0.qik.com/swfs/qikPlayer5.swf?1364300979" /><param name="quality" value="high" /><param name="bgcolor" value="#000000" /><param name="FlashVars" value="username='.$link->getValue().'" /><embed src="https://assets0.qik.com/swfs/qikPlayer5.swf?1364300979" quality="high" bgcolor="#000000" width="144" height="176" name="qikPlayer" align="middle" allowScriptAccess="sameDomain" allowFullScreen="true" type="application/x-shockwave-flash" pluginspage="https://www.macromedia.com/go/getflashplayer" FlashVars="username='.$link->getValue().'"></embed></object></div>');
 												break;
 										case "veetle":
-												$this->shortcodes->replaceShortCode($i, '<iframe scrolling="no" frameborder="0" allowTransparency="true" style="border:none; overflow:hidden; width:320px; height:240px;" src="http://veetle.com/index.php/widget/index/CF05C791F0E4E3A659900B1D42B8C0ED/f6127861df5b559fbc917a700c9a9981/true/default/false"></iframe>');
+												$this->shortcodes->replaceShortCode($i, '<iframe scrolling="no" frameborder="0" allowTransparency="true" style="border:none; overflow:hidden; width:320px; height:240px;" src="https://veetle.com/index.php/widget/index/CF05C791F0E4E3A659900B1D42B8C0ED/f6127861df5b559fbc917a700c9a9981/true/default/false"></iframe>');
 												break;
 										case "shortcode":
 												$this->shortcodes->replaceShortCode($i, '[['.$link->getValue().']]');
@@ -201,7 +201,7 @@ class Links_model extends CI_Model {
 												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe src="https://www.facebook.com/video/embed?video_id=' . $link->getValue() . '" width="568" height="320" frameborder="0"></iframe></div>');
 												break;
 										case "facebooklike":
-												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2F' . $link->getValue() . '&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;font&amp;colorscheme=dark&amp;action=like&amp;height=80" scrolling="no" width="450" height="80" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe></div>');
+												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2F' . $link->getValue() . '&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;font&amp;colorscheme=dark&amp;action=like&amp;height=80" scrolling="no" width="450" height="80" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe></div>');
 												break;
 										
 										

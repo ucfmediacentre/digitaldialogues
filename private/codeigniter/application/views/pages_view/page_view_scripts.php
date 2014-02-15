@@ -1,6 +1,5 @@
 
-<script type="text/javascript" src="<?php echo base_url(); ?>libraries/fancybox/jquery.fancybox-1.3.4.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>libraries/fancybox/jquery.easing-1.3.pack.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>libraries/fancybox2/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>libraries/fineuploader.jquery-3.0/jquery.fineuploader-3.0.min.js"></script>
 <script type="text/javascript">
 
@@ -33,7 +32,6 @@
 			$("a#add_text_form_trigger").trigger('click');
 			$('input[name="x"]').val(e.pageX);
 			$('input[name="y"]').val(e.pageY);
-			$('textarea').focus();
 			clearSelection();
 		});
 		
@@ -42,6 +40,9 @@
 			'overlayOpacity':0,
 			'autoDimensions':true,
 			'showCloseButton':false,
+			'afterShow': function(){
+				$('#text_form_text').focus();
+			}
 		});
 		
 		// sets click to open image fancy box
@@ -49,15 +50,13 @@
 			$("a#add_image_form_trigger").trigger('click');
 			$('input[name="x"]').val(e.pageX);
 			$('input[name="y"]').val(e.pageY);
-			$('textarea').focus();
 			clearSelection();
 		});
 		
 		// inits image fancy box
 		$("a#add_image_form_trigger").fancybox({
 			'overlayOpacity':0,
-			'autoDimensions':true,
-			'showCloseButton':false,
+			'autoSize':true,
 		});
 		
 		// sets click to open audio fancy box
@@ -65,15 +64,13 @@
 			$("a#add_audio_form_trigger").trigger('click');
 			$('input[name="x"]').val(e.pageX);
 			$('input[name="y"]').val(e.pageY);
-			$('textarea').focus();
 			clearSelection();
 		});
 		
 		// inits audio fancy box
 		$("a#add_audio_form_trigger").fancybox({
 			'overlayOpacity':0,
-			'autoDimensions':true,
-			'showCloseButton':false,
+			'autoSize':true,
 		});
 		
 		// sets click to open video fancy box
@@ -81,66 +78,64 @@
 			$("a#add_video_form_trigger").trigger('click');
 			$('input[name="x"]').val(e.pageX);
 			$('input[name="y"]').val(e.pageY);
-			$('textarea').focus();
 			clearSelection();
 		});
 		
 		// inits video fancy box
 		$("a#add_video_form_trigger").fancybox({
 			'overlayOpacity':0,
-			'autoDimensions':true,
-			'showCloseButton':false,
+			'autoSize':true,
 		});
 		
-		// sets click to open audio fancy box
+		// sets click to open page form fancy box
 		$('#add_page_form_wrapper').click(function(e){
 			$("a#add_page_form_trigger").trigger('click');
 			$('input[name="x"]').val(e.pageX);
 			$('input[name="y"]').val(e.pageY);
-			$('textarea').focus();
 			clearSelection();
 		});
 		
-		// inits audio fancy box
+		// inits page form fancy box
 		$("a#add_page_form_trigger").fancybox({
 			'overlayOpacity':0,
-			'autoDimensions':true,
-			'showCloseButton':false,
+			'autoSize':true,
+			'afterShow': function(){
+				$('#new_page_title').focus();
+			}
 		});
 		
-		// sets click to open audio fancy box
+		// sets click to open group form fancy box
 		$('#add_group_form_wrapper').click(function(e){
 			$("a#add_group_form_trigger").trigger('click');
 			$('input[name="x"]').val(e.pageX);
 			$('input[name="y"]').val(e.pageY);
-			$('textarea').focus();
 			clearSelection();
 		});
 		
-		// inits audio fancy box
+		// inits group form fancy box
 		$("a#add_group_form_trigger").fancybox({
 			'overlayOpacity':0,
-			'autoDimensions':true,
-			'showCloseButton':false,
+			'autoSize':true,
+			'afterShow': function(){
+				$('#new_group_title').focus();
+			}
+		});
+	
+		// triggers the element fancy box on double click
+		$('#background').dblclick(function(e){
+			$("a#add_element_form_trigger").trigger('click'); 
+			$('input[name="x"]').val(e.pageX);
+			$('input[name="y"]').val(e.pageY);
+			clearSelection();
 		});
 		
 		// inits element fancy box
 		$("a#add_element_form_trigger").fancybox({
 			'overlayOpacity':0,
-			'autoDimensions':true,
-			'showCloseButton':false,
-		});
-	
-		// triggers the element fancy box on double click
-		$('#background').dblclick(function(e){
-		        //$("#add_element_form_wrapper").replaceWith("<div>Hello world!</div>");
-			$("a#add_element_form_trigger").trigger('click');    
-			//$("a#add_text_form_trigger").trigger('click');
-			
-			$('input[name="x"]').val(e.pageX);
-			$('input[name="y"]').val(e.pageY);
-			$('textarea').focus();
-			clearSelection();
+			'autoSize':true,
+			'afterShow': function(){
+				$('#element_text').focus();
+			}
 		});
 		
 		// submits Ajax for updating page info 
@@ -216,6 +211,17 @@
 		        // get the values from the text form and put them into the element form
 			$('#element_text').val($('#text_form_text').val());
 			$('#element_colour').val($('#text_colour').val());
+			// work out whether user's text should be editable.
+			var text_editable;
+			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
+			if (loggedIn != 1) {
+				text_editable = "Y";
+			} else if ($( "input:checked" ).length > 2) {
+				text_editable = "Y";
+			} else {
+				text_editable = "N";
+			}
+			$('#element_editable').val(text_editable);
 			$('#element_x').val(parseInt(100+(Math.random()*200)));
 			$('#element_y').val(parseInt(200+(Math.random()*300)));
 			
@@ -317,7 +323,7 @@
 			e.preventDefault();
 			
 			$("#loadingPrompt").css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0});
-			$.fancybox.showActivity();
+			$.fancybox.showLoading();
 		
 			// get all the form values
 			
@@ -340,6 +346,15 @@
 			
 			var element_description = $('#element_text').val();
 			var element_colour = $('#element_colour').val();
+			var element_editable;
+			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
+			if (loggedIn != 1) {
+				element_editable = "Y";
+			} else if ($( "input:checked" ).length > 2) {
+				element_editable = "Y";
+			} else {
+				element_editable = "N";
+			}
 			var pages_id = $('input[name="pages_id"]').val();
 			var x = $('input[name="x"]').val();
 			var y = $('input[name="y"]').val();
@@ -377,6 +392,7 @@
 			
 			fd.append('pages_id', pages_id);
 			fd.append('color', element_colour);
+			fd.append('editable', element_editable);
 			fd.append('x', x);
 			fd.append('y', y);
 			
