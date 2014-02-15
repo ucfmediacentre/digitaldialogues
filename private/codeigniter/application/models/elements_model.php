@@ -277,7 +277,7 @@ class Elements_model extends CI_Model {
 		{
 			$author = $post_data['author'];
 			$editable = $post_data['editable'];
-			$this->data['author'] = $editable;
+			$this->data['author'] = $author;
 			$this->data['editable'] = $editable;
 		}
 		
