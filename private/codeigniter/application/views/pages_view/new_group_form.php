@@ -3,7 +3,7 @@
 	<form id="add_group_form" class="input_form">
 		<h2>New Group</h2>	
 		<label for="new_group_title">Group Title:</label>
-		<input id="group_title" type="text" name="new_group_title" />
+		<input id="new_group_title" type="text" name="new_group_title" />
 		<br /><br />
 		<input type="radio" name="participation" value="public" > Public &nbsp;&nbsp;&nbsp;
 		<input type="radio" name="participation" value="private" checked="checked" > Private 

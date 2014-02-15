@@ -264,12 +264,14 @@ class Elements_model extends CI_Model {
 		{
 			$contents = $post_data['contents'];
 			$colour = $post_data['color'];
+			$editable = $post_data['editable'];
             //$contents = htmlspecialchars($contents, ENT_QUOTES); Do we need this?
             $contents = str_replace ("\n", "<br>", $contents );
 			
 			$this->data['contents'] = $contents;
 			$this->data['type'] = 'text';
 			$this->data['color'] = $colour;
+			$this->data['editable'] = $editable;
 		}
 		
 		// check pages_id
@@ -494,7 +496,6 @@ class Elements_model extends CI_Model {
     public function delete($id)
 	{
 		$element = $this->get_element_by_id($id);
-    
         
 		// delete all links for this element
 		$this->load->model('Links_model');
