@@ -7,6 +7,7 @@
 
 	// Save the base url as a a javascript variable
 	var base_url = "<?php echo base_url(); ?>";
+	var username = "<?php if ($this->session->userdata('logged_in') == 1) {echo $this->session->userdata('username'); }else{ echo '';} ?>";
 	
 	$(document).ready(function(){
 		
@@ -498,7 +499,10 @@
 			
 			// adds the style to the element and the generic class 
 			$(elm).css(style);
-			$(elm).addClass('element');
+			// Dont let the item become an element unless the author has specified it to be editable
+			if (page_elements_json[i].editable == 'Y' || page_elements_json[i].author == username) {
+				$(elm).addClass('element');
+			}
 			$(elm).addClass(page_elements_json[i].type);
 			
 			// customise the element depending on its content type
@@ -522,56 +526,64 @@
 					break;
 			}
 			
-			// MAKES DRAGGABLE
-			$(elm).draggable({
-				stop: function(event, ui) {
-					updateElement(ui.helper[0].id , 'position');
-				}
-			}).draggable({cancel : 'object'});
+			// MAKES DRAGGABLE unless the author specified that it shouldn't be editable
+			if (page_elements_json[i].editable == 'Y' || page_elements_json[i].author == username) {
+				$(elm).draggable({
+					stop: function(event, ui) {
+						updateElement(ui.helper[0].id , 'position');
+					}
+				}).draggable({cancel : 'object'});
+			}
 			
 			// *** GLOBAL VARIABLES CAUSING HAVOC WITH THIS FUNCTION
 			// if the file type is neither audio nor video then add resize 
 			if (page_elements_json[i].type !== 'audio' && page_elements_json[i].type !== 'video')
 			{
-				$(elm).resizable({
-					create: function(event, ui) {
-						
-					},
-					start: function(e, ui) {
-						// Start function goes here
-					},
-					resize: function(e, ui) {
-						// Resize function goes here
-                        if($(this).hasClass('text')){
-                                var textLength = $(this).text().length;
-                                var textRatio = $(this).width()/$(this).height();
-                                var textWidth = $(this).width();
-                                var newFontSize = textWidth/(Math.sqrt(textLength*textRatio));
-                                $(this).css("font-size", newFontSize);
-                                $(this).css("border", 0);
-                        }
-
-					},
-					stop: function(event, ui) {
-                        // Stop function goes here
-						updateElement(ui.helper[0].id, 'size');
-						if ($(this).hasClass('text')){
-                            $(this).css({'height':'auto'});
-                            $(this).css("border-width", "1px");
-                            $(this).css("border-color","#ccc");
-                            $(this).css("border-radius","10px");
-                            $(this).css("border-style","dashed");
-                        }
-					}
-				});
+				
+				if (page_elements_json[i].editable == 'Y' || page_elements_json[i].author == username) {
+					$(elm).resizable({
+						create: function(event, ui) {
+							
+						},
+						start: function(e, ui) {
+							// Start function goes here
+						},
+						resize: function(e, ui) {
+							// Resize function goes here
+							if($(this).hasClass('text')){
+									var textLength = $(this).text().length;
+									var textRatio = $(this).width()/$(this).height();
+									var textWidth = $(this).width();
+									var newFontSize = textWidth/(Math.sqrt(textLength*textRatio));
+									$(this).css("font-size", newFontSize);
+									$(this).css("border", 0);
+							}
+	
+						},
+						stop: function(event, ui) {
+							// Stop function goes here
+							updateElement(ui.helper[0].id, 'size');
+							if ($(this).hasClass('text')){
+								$(this).css({'height':'auto'});
+								$(this).css("border-width", "1px");
+								$(this).css("border-color","#ccc");
+								$(this).css("border-radius","10px");
+								$(this).css("border-style","dashed");
+							}
+						}
+					});
+				}
 			}		 
             
 			if ($(elm).hasClass('video')) $(elm).css({'height':'195', 'width':'240'});
             
-			// Adds delete button
-			var delete_button = $('<a href="' + page_elements_json[i].id + '">');
-			$(delete_button).addClass("delete_button");
-			$(elm).append(delete_button);
+			// Adds delete button unless the author made it uneditable
+			
+			if (page_elements_json[i].editable == 'Y' || page_elements_json[i].author == username) {
+				var delete_button = $('<a href="' + page_elements_json[i].id + '">');
+				$(delete_button).addClass("delete_button");
+				$(elm).append(delete_button);
+			}
 			
 			// adds new element to the array
 			page_elements.push(elm);
