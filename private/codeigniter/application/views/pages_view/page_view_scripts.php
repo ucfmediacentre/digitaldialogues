@@ -424,6 +424,7 @@
 			{
 				fd.append('file', element_file);
 				fd.append('description', element_description);
+				fd.append('editable', element_editable);
 			}else
 			{
 				fd.append('contents', element_description);
