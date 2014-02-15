@@ -256,7 +256,6 @@ class Elements_model extends CI_Model {
             $description = str_replace ("\n", "<br>", $description );
             if ($description !== " " && $description !== "") {
                 $this->data['description'] = $description;
-			$this->data['editable'] = $editable;
             }
 		}
 		
@@ -265,13 +264,20 @@ class Elements_model extends CI_Model {
 		{
 			$contents = $post_data['contents'];
 			$colour = $post_data['color'];
-			$editable = $post_data['editable'];
             //$contents = htmlspecialchars($contents, ENT_QUOTES); Do we need this?
             $contents = str_replace ("\n", "<br>", $contents );
 			
 			$this->data['contents'] = $contents;
-			$this->data['type'] = 'text';
 			$this->data['color'] = $colour;
+			$this->data['type'] = 'text';
+		}
+		
+        // if the contents was used (i.e. a text element)..
+		if (array_key_exists('author', $post_data))
+		{
+			$author = $post_data['author'];
+			$editable = $post_data['editable'];
+			$this->data['author'] = $editable;
 			$this->data['editable'] = $editable;
 		}
 		
