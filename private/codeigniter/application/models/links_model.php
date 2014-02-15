@@ -145,10 +145,10 @@ class Links_model extends CI_Model {
 												$this->shortcodes->replaceShortCode($i, '<a href='.chr(39).'mailto:' . $link->getValue() . chr(39).'>'.$link->getValue().'</a>');
 												break;
 										case "youtube":
-												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe width="320" height="300" src="http://www.youtube.com/embed/'.$link->getValue().'" frameborder="0" allowfullscreen></iframe></div>');
+												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe width="320" height="300" src="https://www.youtube.com/embed/'.$link->getValue().'" frameborder="0" allowfullscreen></iframe></div>');
 												break;
 										case "vimeo":
-												$this->shortcodes->replaceShortCode($i, '<iframe src="http://player.vimeo.com/video/'.$link->getValue().'" width="320" height="320" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+												$this->shortcodes->replaceShortCode($i, '<iframe src="https://player.vimeo.com/video/'.$link->getValue().'" width="320" height="320" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
 												break;
 										case "livestream":
 												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe width="320" height="320" src="http://cdn.livestream.com/embed/'.$link->getValue().'?layout=4&amp;height=300&amp;width=320&amp;autoplay=false" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe></div>');
