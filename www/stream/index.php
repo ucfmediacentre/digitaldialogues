@@ -3,7 +3,7 @@
 <head>
   
 	<meta charset="UTF-8">
-	<title>Swarm TV Streaming video</title>
+	<title>Digital Dialogues Streaming Video</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -40,7 +40,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Ableton Live</a>
+          <a class="brand" href="#">Digital Dialogues</a>
 		  <a id="main_home_button" href="../index.php/search/map/public">&nbsp;</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
@@ -76,7 +76,7 @@
             <h2>Live Video</h2>
             <iframe src="http://www.ucfmediacentre.co.uk/wowzainterface/client/live.html" width="700" height="500" frameborder="0" allowtransparency="true" noresize="noresize" scrolling="no"></iframe>
             
-		<p><b> Do not change the settings! </b>  Click <b>Play</b> to connect to the stream<br /> - The stream won't be active until - 10:00am (UK time) 28th May 2013</p>            
+		<p><b> Please do not change the settings </b>  Click <b>Play</b> to connect to the stream<br /></p>            
           </div>
           </div>
           </div>

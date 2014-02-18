@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="C:\Users\Ian Zenoni\Desktop\examples\LiveDVRStreaming\SilverlightPlayer" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Silverlight.js" publishTime="09/28/2012 10:16:09" />
+    <file relUrl="css/blueprint/plugins/rtl/readme.txt" publishTime="09/28/2012 10:16:02" />
+    <file relUrl="css/blueprint/src/reset.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/buttons/icons/key.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="debug.js" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/buttons/icons/tick.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="ClientBin/LiveDvrSmoothStreaming.xap" publishTime="09/28/2012 10:32:16" />
+    <file relUrl="bin/System.Drawing.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="css/blueprint/src/ie.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="bin/System.Data.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="css/blueprint/plugins/link-icons/icons/doc.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="ParsedQueryString.js" publishTime="09/28/2012 10:16:09" />
+    <file relUrl="bin/System.Web.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="bin/System.Configuration.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="css/blueprint/plugins/buttons/readme.txt" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/rtl/screen.css" publishTime="09/28/2012 10:16:02" />
+    <file relUrl="css/wowza.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="bin/System.Web.Services.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="css/blueprint/ie.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="bin/LiveDvrSmoothStreaming.Site.dll" publishTime="09/28/2012 11:01:12" />
+    <file relUrl="LiveDvrSmoothStreaming.html" publishTime="09/28/2012 10:16:02" />
+    <file relUrl="css/tabber.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="img/wowzalogo.png" publishTime="09/28/2012 10:16:09" />
+    <file relUrl="css/blueprint/plugins/buttons/screen.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/print.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="bin/System.EnterpriseServices.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="css/blueprint/plugins/link-icons/screen.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/link-icons/icons/email.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="bin/System.Xml.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="css/blueprint/src/grid.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/src/grid.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/buttons/icons/cross.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/fancy-type/screen.css" publishTime="09/28/2012 10:16:02" />
+    <file relUrl="bin/System.Web.DynamicData.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="img/smalllogo.png" publishTime="09/28/2012 10:16:09" />
+    <file relUrl="css/blueprint/plugins/link-icons/readme.txt" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/link-icons/icons/lock.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/link-icons/icons/im.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="player.html" publishTime="09/28/2012 11:00:47" />
+    <file relUrl="jquery-1.4.2.min.js" publishTime="09/28/2012 10:16:09" />
+    <file relUrl="bin/System.Web.Mobile.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="bin/LiveDvrSmoothStreaming.Site.pdb" publishTime="09/28/2012 11:01:12" />
+    <file relUrl="css/blueprint/plugins/link-icons/icons/feed.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/fancy-type/readme.txt" publishTime="09/28/2012 10:16:02" />
+    <file relUrl="bin/System.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="css/blueprint/src/forms.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/screen.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/src/typography.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/link-icons/icons/external.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/link-icons/icons/pdf.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/link-icons/icons/xls.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="css/blueprint/plugins/link-icons/icons/visited.png" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="bin/System.Web.Entity.dll" publishTime="03/18/2010 19:31:26" />
+    <file relUrl="css/blueprint/src/print.css" publishTime="09/28/2012 10:16:03" />
+    <file relUrl="Web.config" publishTime="09/28/2012 10:16:02" />
+  </publishProfile>
+</publishData>
