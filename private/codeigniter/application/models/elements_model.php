@@ -14,7 +14,9 @@ class Elements_model extends CI_Model {
 										array('image/gif;'	, 'image'),
 										array('image/jpg;'	, 'image'),
 										array('audio/mpeg;'	, 'audio'),
-										array('video/mp4;' , 'video')
+										array('audio/x-wav;', 'audio'),
+										array('audio/wav;'	, 'audio'),
+										array('video/mp4;' 	, 'video')
 										);
 										
 	var $data = array();
