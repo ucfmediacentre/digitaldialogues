@@ -156,6 +156,9 @@ class Links_model extends CI_Model {
 										case "stream43":
 												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe src="'.base_url().'stream/client/live43.html" width="670" height="534" frameborder="0" allowtransparency="true" noresize="noresize" scrolling="no"></iframe></div>');
 												break;
+										case "webcam":
+												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe src="'.base_url().'stream/client/webcamRecorder.html" width="340" height="292" frameborder="0" allowtransparency="true" noresize="noresize" scrolling="no"></iframe></div>');
+												break;
 										case "stream169":
 												$this->shortcodes->replaceShortCode($i, '<div style="padding:10px;"><iframe src="'.base_url().'stream/client/live169.html" width="670" height="414" frameborder="0" allowtransparency="true" noresize="noresize" scrolling="no"></iframe></div>');
 												break;
