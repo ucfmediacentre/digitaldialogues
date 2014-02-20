@@ -241,7 +241,9 @@ class Elements_model extends CI_Model {
 	}
 	
 	public function add_webrecording($group = "public", $page = "sandpit")
-	{	 
+	{
+	  
+		$this->firephp->log("FirePHP is working!");
 		// Consider creating a folder every new month so that elements are easier to find? 
 		// construct the location from the data
 		$folder = "video";  // point to media folder
