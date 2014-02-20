@@ -245,7 +245,7 @@ class Elements_model extends CI_Model {
 		// Consider creating a folder every new month so that elements are easier to find? 
 		// construct the location from the data
 		$folder = "video";  // point to media folder
-		$uploads_dir = base_url() . 'assets/' . $folder . '/';
+		$uploads_dir = '/var/www/assets/' . $folder . '/';
 		
 		$extension = "mp4";
 		$unique_name = $folder . '-' . uniqid();
