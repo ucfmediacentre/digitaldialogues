@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class WebcamRecording extends CI_Controller {
+class Webcam extends CI_Controller {
 
 	public function __construct()
 	{
@@ -8,13 +8,14 @@ class WebcamRecording extends CI_Controller {
 	}
 	
 	// processes an element and adds it to the `elements` and `updates` table
-	public function index($group = "public", $page = "sandpit")
+	public function addRecording($group = NULL, $page = NULL)
 	{
+	  
 		$this->load->model('Elements_model');
 		$this->load->model('Pages_model');
 		
 		// add webrecording to page
-		$elements_id = $this->Elements_model->add_webrecording($group, $page);
+		$elements_id = $this->Elements_model->add_recording($group, $page);
 		
 		//creates the new record in table 'updates'
 		$update_elements_id = $elements_id;

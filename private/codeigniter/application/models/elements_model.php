@@ -240,10 +240,8 @@ class Elements_model extends CI_Model {
 		return true;
 	}
 	
-	public function add_webrecording($group = "public", $page = "sandpit")
+	public function add_recording($group = "public", $page = "sandpit")
 	{
-	  
-		$this->firephp->log("FirePHP is working!");
 		// Consider creating a folder every new month so that elements are easier to find? 
 		// construct the location from the data
 		$folder = "video";  // point to media folder
@@ -256,7 +254,8 @@ class Elements_model extends CI_Model {
 		
 		$this->data['filename'] = $full_name;
 		$this->data['type'] = $folder;
-		$copyCommand = "cp /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 '" . $uploads_dir;
+		$copyCommand = "cp /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 " . $uploads_dir . $full_name;
+		
 		$success = shell_exec($copyCommand);
         
         //create OGV version
