@@ -240,7 +240,7 @@ class Elements_model extends CI_Model {
 		return true;
 	}
 	
-	public function add_webrecording()
+	public function add_webrecording($group = NULL, $page = NULL)
 	{	 
 		// Consider creating a folder every new month so that elements are easier to find? 
 		// construct the location from the data
