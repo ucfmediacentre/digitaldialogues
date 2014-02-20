@@ -203,9 +203,9 @@ class Elements_model extends CI_Model {
                 
                 //get duration as well
                 $result = preg_match('/Duration: (.*?),/', $output, $matches);
-		$hours = 0;
-		$mins = 0;
-		$secs = 0;
+				$hours = 0;
+				$mins = 0;
+				$secs = 0;
                 if (isset ( $matches[0] )) {  
                     $vals = (explode ( ':', $matches[1] ));  
                     $hours = $vals[0] ? trim($vals[0]) : 0;  
@@ -240,7 +240,7 @@ class Elements_model extends CI_Model {
 		return true;
 	}
 	
-	public function add_webrecording($group = NULL, $page = NULL)
+	public function add_webrecording($group = "public", $page = "sandpit")
 	{	 
 		// Consider creating a folder every new month so that elements are easier to find? 
 		// construct the location from the data
@@ -336,6 +336,9 @@ class Elements_model extends CI_Model {
 		
 		//load new video element into elements database
 		$this->db->insert('elements', $this->data);
+		
+		//return the new element id 
+		return $this->db->insert_id();
 	}
 	
 	
