@@ -9,6 +9,17 @@
 		#flashContent { width:100%; height:100%; }
 		</style>
 	</head>
+	<script type="text/javascript">
+		function saveRecording($updateUrl) {
+			$.ajax({
+				url: $updateUrl,
+				context: document.body,
+				success: function(){
+					window.top.location.reload();
+				}
+			});
+		}
+	</script>
 	<body>
 		<div id="flashContent">
 			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="340" height="292" id="webcamRecorder" align="middle">
