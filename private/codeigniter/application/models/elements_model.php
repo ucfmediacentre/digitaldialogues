@@ -241,7 +241,8 @@ class Elements_model extends CI_Model {
 	}
 	
 	public function add_webrecording($group = "public", $page = "sandpit")
-	{	 
+	{
+	  
 		// Consider creating a folder every new month so that elements are easier to find? 
 		// construct the location from the data
 		$folder = "video";  // point to media folder
