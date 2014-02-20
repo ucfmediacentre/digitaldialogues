@@ -330,7 +330,7 @@ class Elements_model extends CI_Model {
 		
 		// load up all other variables needed
 		$this->data['author']= $this->session->userdata('username');
-		$this->data['filename'] = $filename;
+		$this->data['filename'] = $filename . "." . $extension;
 		$this->data['pages_id']= $this->Pages_model->get_page_id($group, $page);
 		$this->data['x']= intval(rand(200,500));
 		$this->data['y']= intval(rand(150,400));
