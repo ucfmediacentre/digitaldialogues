@@ -254,17 +254,20 @@ class Elements_model extends CI_Model {
 		
 		$this->data['filename'] = $full_name;
 		$this->data['type'] = $folder;
-		$copyCommand = "cp /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 " . $uploads_dir . $full_name;
+		//$copyCommand = "cp /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 " . $uploads_dir . $full_name;
+		//$success = shell_exec($copyCommand);
 		
-		$success = shell_exec($copyCommand);
+		$convert2MP4 = "/usr/bin/ffmpeg -i /usr/local/WowzaStreamingEngine/content/webcamrecording.flv -ar 44100 " . $uploads_dir . $full_name;
+		$success = shell_exec($convert2MP4);
         
         //create OGV version
 		//Jem's URL
 		//$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/video/".$full_name;
 		 
 		//Public server's URL
-		$createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$full_name;
-		
+		//$createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$full_name;
+		//$execute = shell_exec($createOgvVersion);
+		$createOgvVersion = "/usr/local/bin/ffmpeg2theora /usr/local/WowzaStreamingEngine/content/webcamrecording.flv -o /var/www/assets/video/".$full_name;
 		$execute = shell_exec($createOgvVersion);
 		
 		//set string variables for ffmpeg string
