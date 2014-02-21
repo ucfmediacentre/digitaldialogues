@@ -254,11 +254,11 @@ class Elements_model extends CI_Model {
 		
 		$this->data['filename'] = $full_name;
 		$this->data['type'] = $folder;
-		$copyCommand = "cp /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 -vcodec copy -acodec copy " . $uploads_dir . $full_name;
-		$success = shell_exec($copyCommand);
+		//$copyCommand = "cp /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 " . $uploads_dir . $full_name;
+		//$success = shell_exec($copyCommand);
 		
-		//$convert2MP4 = "/usr/bin/ffmpeg -i /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 -ar 44100 " . $uploads_dir . $full_name;
-		//$success = shell_exec($convert2MP4);
+		$convert2MP4 = "/usr/bin/ffmpeg -i /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 -vcodec copy -acodec aac " . $uploads_dir . $full_name;
+		$success = shell_exec($convert2MP4);
         
         //create OGV version
 		//Jem's URL
