@@ -267,7 +267,7 @@ class Elements_model extends CI_Model {
 		//Public server's URL
 		//$createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$full_name;
 		//$execute = shell_exec($createOgvVersion);
-		$createOgvVersion = "/usr/local/bin/ffmpeg2theora /usr/local/WowzaStreamingEngine/content/webcamrecording.flv -o /var/www/assets/video/".$full_name;
+		$createOgvVersion = "/usr/local/bin/ffmpeg2theora /usr/local/WowzaStreamingEngine/content/webcamrecording.flv -o /var/www/assets/video/".$unique_name . ".ogv";
 		$execute = shell_exec($createOgvVersion);
 		
 		//set string variables for ffmpeg string
