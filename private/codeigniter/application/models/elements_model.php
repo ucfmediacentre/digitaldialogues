@@ -254,11 +254,11 @@ class Elements_model extends CI_Model {
 		
 		$this->data['filename'] = $full_name;
 		$this->data['type'] = $folder;
-		$copyCommand = "cp /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 " . $uploads_dir . $full_name;
-		$success = shell_exec($copyCommand);
+		//$copyCommand = "cp /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 " . $uploads_dir . $full_name;
+		//$success = shell_exec($copyCommand);
 		
-		//$convert2MP4 = "/usr/bin/ffmpeg -i /usr/local/WowzaStreamingEngine/content/webcamrecording.flv -vcodec copy -acodec aac " . $uploads_dir . $full_name;
-		//$success = shell_exec($convert2MP4);
+		$convert2MP4 = "/usr/bin/ffmpeg -i /usr/local/red5/webapps/oflaDemo/streams/webcamrecording.flv " . $uploads_dir . $full_name;
+		$success = shell_exec($convert2MP4);
         
         //create OGV version
 		//Jem's URL
@@ -267,7 +267,7 @@ class Elements_model extends CI_Model {
 		//Public server's URL
 		//$createOgvVersion = "/usr/local/bin/ffmpeg2theora /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 -o /var/www/assets/video/".$unique_name . ".ogv";
 		//$execute = shell_exec($createOgvVersion);
-		$createOgvVersion = "/usr/local/bin/ffmpeg2theora /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 -o /var/www/assets/video/".$unique_name . ".ogv";
+		$createOgvVersion = "/usr/local/bin/ffmpeg2theora /usr/local/red5/webapps/oflaDemo/streams/webcamrecording.flv -o /var/www/assets/video/".$unique_name . ".ogv";
 		$execute = shell_exec($createOgvVersion);
 		
 		//set string variables for ffmpeg string
