@@ -254,7 +254,7 @@ class Elements_model extends CI_Model {
 		
 		$this->data['filename'] = $full_name;
 		$this->data['type'] = $folder;
-		$copyCommand = "/usr/bin/ffmpeg -async 1 /usr/local/WowzaStreamingEngine/content/webcamrecording.flv " . $uploads_dir . $full_name;
+		$copyCommand = "/usr/bin/ffmpeg -async 1 -i /usr/local/WowzaStreamingEngine/content/webcamrecording.flv " . $uploads_dir . $full_name;
 		$success = shell_exec($copyCommand);
 		
 		//$convert2MP4 = "/usr/bin/ffmpeg -i /usr/local/red5/webapps/oflaDemo/streams/webcamrecording.flv -itsoffset 0.75 -map 0:0 -map 0:1 -acodec libmp3lame " . $uploads_dir . $full_name;
