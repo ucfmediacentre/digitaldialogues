@@ -265,7 +265,8 @@ class Elements_model extends CI_Model {
 		//$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/video/".$full_name;
 		 
 		//Public server's URL
-		$createOgvVersion = "/usr/local/bin/ffmpeg2theora --sync /usr/local/WowzaStreamingEngine/content/webcamrecording.flv -o /var/www/assets/video/".$unique_name . ".ogv";
+		$createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$unique_name . ".mp4 -o /var/www/assets/video/".$unique_name . ".ogv";
+		//$createOgvVersion = "/usr/local/bin/ffmpeg2theora --sync /usr/local/WowzaStreamingEngine/content/webcamrecording.flv -o /var/www/assets/video/".$unique_name . ".ogv";
 		$execute = shell_exec($createOgvVersion);
 		//$createOgvVersion = "/usr/local/bin/ffmpeg2theora /usr/local/red5/webapps/oflaDemo/streams/webcamrecording.flv -itsoffset 0.75 -map 0:0 -map 0:1 -acodec libmp3lame -o /var/www/assets/video/".$unique_name . ".ogv";
 		//$execute = shell_exec($createOgvVersion);
