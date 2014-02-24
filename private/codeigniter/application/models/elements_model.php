@@ -254,7 +254,7 @@ class Elements_model extends CI_Model {
 		
 		$this->data['filename'] = $full_name;
 		$this->data['type'] = $folder;
-		$copyCommand = "cp /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 " . $uploads_dir . $full_name;
+		$copyCommand = "cp /usr/local/WowzaStreamingEngine/content/webcamrecording.flv " . $uploads_dir . $full_name;
 		$success = shell_exec($copyCommand);
 		
 		//$convert2MP4 = "/usr/bin/ffmpeg -i /usr/local/red5/webapps/oflaDemo/streams/webcamrecording.flv -itsoffset 0.75 -map 0:0 -map 0:1 -acodec libmp3lame " . $uploads_dir . $full_name;
@@ -265,7 +265,7 @@ class Elements_model extends CI_Model {
 		//$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/video/".$full_name;
 		 
 		//Public server's URL
-		$createOgvVersion = "/usr/local/bin/ffmpeg2theora /usr/local/WowzaStreamingEngine/content/webcamrecording.mp4 -o /var/www/assets/video/".$unique_name . ".ogv";
+		$createOgvVersion = "/usr/local/bin/ffmpeg2theora /usr/local/WowzaStreamingEngine/content/webcamrecording.flv -o /var/www/assets/video/".$unique_name . ".ogv";
 		$execute = shell_exec($createOgvVersion);
 		//$createOgvVersion = "/usr/local/bin/ffmpeg2theora /usr/local/red5/webapps/oflaDemo/streams/webcamrecording.flv -itsoffset 0.75 -map 0:0 -map 0:1 -acodec libmp3lame -o /var/www/assets/video/".$unique_name . ".ogv";
 		//$execute = shell_exec($createOgvVersion);
