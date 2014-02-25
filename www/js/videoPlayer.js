@@ -9,8 +9,8 @@ $(document).ready(function() {
 		$(this).css('background-repeat', 'no-repeat');
 		$(this).css('background-position', 'center');
 		$(this).html('<div class="caption">'+videoCaption+'</div><img class="play" src="../../../../img/play_icon.png" />');
-		fancyWidth=eval($(this).attr('videowidth'))+26;
-		fancyHeight=eval($(this).attr('videoheight'))+82;
+		var fancyWidth=eval($(this).attr('videowidth'))+26;
+		var fancyHeight=eval($(this).attr('videoheight'))+82;
 		
 		var URLString = '../../../../index.php/clip/play/';
 		URLString = URLString+$(this).parent().attr('id')+'/';
@@ -27,8 +27,9 @@ $(document).ready(function() {
 	$('a.sequenceLink').each(function(){
 		var parameters = $(this).attr('href').split("/");
 		//codeigniter parameters for width and height
-        var dWidth  = parseInt(parameters[9]);
-		var dHeight     =  parseInt(parameters[10]);  
+		var numOfParas = parameters.length;
+        var dWidth  = parseInt(parameters[numOfParas-2]);
+		var dHeight     =  parseInt(parameters[numOfParas-1]);  
         $(this).fancybox({  
 			'width':dWidth,  
 			'height':dHeight, 
@@ -49,13 +50,14 @@ $(document).ready(function() {
 	$('a.videoLink').each(function(){
 		var parameters = $(this).attr('href').split("/");
 		//codeigniter parameters for width and height
-        var dWidth  = parseInt(parameters[9]);
-		var dHeight     =  parseInt(parameters[10]);  
+		var numOfParas = parameters.length;
+        var dWidth  = parseInt(parameters[numOfParas-2]);
+		var dHeight     =  parseInt(parameters[numOfParas-1]);
 		$(this).fancybox({  
 			'width':dWidth,  
 			'height':dHeight, 
 			'padding':0,
-			'autoScale'         : false,  
+			'autoSize'         : false,  
 			'transitionIn'		: 'fade',
 			'transitionOut'		: 'fade',
 			'overlayColor'		: '#000',
