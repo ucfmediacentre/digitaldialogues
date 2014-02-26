@@ -24,9 +24,9 @@
   </div>
   <div id="editButtons">
 	<p>Add: <a id="add_text_form_trigger" href="#add_text_form">Text</a>&nbsp;|&nbsp;<a id="add_image_form_trigger" href="#add_image_form">Image</a>&nbsp;|&nbsp;<a id="add_audio_form_trigger" href="#add_audio_form">Audio</a>&nbsp;|&nbsp;<a id="add_video_form_trigger" href="#add_video_form">Video</a>&nbsp;|&nbsp;<a id="add_page_form_trigger" href="#add_page_form">Page</a>&nbsp;|&nbsp;<?php if ($this->session->userdata('logged_in') != 1){
-		echo '<span  style="color:gray;">Group</span>';  
+		echo '<span  style="color:gray;">Space</span>';  
 	} else {
-		echo '<a id="add_group_form_trigger" href="#add_group_form">Group</a>';
+		echo '<a id="add_group_form_trigger" href="#add_group_form">Space</a>';
 	} ?></p>
   </div>
 </div>
