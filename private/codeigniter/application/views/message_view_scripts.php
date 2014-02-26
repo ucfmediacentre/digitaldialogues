@@ -1,5 +1,5 @@
 
-<script type="text/javascript" src="<?php echo base_url(); ?>libraries/fancybox/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>libraries/fancybox2/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>libraries/fancybox/jquery.easing-1.3.pack.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>libraries/fineuploader.jquery-3.0/jquery.fineuploader-3.0.min.js"></script>
 <script type="text/javascript">

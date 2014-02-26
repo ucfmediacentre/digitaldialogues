@@ -18,7 +18,7 @@ class Messages extends CI_Controller
 		$this->load->database();
 		// get the group information from the db
 		$this->load->model('Groups_model');
-		$group_details= $this->Groups_model->get_group_details($group);
+		$group_details= $this->Groups_model->get_group_details(urldecode($group));
 		$toId = $group_details->creator_id;
 		
 		// get the details of who should get the message
@@ -26,7 +26,7 @@ class Messages extends CI_Controller
 		$toUser = $this->Users_model->get_user($toId);
 		
 		$this->load->model('Messages_model');
-		$this->Messages_model->joinGroup_message($toUser, $requester, $group);
+		$this->Messages_model->joinGroup_message($toUser, $requester, urldecode($group));
 	}
 	
 	// updates the page_info and returns "1" if successful

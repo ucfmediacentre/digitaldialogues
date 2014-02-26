@@ -21,7 +21,7 @@ class Users extends CI_Controller {
 		$requesterId = $this->Users_model->get_userId($requester);
 		
 		$this->load->model('Groups_model');
-		$this->Groups_model->addUserToGroup($requesterId, $group);
+		$this->Groups_model->addUserToGroup($requesterId, urldecode($group));
 		
 		redirect(base_url() . 'index.php/messages/view/'.$this->session->userdata('username'), 'location');
 		

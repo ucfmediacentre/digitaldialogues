@@ -1,7 +1,6 @@
 <div id="background">
   <div id="page_title_wrapper">
-	<h1 id="page_title"> <?php echo $group . " : " . $title; ?> is part of a private group.</h1><br />	
-	<h3 id="page_description" >If you would like to request permission to join this group, please click Ok</h3>
+	<h1 id="page_title"> <?php echo "<span style='color:gray;'>".urldecode($group) . " :</span> " . $title; ?></h1><h3 id="page_description" > is part of a private group. If you would like to request permission to join this group, please click Ok</h3>
 			<input type="hidden" name="controller" value="<?php if (isset($controller)) echo $controller; ?>">
 			<input type="hidden" name="title" value="<?php echo $title; ?>">
 			<input type="hidden" name="group" value="<?php echo $group ?>">
@@ -36,10 +35,10 @@
 	
 	function goBack() {
 	  
-		if (defined('window')) {
+		if (window.jQuery) {
 			window.history.back();
 		} else {
-			redirect(base_url().'index.php/pages/view/public/home', 'location');
+			redirect(base_url()+'index.php/pages/view/public/home', 'location');
 		}
 	}
 </script>

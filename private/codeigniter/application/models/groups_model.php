@@ -31,7 +31,7 @@ class Groups_model extends CI_Model {
    {
    		// get user_id and then add this user
 		$this->db->select('user_id');
-		$this->db->where('title', $group);
+		$this->db->where('title', urldecode($group));
 		$this->db->from('groups');
 		$query=$this->db->get();
 		
@@ -107,7 +107,7 @@ class Groups_model extends CI_Model {
 	// presume no access
 	$access = false;
 	
-	$query = $this->db->get_where('groups', array('title' => $group), 1);
+	$query = $this->db->get_where('groups', array('title' => urldecode($group)), 1);
 	
 	$result = $query->row();
 	

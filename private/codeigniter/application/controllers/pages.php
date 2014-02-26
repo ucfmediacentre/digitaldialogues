@@ -36,7 +36,7 @@ class Pages extends CI_Controller {
 	  
 	  // get the group information from the db
 	  $this->load->model('Groups_model');
-	  $group_details= $this->Groups_model->get_group_details($group);
+	  $group_details= $this->Groups_model->get_group_details(urldecode($group));
 	  
 	  // check security (logged in) and save state of openness to the session
 	  $this->load->library('session');
@@ -51,7 +51,7 @@ class Pages extends CI_Controller {
 	  $user_id = $this->session->userdata('user_id');
 	  
 	  // check permissions for group
-	  $access = $this->Groups_model->check_user($group, $user_id);
+	  $access = $this->Groups_model->check_user(urldecode($group), $user_id);
 	  // check the user id in session vs the groups list of users
 	  
 	  if (!$access) {
@@ -59,10 +59,10 @@ class Pages extends CI_Controller {
 		  // So user is offered opportunity to request access but stays on previous page
 		  if ($this->session->userdata('openness') != 'public'){
 			  
-			  $data['group'] = $group;
-			  $data['title'] = $page_title;
+			  $data['group'] = urldecode($group);
+			  $data['title'] = urldecode($page_title);
 			  
-			  $this->load->view('header');
+			  $this->load->view('header', $data);
 			  $this->load->view('pages_view/entry_request', $data);
 			  $this->load->view('footer');
 			  return;
@@ -71,7 +71,7 @@ class Pages extends CI_Controller {
 	  
 	  // get the page information from the db.php
 	  $this->load->model('Pages_model');
-	  $page_details= $this->Pages_model->get_page($group, URLdecode($page_title));
+	  $page_details= $this->Pages_model->get_page(urldecode($group), URLdecode($page_title));
 	  
 	  $data['page_info'] = $page_details;
 	  
@@ -83,7 +83,7 @@ class Pages extends CI_Controller {
 		
 		$page_elements = $this->Elements_model->get_all_elements($page_details->id);
 		$data['page_elements'] = $page_elements;
-		$data['title'] = $page_title;
+		$data['title'] = urldecode($page_title);
 		
 		// load view with data
 		$this->load->view('header', $data);
@@ -101,8 +101,8 @@ class Pages extends CI_Controller {
 	  }else
 	  {
 		//Page was not found, so create a new one
-		$page_id=$this->Pages_model->insert_page($group, $page_title);
-		redirect('/pages/view/'.$group.'/'.$page_title, 'location');
+		$page_id=$this->Pages_model->insert_page(urldecode($group), urldecode($page_title));
+		redirect('/pages/view/'.urldecode($group).'/'.urldecode($page_title), 'location');
 		  
 	  }
 	}
