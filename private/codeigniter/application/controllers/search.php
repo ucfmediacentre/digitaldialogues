@@ -16,8 +16,8 @@ class Search extends CI_Controller {
 		$filter = $this->input->get('filter');
 		
 		// get pages that have something to do with the filter specified
-		$pages = $this->Pages_model->get_filtered_pages($group, $filter);
-		$listview = $this->Pages_model->get_filtered_list($group, $filter);
+		$pages = $this->Pages_model->get_filtered_pages(urldecode($group), $filter);
+		$listview = $this->Pages_model->get_filtered_list(urldecode($group), $filter);
 
 
 		if ($pages === false) {
@@ -46,7 +46,7 @@ class Search extends CI_Controller {
 		$pages = json_encode($pages);
 		$data['links'] = $pages;
 		$data['filter'] = $filter;
-		$data['group'] = $group;
+		$data['group'] = urldecode($group);
 		$data['listview'] = $listview;
 		
 		$this->load->view('search_home', $data);
