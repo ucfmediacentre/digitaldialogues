@@ -15,7 +15,7 @@ class Pages_model extends CI_Model {
     // returns the whole of the `pages` as an array
 	function get_all_pages($group)
     {
-    	$query = $this->db->get_where('pages', array('group' =>$group));
+    	$query = $this->db->get_where('pages', array('group' =>urldecode($group)));
 		if ($query->num_rows() > 0)
 		{ 
    			return $query->result_array();
@@ -28,7 +28,7 @@ class Pages_model extends CI_Model {
     // returns all the page names in the site as a list of hyperlinks
 	function get_all_page_links($group)
     {
-    	$query = $this->db->get_where('pages', array('group' =>$group));
+    	$query = $this->db->get_where('pages', array('group' =>urldecode($group)));
 
 		$listview = '';
 		foreach ($query->result() as $row)
@@ -41,7 +41,7 @@ class Pages_model extends CI_Model {
 	 // gets all the details of a specified page
 	 function get_page($group, $page_name)
 	 {
-		$this->db->where('group', $group);
+		$this->db->where('group', urldecode($group));
    		$result = $this->db->get_where('pages', array('title' =>$page_name), 1);
 		
 		if ($result->num_rows() > 0)
@@ -71,12 +71,12 @@ class Pages_model extends CI_Model {
 			$sql = $sql . "OR UPPER(pages.description) LIKE '%" . strtoupper($string) ."%' ";
 			$sql = $sql . "OR UPPER(pages.keywords) LIKE '%" . strtoupper($string) ."%' ";
 			$sql = $sql . "OR UPPER(pages.title) LIKE '%" . strtoupper($string) ."%') ";
-			$sql = $sql . "AND pages.group = '" . $group ."' ";
+			$sql = $sql . "AND pages.group = '" . urldecode($group) ."' ";
 			$sql = $sql . "ORDER BY pages.title";
 			
 		} else {
 			$sql = "SELECT pages.title FROM pages ";
-			$sql = $sql . "WHERE pages.group = '" . $group ."' ";
+			$sql = $sql . "WHERE pages.group = '" . urldecode($group) ."' ";
 			$sql = $sql . "ORDER BY pages.title";
 		}
 		
@@ -109,12 +109,12 @@ class Pages_model extends CI_Model {
 			$sql = $sql . "OR UPPER(pages.description) LIKE '%" . strtoupper($string) ."%' ";
 			$sql = $sql . "OR UPPER(pages.keywords) LIKE '%" . strtoupper($string) ."%' ";
 			$sql = $sql . "OR UPPER(pages.title) LIKE '%" . strtoupper($string) ."%') ";
-			$sql = $sql . "AND pages.group = '" . $group ."' ";
+			$sql = $sql . "AND pages.group = '" . urldecode($group) ."' ";
 			$sql = $sql . "ORDER BY pages.title";
 			
 		} else {
 			$sql = "SELECT pages.title FROM pages ";
-			$sql = $sql . "WHERE pages.group = '" . $group ."' ";
+			$sql = $sql . "WHERE pages.group = '" . urldecode($group) ."' ";
 			$sql = $sql . "ORDER BY pages.title";
 		}
 		
@@ -124,7 +124,7 @@ class Pages_model extends CI_Model {
 		$listview = '';
 		foreach ($result->result() as $row)
 		{
-    		$listview = $listview . '<a href="' . base_url("index.php/pages/view/" . $group . "/" . $row->title ) . '">' . $row->title . '</a>&nbsp;|&nbsp;';
+    		$listview = $listview . '<a href="' . base_url("index.php/pages/view/" . urldecode($group) . "/" . $row->title ) . '">' . $row->title . '</a>&nbsp;|&nbsp;';
 		}
 		return $listview;
 	}
@@ -133,7 +133,7 @@ class Pages_model extends CI_Model {
 	function get_titles($group)
 	{
    		$this->db->select('title');
-		$this->db->where('group', $group);
+		$this->db->where('group', urldecode($group));
 		$query = $this->db->get('pages');
 		$result = $query->result_array();
 		return json_encode($result);
@@ -160,7 +160,7 @@ class Pages_model extends CI_Model {
 	function get_page_id($group, $page)
 	{
    		$this->db->where('title', $page);
-   		$this->db->where('group', $group);
+   		$this->db->where('group', urldecode($group));
    		$this->db->select('id');
    		$query = $this->db->get('pages');
 		
@@ -227,7 +227,7 @@ class Pages_model extends CI_Model {
 	{
    		//$row = array('pages'=>'title','$page_title');
    		$data = array(
-   			'group' => $group,
+   			'group' => urldecode($group),
    			'title' => URLdecode($page_title)
    			);
 
@@ -242,15 +242,15 @@ class Pages_model extends CI_Model {
 		// first insert user's requirements in to database
 		//collect variables from the form
    		$title = $this->input->post('title');
-   		$description = $this->input->post('description');
-   		$keywords = $this->input->post('keywords');
+   		//$description = $this->input->post('description');
+   		//$keywords = $this->input->post('keywords');
    		$group = $this->input->post('group');
    		$currentPageTitle = $this->input->post('currentPageTitle');
    		$currentPageId = $this->input->post('currentPageId');
 		
 		// check to see if this page name already exists
    		$this->db->where('title', $title);
-   		$this->db->where('group', $group);
+   		$this->db->where('group', urldecode($group));
    		$this->db->select('title');
    		$query = $this->db->get('pages');
 		
@@ -259,15 +259,14 @@ class Pages_model extends CI_Model {
 			// page already exists so don't insert new page into database
 			// just insert links on the right pages
 			$page_exists = "TRUE";
-		   return "A page called $title already exists in this group";
+		    //return "A page called $title already exists in this group";
 		} else {
 			
-			// add the new page to the database
 			$data = array(
 				'title' => URLdecode($title),
 				'description' => $description,
 				'keywords' => $keywords,
-				'group' => $group
+				'group' => urldecode($group)
 			);
 			
 			$this->db->insert('pages', $data); 
@@ -279,9 +278,9 @@ class Pages_model extends CI_Model {
 		// first create the link to the new page
 		$data = array(
 			'linkTitle' => URLdecode($title),
-			'linkTitleGroup' => $group,
+			'linkTitleGroup' => URLdecode($group),
 			'pageTitle' => $currentPageTitle,
-			'pageTitleGroup' => $group
+			'pageTitleGroup' => URLdecode($group)
 		);
 		$this->db->insert('links', $data);
 		$linkAway_id = $this->db->insert_id();
@@ -289,9 +288,9 @@ class Pages_model extends CI_Model {
 		// now create the link coming back from the new page
 		$data = array(
 			'linkTitle' => URLdecode($currentPageTitle),
-			'linkTitleGroup' => $group,
+			'linkTitleGroup' => URLdecode($group),
 			'pageTitle' => URLdecode($title),
-			'pageTitleGroup' => $group
+			'pageTitleGroup' => URLdecode($group)
 		);
 		$this->db->insert('links', $data);
 		$linkBack_id = $this->db->insert_id();
@@ -350,7 +349,7 @@ class Pages_model extends CI_Model {
    		$public = $this->input->post('public');
    		
 	   	$data = array(
-               'group' => $group,
+               'group' => URLdecode($group),
                'title' => $title,
                'description' => $description,
                'keywords' => $keywords,
@@ -360,6 +359,6 @@ class Pages_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->update('pages', $data);
 		
-		return "/pages/view/".$group."/".$title;
+		return "/pages/view/".URLdecode($group)."/".$title;
    }
 }

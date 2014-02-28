@@ -167,14 +167,14 @@
 			
 		        // get the values from the form
 			var titleVal = $('input[name="new_page_title"]').val();
-            var descriptionVal = $('textarea[name="new_page_description"]').val();
-			var keywordsVal = $('input[name="new_page_keywords"]').val();
+            //var descriptionVal = $('textarea[name="new_page_description"]').val();
+			//var keywordsVal = $('input[name="new_page_keywords"]').val();
 			var groupVal = $('input[name="group"]').val();
 			var currentPageVal = $('input[name="current_page_title"]').val();
 			var currentPageIdVal = $('input[name="current_page_id"]').val();
 			
 			// Post the values to the pages controller
-                        $.post(base_url + "index.php/pages/add_page", { title: titleVal, description: descriptionVal, keywords: keywordsVal, group: groupVal, currentPageTitle: currentPageVal, currentPageId: currentPageIdVal },
+                        $.post(base_url + "index.php/pages/add_page", { title: titleVal, group: groupVal, currentPageTitle: currentPageVal, currentPageId: currentPageIdVal },
 		        function(data) {
                     window.location.href = base_url+"index.php/pages/view/"+groupVal+"/"+currentPageVal;
 			});

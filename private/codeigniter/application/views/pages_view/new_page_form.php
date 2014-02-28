@@ -5,12 +5,12 @@
 		<label for="new_page_title">Page Title:</label>
 		<input id="new_page_title" type="text" name="new_page_title" />
 		<br /><br />
-		<label for="new_page_description"> Description: </label>
+		<!--<label for="new_page_description"> Description: </label>
 		<textarea name="new_page_description"></textarea>
 		<br /><br />
 		<label for="new_page_keywords"> Keywords: </label>
 		<input id="pageKeywords" type="text" name="new_page_keywords" />
-		<br /><br />
+		<br /><br />-->
 		<input type="submit" id="submit_new_page" value="Submit" class="submit_element"  />
 		<!-- hidden values -->
 		<input type="hidden" name="current_page_title" value="<?php echo $page_info->title; ?>"/>
