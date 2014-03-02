@@ -287,6 +287,9 @@ class Elements_model extends CI_Model {
 		}
 		$success = shell_exec($copyCommand);
 		
+		//set string variables for ffmpeg string
+		$filename = $full_name;
+		$filename = substr($filename, 0, -4);
         
         //create OGV version
 		switch ($media) {
@@ -302,9 +305,6 @@ class Elements_model extends CI_Model {
 				$createOggVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$unique_name . ".mp4 -o /var/www/assets/video/".$unique_name . ".ogv";
 				$execute = shell_exec($createOggVersion);
 				
-				//set string variables for ffmpeg string
-				$filename = $full_name;
-				$filename = substr($filename, 0, -4);
 				
 				$videoDirectory = "/var/www/assets/video/";
 				$videopostersDirectory = "/var/www/assets/videoposters/";
