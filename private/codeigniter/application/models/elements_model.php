@@ -294,7 +294,7 @@ class Elements_model extends CI_Model {
 		$filename = $full_name;
 		$filename = substr($filename, 0, -4);
         
-        //create OGV version
+        //create OGV version & then any videoposters etc needed
 		switch ($media) {
 			case "audio":
                 $createOggVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/audio/".$full_name;

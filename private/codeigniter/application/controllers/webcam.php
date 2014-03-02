@@ -21,6 +21,7 @@ class Webcam extends CI_Controller {
 		$update_elements_id = $elements_id;
 		$update_action = 'created';
 		$this->Elements_model->create_update($update_action, $update_elements_id);
+		
 	}
 }
 
