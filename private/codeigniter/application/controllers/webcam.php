@@ -15,7 +15,7 @@ class Webcam extends CI_Controller {
 		$this->load->model('Pages_model');
 		
 		// add webrecording to page
-		$elements_id = $this->Elements_model->add_recording($group, $page);
+		$elements_id = $this->Elements_model->add_recording($group, $page, $media);
 		
 		//creates the new record in table 'updates'
 		$update_elements_id = $elements_id;
