@@ -274,8 +274,11 @@ class Elements_model extends CI_Model {
 		// create ffmpeg command string
 		switch ($media) {
 			case "video":
+				// specify just video recording
+				$copyCommand = "/usr/bin/ffmpeg -i /usr/local/WowzaStreamingEngine/content/webcamrecording.flv -an " . $uploads_dir . $full_name;
+				break;
 			case "audio":
-				// specify either video OR audio recording
+				// specify just audio recording
 				$copyCommand = "/usr/bin/ffmpeg -i /usr/local/WowzaStreamingEngine/content/webcamrecording.flv " . $uploads_dir . $full_name;
 				break;
 			case "videoaudio":
