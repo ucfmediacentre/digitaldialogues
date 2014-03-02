@@ -7,7 +7,7 @@
 		<br /><br />
 		<?php if ($this->session->userdata('logged_in') == 1) echo '<input type="checkbox" name="element_editable" id="element_editable" value="editable" checked="TRUE">&nbsp;Editable by others'; ?>
 		<input type="submit" id="submit_video" value="Submit" class="submit_element"  />
-		
+		<!--<div style="padding:10px;"><iframe src="https://digitaldialogues.org/stream/client/webcamRecorder.html" width="340" height="292" frameborder="0" allowtransparency="true" noresize="noresize" scrolling="no"></iframe></div>-->
 		<div id="loadingPrompt">Loading...</div>
 	</form>
 </div>

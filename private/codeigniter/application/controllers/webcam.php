@@ -8,7 +8,7 @@ class Webcam extends CI_Controller {
 	}
 	
 	// processes an element and adds it to the `elements` and `updates` table
-	public function addRecording($group = NULL, $page = NULL)
+	public function addRecording($group = NULL, $page = NULL, $media = NULL)
 	{
 	  
 		$this->load->model('Elements_model');

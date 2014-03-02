@@ -240,94 +240,124 @@ class Elements_model extends CI_Model {
 		return true;
 	}
 	
-	public function add_recording($group = "public", $page = "sandpit")
+	public function add_recording($group = "public", $page = "sandpit", $media = "videoaudio")
 	{
 		// Consider creating a folder every new month so that elements are easier to find? 
 		// construct the location from the data
-		$folder = "video";  // point to media folder
+		
+		// prepare ffmpeg command string
+		switch ($media) {
+			case "video":
+				//set the folder to video
+				$folder = "video";
+				$extension = "mp4";
+				break;
+			case "audio":
+				// set the folder to audio
+				$folder = "audio";
+				$extension = "mp3";
+				break;
+			case "videoaudio":
+				//set the folder to video
+				$folder = "video";
+				$extension = "mp4";
+				break;
+		}
+		
 		$uploads_dir = '/var/www/assets/' . $folder . '/';
-		
-		$extension = "mp4";
 		$unique_name = $folder . '-' . uniqid();
-		
 		$full_name = $unique_name . '.' . $extension;
 		
 		$this->data['filename'] = $full_name;
 		$this->data['type'] = $folder;
-		$copyCommand = "/usr/bin/ffmpeg -async 1 -i /usr/local/WowzaStreamingEngine/content/webcamrecording.flv " . $uploads_dir . $full_name;
+		
+		// create ffmpeg command string
+		switch ($media) {
+			case "video":
+			case "audio":
+				// specify either video OR audio recording
+				$copyCommand = "/usr/bin/ffmpeg -i /usr/local/WowzaStreamingEngine/content/webcamrecording.flv " . $uploads_dir . $full_name;
+				break;
+			case "videoaudio":
+				// specify video and audio recording
+				$copyCommand = "/usr/bin/ffmpeg -async 1 -i /usr/local/WowzaStreamingEngine/content/webcamrecording.flv " . $uploads_dir . $full_name;
+				//$convert2MP4 = "/usr/bin/ffmpeg -i /usr/local/red5/webapps/oflaDemo/streams/webcamrecording.flv -itsoffset 0.75 -map 0:0 -map 0:1 -acodec libmp3lame " . $uploads_dir . $full_name;
+				//$success = shell_exec($convert2MP4);
+				break;
+		}
 		$success = shell_exec($copyCommand);
 		
-		//$convert2MP4 = "/usr/bin/ffmpeg -i /usr/local/red5/webapps/oflaDemo/streams/webcamrecording.flv -itsoffset 0.75 -map 0:0 -map 0:1 -acodec libmp3lame " . $uploads_dir . $full_name;
-		//$success = shell_exec($convert2MP4);
         
         //create OGV version
-		//Jem's URL
-		//$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/video/".$full_name;
-		 
-		//Public server's URL
-		$createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$unique_name . ".mp4 -o /var/www/assets/video/".$unique_name . ".ogv";
-		//$createOgvVersion = "/usr/local/bin/ffmpeg2theora --sync /usr/local/WowzaStreamingEngine/content/webcamrecording.flv -o /var/www/assets/video/".$unique_name . ".ogv";
-		$execute = shell_exec($createOgvVersion);
-		//$createOgvVersion = "/usr/local/bin/ffmpeg2theora /usr/local/red5/webapps/oflaDemo/streams/webcamrecording.flv -itsoffset 0.75 -map 0:0 -map 0:1 -acodec libmp3lame -o /var/www/assets/video/".$unique_name . ".ogv";
-		//$execute = shell_exec($createOgvVersion);
-		
-		//set string variables for ffmpeg string
-		$filename = $full_name;
-		$filename = substr($filename, 0, -4);
-		//Jem's URLs
-		//$videoDirectory = "/Users/media/Sites/digitaldialogues/www/assets/video/";
-		//$videopostersDirectory = "/Users/media/Sites/digitaldialogues/www/assets/videoposters/";
-		
-		//Public server URLs
-		$videoDirectory = "/var/www/assets/video/";
-		$videopostersDirectory = "/var/www/assets/videoposters/";
-		$sizeString = "";
-		
-		//get width & height from the file
-		$movieDetails = "/usr/bin/ffmpeg -i " . $videoDirectory . $filename . ".mp4 -vstats 2>&1";
-		$output = shell_exec ( $movieDetails );
-		$result = preg_match( '/ [0-9]+x[0-9]+[, ]/', $output, $matches );
-		if (isset ( $matches[0] )) {  
-			$vals = (explode ( 'x', $matches[0] ));  
-			$width = $vals[0] ? trim($vals[0]) : null;  
-			$height = $vals[1] ? trim($vals[1]) : null;   
-			$this->data['width'] = $width;  
-			$this->data['height'] = $height;
-			
-			//create size string of thumbnail in original ratio
-			$widthString = intval((115*$width)/$height);
-			$sizeString = $widthString."x115";
+		switch ($media) {
+			case "audio":
+                $createOggVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/audio/".$full_name;
+                $execute = shell_exec($createOggVersion);
+                $renameOgvToOga = "mv /var/www/assets/audio/".$unique_name.".ogv /var/www/assets/audio/".$unique_name.".oga";
+                $execute = shell_exec($renameOgvToOga);
+				$createOggVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$unique_name . ".mp4 -o /var/www/assets/video/".$unique_name . ".ogv";
+				break;
+			case "video":
+			case "videoaudio":
+				$createOggVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$unique_name . ".mp4 -o /var/www/assets/video/".$unique_name . ".ogv";
+				$execute = shell_exec($createOggVersion);
+				
+				//set string variables for ffmpeg string
+				$filename = $full_name;
+				$filename = substr($filename, 0, -4);
+				
+				$videoDirectory = "/var/www/assets/video/";
+				$videopostersDirectory = "/var/www/assets/videoposters/";
+				$sizeString = "";
+				
+				//get width & height from the file
+				$movieDetails = "/usr/bin/ffmpeg -i " . $videoDirectory . $filename . ".mp4 -vstats 2>&1";
+				$output = shell_exec ( $movieDetails );
+				$result = preg_match( '/ [0-9]+x[0-9]+[, ]/', $output, $matches );
+				if (isset ( $matches[0] )) {  
+					$vals = (explode ( 'x', $matches[0] ));  
+					$width = $vals[0] ? trim($vals[0]) : null;  
+					$height = $vals[1] ? trim($vals[1]) : null;   
+					$this->data['width'] = $width;  
+					$this->data['height'] = $height;
+					
+					//create size string of thumbnail in original ratio
+					$widthString = intval((115*$width)/$height);
+					$sizeString = $widthString."x115";
+				}
+				
+				if ($sizeString == "x115") $sizeString = "200x115";
+				
+				//create first frame jpg and put it in "assets/videoposters"
+				$createFirstFrame = "/usr/bin/ffmpeg -i " . $videoDirectory . $filename . ".mp4";
+				$createFirstFrame = $createFirstFrame . " -vframes 1 -an -s ".$sizeString." -ss 1 ";
+				$createFirstFrame = $createFirstFrame . $videopostersDirectory . $filename . ".jpg";
+				$execute = shell_exec($createFirstFrame);
+				
+				//get duration as well
+				$result = preg_match('/Duration: (.*?),/', $output, $matches);
+				$hours = 0;
+				$mins = 0;
+				$secs = 0;
+				if (isset ( $matches[0] )) {  
+					$vals = (explode ( ':', $matches[1] ));  
+					$hours = $vals[0] ? trim($vals[0]) : 0;  
+					$mins = $vals[1] ? $vals[1] : 0;   
+					$secs = $vals[2] ? $vals[2] : 0;
+				}
+				$duration = ($hours * 3600) + ($mins * 60) + $secs;
+				
+				//create JSON string for timeline field
+				$timeline = array(
+					"in" => 0,
+					"out" => $duration,
+					"duration" => $duration
+				);
+				$timelineJSON = json_encode($timeline);
+				$this->data['timeline']=$timelineJSON;
+				break;
 		}
 		
-		if ($sizeString == "x115") $sizeString = "200x115";
-		
-		//create first frame jpg and put it in "assets/videoposters"
-		$createFirstFrame = "/usr/bin/ffmpeg -i " . $videoDirectory . $filename . ".mp4";
-		$createFirstFrame = $createFirstFrame . " -vframes 1 -an -s ".$sizeString." -ss 1 ";
-		$createFirstFrame = $createFirstFrame . $videopostersDirectory . $filename . ".jpg";
-		$execute = shell_exec($createFirstFrame);
-		
-		//get duration as well
-		$result = preg_match('/Duration: (.*?),/', $output, $matches);
-		$hours = 0;
-		$mins = 0;
-		$secs = 0;
-		if (isset ( $matches[0] )) {  
-			$vals = (explode ( ':', $matches[1] ));  
-			$hours = $vals[0] ? trim($vals[0]) : 0;  
-			$mins = $vals[1] ? $vals[1] : 0;   
-			$secs = $vals[2] ? $vals[2] : 0;
-		}
-		$duration = ($hours * 3600) + ($mins * 60) + $secs;
-		
-		//create JSON string for timeline field
-		$timeline = array(
-			"in" => 0,
-			"out" => $duration,
-			"duration" => $duration
-		);
-		$timelineJSON = json_encode($timeline);
-		$this->data['timeline']=$timelineJSON;
 		
 		//by default the description will be the filename on the server
 		$this->data['description']=$filename;
@@ -335,7 +365,7 @@ class Elements_model extends CI_Model {
 		// load up all other variables needed
 		$this->data['author']= $this->session->userdata('username');
 		$this->data['filename'] = $filename . "." . $extension;
-		$this->data['pages_id']= $this->Pages_model->get_page_id($group, $page);
+		$this->data['pages_id']= $this->Pages_model->get_page_id(urldecode($group), urldecode($page));
 		$this->data['x']= intval(rand(200,500));
 		$this->data['y']= intval(rand(150,400));
 		
