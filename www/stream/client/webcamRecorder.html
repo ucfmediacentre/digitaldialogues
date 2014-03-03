@@ -11,14 +11,12 @@
 	</head>
 	<script src="../../js/vendor/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript">
-		var swfObject = document.getElementById("webcamRecorder");
 		function saveRecording($updateUrl) {
 			$.ajax({
 				url: $updateUrl,
 				context: document.body,
 				success: function(){
-					document.title = "This is the new page title.";
-					swfObject.helloFromJS();
+					document.getElementById("webcamRecorder").notifyFlash();
 					window.top.location.reload();
 				}
 			});
@@ -26,7 +24,7 @@
 	</script>
 	<body>
 		<div id="flashContent">
-			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="340" height="292" id="webcamRecorder" align="middle">
+			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="340" height="292" id="webcamRecorder" name="webcamRecorder" align="middle">
 				<param name="movie" value="webcamRecorder.swf" />
 				<param name="quality" value="high" />
 				<param name="bgcolor" value="#666666" />
@@ -40,7 +38,7 @@
 				<param name="allowScriptAccess" value="sameDomain" />
 				<param name="allowFullScreen" value="true" />
 				<!--[if !IE]>-->
-				<object type="application/x-shockwave-flash" data="webcamRecorder.swf" width="340" height="292" id="webcamRecorder">
+				<object type="application/x-shockwave-flash" data="webcamRecorder.swf" width="340" height="292" id="webcamRecorder" name="webcamRecorder" >
 					<param name="movie" value="webcamRecorder.swf" />
 					<param name="quality" value="high" />
 					<param name="bgcolor" value="#666666" />
