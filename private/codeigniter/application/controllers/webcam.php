@@ -12,7 +12,6 @@ class Webcam extends CI_Controller {
 	{
 	  
 		$this->load->model('Elements_model');
-		$this->load->model('Pages_model');
 		
 		// add webrecording to page
 		$elements_id = $this->Elements_model->add_recording($group, $page, $media);
@@ -21,7 +20,6 @@ class Webcam extends CI_Controller {
 		$update_elements_id = $elements_id;
 		$update_action = 'created';
 		$this->Elements_model->create_update($update_action, $update_elements_id);
-		
 	}
 }
 

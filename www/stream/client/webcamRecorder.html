@@ -18,6 +18,10 @@
 				success: function(){
 					document.getElementById("webcamRecorder").notifyFlash();
 					window.top.location.reload();
+				},
+				error: function() {
+					document.getElementById("webcamRecorder").notifyFlash();
+					window.top.location.reload();
 				}
 			});
 		}
