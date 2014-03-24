@@ -561,7 +561,7 @@
 			// MAKES DRAGGABLE unless the author specified that it shouldn't be editable
 			if (page_elements_json[i].editable == 'Y' || page_elements_json[i].author == username) {
 				$(elm).draggable({
-					stack: elm,
+					stack: "div",
 					stop: function(event, ui) {
 						updateElement(ui.helper[0].id , 'position');
 					}
