@@ -11,15 +11,21 @@
 	</head>
 	<script src="../../js/vendor/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript">
-		function saveRecording($updateUrl) {
+		function saveRecording(updateUrl) {
 			$.ajax({
-				url: $updateUrl,
+				url: updateUrl,
 				context: document.body,
 				success: function(){
 					//document.getElementById("webcamRecorder").notifyFlash;
 					window.top.location.reload();
 				},
-				error: function() {
+				error: function(obj) {
+					var out = '';
+					for (var i in obj) {
+						out += i + ": " + obj[i] + "\n";
+					}
+				
+					alert(out);
 					//document.getElementById("webcamRecorder").notifyFlash;
 					window.top.location.reload();
 				}

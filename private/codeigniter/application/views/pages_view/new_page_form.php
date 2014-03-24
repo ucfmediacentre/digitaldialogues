@@ -1,8 +1,8 @@
 <div id="add_page_form_wrapper" class="hidden">
 	
 	<form id="add_page_form" class="input_form">
-		<h2>New Page</h2>	
-		<label for="new_page_title">Page Title:</label>
+		<h2>New Story</h2>	
+		<label for="new_page_title">Story Title:</label>
 		<input id="new_page_title" type="text" name="new_page_title" />
 		<br /><br />
 		<!--<label for="new_page_description"> Description: </label>

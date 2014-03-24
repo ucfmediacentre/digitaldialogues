@@ -215,14 +215,7 @@
 			// work out whether user's text should be editable.
 			var text_editable;
 			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
-			if (loggedIn != 1) {
-				text_editable = "Y";
-			} else if ($( "input:checked" ).length > 5) {
-				//there are 6 checked items on the page - most of them are hidden
-				text_editable = "Y";
-			} else {
-				text_editable = "N";
-			}
+			text_editable = "N";
 			$('#element_editable').val(text_editable);
 			$('#element_x').val(parseInt(100+(Math.random()*200)));
 			$('#element_y').val(parseInt(200+(Math.random()*300)));
@@ -568,6 +561,7 @@
 			// MAKES DRAGGABLE unless the author specified that it shouldn't be editable
 			if (page_elements_json[i].editable == 'Y' || page_elements_json[i].author == username) {
 				$(elm).draggable({
+					stack: elm,
 					stop: function(event, ui) {
 						updateElement(ui.helper[0].id , 'position');
 					}
