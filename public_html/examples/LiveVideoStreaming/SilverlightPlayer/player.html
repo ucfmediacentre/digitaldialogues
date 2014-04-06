@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Silverlight Player - Live Video Streaming</title>
+
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="css/wowza.css" type="text/css" />
+    <script type="text/javascript" src="Silverlight.js"></script>
+    <style type="text/css">
+    html, body {
+	    height: 100%;
+	    overflow: auto;
+    }
+    body {
+	    padding: 0;
+	    margin: 0;
+    }
+    #silverlightControlHost {
+	    height: 100%;
+	    text-align:center;
+    }
+    </style>
+ 
+</head>
+<body>
+    <div class="container">
+		<!-- HEADER -->
+        <div class="span-18">
+            <h1>Live Video Streaming</h1>
+            <h2>Silverlight Player</h2>
+        </div>
+        <div class="span-6 last">
+            <img src="img/wowza-logo_1024.png" class="logo" style="height:72px;width:205px" />
+        </div>
+        <hr class="heading"/>
+		<!-- END HEADER -->
+		<!-- EXAMPLE PLAYER: WIDTH of this player should be 630px, height will vary depending on the example-->
+        <div class="span-16">
+	<div id="silverlightControlHost">
+		<object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="650" height="500">
+			<param name="source" value="ClientBin/LiveSmoothStreaming.xap"/>
+			<param name="onerror" value="onSilverlightError" />
+			<param name="background" value="white" />
+            <param name="enableGPUAcceleration" value="true"/>
+			<param name="minRuntimeVersion" value="4.0.50401.0" />
+			<param name="autoUpgrade" value="true" />
+			<a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=4.0.50401.0" style="text-decoration: none;">
+				<img src="http://go.microsoft.com/fwlink/?LinkID=161376" alt="Get Microsoft Silverlight" style="border-style: none"/>
+			</a>
+		</object><iframe id='_sl_historyFrame' style='visibility:hidden;height:0;width:0;border:0px'></iframe></div>  
+		</div>
+		<!-- SIDEBAR -->
+        <div class="span-7 prepend-1 last">
+        	<h3>Description</h3>
+			<p>This package contains source code for a sample Microsoft Silverlight live streaming player. It is based on the open source Microsoft Media Platform: Player Framework (SMF). It will play single and adaptive bitrate Smooth Streams over HTTP.</p> 
+            <h3>Installation</h3>
+            <p>In the /examples/LiveVideoStreaming  directory:<br>
+            <ul>
+                <li>LINUX<br>
+                    Run <strong>./installall.sh</strong>
+                <li>WINDOWS 7 / WINDOWS 8<br>
+                    Right-click <strong>installall.bat</strong> and then select <strong>Run as administrator</strong>
+                <li>WINDOWS   SERVER<br>
+                    Double-click the <strong>installall.bat</strong> file                 
+                <li>MAC OS X<br>
+                    Double-click the <strong>installall.command</strong> file
+                </ul>
+            <h3>Instructions</h3>
+            <ol>
+                <li>Read the Tutorials below.
+                <li>Make sure that the URL in the <strong>Stream</strong> field is correct.
+                <li>Click the <strong>Play</strong> button next to the <strong>Stream</strong> field.
+            </ol>
+			<h3>Tutorials</h3>
+            <ul>
+                <li><a href="http://www.wowza.com/forums/content.php?376-How-to-configure-your-live-stream-for-web-playback-(video-tutorial)">How to configure your live stream for web playback (video tutorial)</a>
+                <li><a href="http://www.wowza.com/forums/content.php?37">How to publish and play a live stream (MPEG-TS based encoder)</a>
+                <li><a href="http://www.wowza.com/forums/content.php?39">How to re-stream video from an IP camera (RTSP/RTP re-streaming)</a>
+                <li><a href="http://www.wowza.com/forums/content.php?38">How to set up live streaming using a native RTP encoder with SDP file</a>
+                <li><a href="http://www.wowza.com/forums/content.php?36">How to set up live streaming using an RTMP-based encoder</a><br/>
+                <li><a href="http://www.wowza.com/forums/content.php?354-How-to-set-up-live-streaming-using-an-RTSP-RTP-based-encoder">How to set up live streaming using an RTSP/RTP based encoder</a><br/>
+                <li><a href="http://www.wowza.com/forums/content.php?291-How-to-set-up-live-streaming-using-the-Telestream-Wirecast-encoder-(video-tutorial)">How to set up live streaming using the Telestream Wirecast encoder (video tutorial)</a><br/>
+            </ul>
+			<h3>Additional Resources</h3>
+            <ul>
+                <li><a href="http://www.wowza.com/forums/content.php?8-live-streaming-and-encoders">Live Streaming and Encoders Articles</a><br/>
+                <li><a href="http://www.wowza.com/forums/forumdisplay.php?38-Live-Streaming-and-Encoder-Discussion">Live Streaming and Encoders Forums</a><br/>
+                <li><a href="http://www.wowza.com/forums/content.php?123">Live Stream Record</a><br/>
+            </ul>
+			<h3>Next Steps</h3>
+			<p>To use the source code in Visual Studio:<p>
+            <ul>
+            	<li>Double-click <strong>src/LiveSmoothStreaming.sln</strong> to open the project in Visual Studio
+				<li>The SMF source is located here: <a target="_new" href="http://smf.codeplex.com/">SMF CodePlex</a>
+            </ul>
+        </div>
+		<!-- FOOTER -->
+        <div class="span-24">
+            <hr class="heading">
+            <div class="span-1">
+            	<img src="img/icon-company.png" width="32" height="32" />
+            </div>
+            <div class="span-23 last copyright">
+                &nbsp;&#169;&nbsp;2014 Wowza Media Systems, LLC. All rights reserved.
+            </div>
+        </div>
+		<!-- END FOOTER -->
+	</div>
+</body>
+</html>

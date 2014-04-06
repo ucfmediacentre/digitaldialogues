@@ -1,0 +1,44 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:SSME="clr-namespace:Microsoft.Web.Media.SmoothStreaming;assembly=Microsoft.Web.Media.SmoothStreaming"
+    xmlns:control="clr-namespace:SimpleSmoothStreaming"
+    mc:Ignorable="d"
+	x:Class="SimpleSmoothStreaming.MainPage"
+    Loaded="UserControl_Loaded" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" d:DesignWidth="640" d:DesignHeight="450">
+
+    <Grid x:Name="LayoutRoot" Background="White">
+
+        <StackPanel x:Name="controlsContainer" Orientation="Vertical" Width="640" Height="450" HorizontalAlignment="Left" Margin="0,0,1,0">
+            <StackPanel x:Name="HeaderBar" Orientation="Horizontal" HorizontalAlignment="left" Margin="0,0,3,0" Width="640" Height="28">
+                <TextBlock Text="Stream:" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" />
+                <TextBox x:Name="ManifestURL" KeyDown="ManifestURL_KeyDown" Text="http://localhost:1935/vod/mp4:sample.mp4/Manifest" Width="505" Height="22" />
+                <Button x:Name="PlayButton" Content="Start" Click="PlayButton_Click" IsEnabled="True" MinWidth="35" Style="{StaticResource ButtonStyle1}" Width="71" />
+            </StackPanel>
+            <SSME:SmoothStreamingMediaElement AutoPlay="False" x:Name="SmoothPlayer"  Width="640" Height="360"  Background="Black" Margin="0,0,0,0" VerticalAlignment="Top" Stretch="Uniform" HorizontalAlignment="Center" />
+
+            <control:CustomSlider x:Name="SeekBar" MouseLeftButtonUp="SeekBar_MouseLeftButtonUp" MouseEnter="SeekBar_MouseEnter" MouseLeave="SeekBar_MouseLeave" IsEnabled="False" Style="{StaticResource SeekSlider}" HorizontalAlignment="Left" Width="640"  Margin="0,0,0,0" Height="12" />
+            <StackPanel x:Name="ControlPanel"  Background="Black" Orientation="Horizontal" Width="640" HorizontalAlignment="Left" Margin="0,0,0,0">
+                <sdk:Label Height="28" Name="label22" Width="20" />
+                <Image Name="RewButton" Width="24" Height="16" Source="/SimpleSmoothStreaming;component/rewind_24x16.png" MouseLeftButtonUp="RewindButtonClick"/>
+                <Image Name="PauseButton" Source="/SimpleSmoothStreaming;component/play_16.png" MouseLeftButtonUp="PauseButton_Click" Canvas.Left="50" Width="24" Height="16" />
+                <sdk:Label Height="23" Name="label1" Width="150" />
+                <TextBlock Text=" Current Bitrate: " FontWeight="Bold" Width="auto" Height="17" Foreground="Snow" />
+                <TextBlock x:Name="BitRate" Text="0" FontWeight="Bold" Width="60" MinWidth="60" Height="17" TextAlignment="Left" Foreground="Snow" />
+                <sdk:Label Height="28" Name="label2" Width="105" />
+                <Image Height="16" Name="MuteUnmuteImage" Stretch="Fill" Width="24" MouseLeftButtonUp="MuteUnmuteClick" Source="/SimpleSmoothStreaming;component/volume_on_24x16.png" />
+                <Slider x:Name="VolumeBar" Maximum="10" ValueChanged="VolumeBar_ValueChanged" Width="100" Height="30" />
+                <Image Source="/SimpleSmoothStreaming;component/fullscreen_on_24x16.png" x:Name="fullScreenButton" ToolTipService.ToolTip="Full Screen" MouseLeftButtonUp="Fullscreen_Click" Height="26" Width="26" Visibility="Visible" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="left" Margin="0,0,0,0" Width="640" Height="21">
+                    <TextBlock Text="Status:" HorizontalAlignment="Right" FontWeight="Bold" Width="58" Margin="4,0,0,0" Height="18" />
+                    <TextBlock x:Name="OutPut" Width="454" Height="18" TextWrapping="Wrap" FontSize="12" />
+                    <TextBlock Text="Limit Bitrate: " Visibility="{Binding Path=Visibility, ElementName=BWCombo,Mode=OneWay}" FontWeight="Bold" Margin="0,5,0,0" />
+                    <ComboBox x:Name="BWCombo" Width="auto" MinWidth="80" SelectionChanged="BWCombo_SelectionChanged" Visibility="Collapsed" ToolTipService.ToolTip="Limit Bitrate" Margin="0,4,0,5" />
+                    <TextBlock Height="19" Name="SLVersion" Text="Silverlight v?.?.?" Width="125" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
