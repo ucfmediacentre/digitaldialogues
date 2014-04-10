@@ -23,6 +23,7 @@
 	</form>
   </div>
   <div id="editButtons">
-	<p>Add: <a id="add_text_form_trigger" href="#add_text_form">Text</a>&nbsp;|&nbsp;<a id="add_image_form_trigger" href="#add_image_form">Image</a>&nbsp;|&nbsp;<a id="add_audio_form_trigger" href="#add_audio_form">Audio</a>&nbsp;|&nbsp;<a id="add_video_form_trigger" href="#add_video_form">Video</a>&nbsp;|&nbsp;<a id="add_page_form_trigger" href="#add_page_form">Page</a>&nbsp;|&nbsp;<a id="add_group_form_trigger" href="#add_group_form">Group</a>
+	<p>Add: <a id="add_text_form_trigger" href="#add_text_form">Text</a>&nbsp;|&nbsp;<a id="add_image_form_trigger" href="#add_image_form">Image</a>&nbsp;|&nbsp;<a id="add_audio_form_trigger" href="#add_audio_form">Audio</a>&nbsp;|&nbsp;<a id="add_video_form_trigger" href="#add_video_form">Video</a>&nbsp;|&nbsp;<a id="add_page_form_trigger" href="#add_page_form">Page</a>&nbsp;|&nbsp;<a id="add_group_form_trigger" href="#add_group_form">Group</a><br /><br />
+	<span style="font-size:10px;"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br />Any contributions made to this website will come under a <br /><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons License Attribution 3.0</a></span>
   </div>
 </div>

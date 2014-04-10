@@ -24,9 +24,11 @@ public_ftp/
 .contactemail
 .bashrc
 .bash_Iogout 
+id_dsa.pub
 
 
-*.DS_Store
+*/.DS_Store
+!private/*
 private/codeigniter/application/config/database.php
 private/codeigniter/application/config/config.php
 private/codeigniter/application/cache/rss/
