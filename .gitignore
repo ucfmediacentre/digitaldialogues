@@ -29,6 +29,7 @@ id_dsa.pub
 
 */.DS_Store
 !private/*
+private/.DS_Store
 private/codeigniter/application/config/database.php
 private/codeigniter/application/config/config.php
 private/codeigniter/application/cache/rss/
