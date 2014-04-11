@@ -32,6 +32,8 @@ id_dsa.pub
 private/.DS_Store
 private/codeigniter/application/config/database.php
 private/codeigniter/application/config/config.php
+
+public_html/.DS_Store
 private/codeigniter/application/cache/rss/
 !public_html/*
 public_html/assets/audio

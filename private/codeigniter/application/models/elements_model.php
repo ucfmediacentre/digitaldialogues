@@ -156,18 +156,21 @@ class Elements_model extends CI_Model {
                 $execute = shell_exec($renameOgvToOga);
                 break;
             case 'video':
-                //create OGV version
-                //Jem's URL
-                //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/video/".$full_name;
-                 
-                //Public server's URL
-                $createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$full_name;
-                
-                $execute = shell_exec($createOgvVersion);
-                
                 //set string variables for ffmpeg string
                 $filename = $full_name;
                 $filename = substr($filename, 0, -4);
+                //create OGV version
+                //Jem's URL
+                //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/video/".$full_name;
+  
+                //Public server's URL
+                //$createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$full_name;
+				$createOgvVersion = "/usr/bin/ffmpeg -i /home/swarmtvn/public_html/assets/video/".$full_name." -acodec libvorbis -ac 2 -ab 96k -ar 44100 -b 345k -s /home/swarmtvn/public_html/assets/video/".$filename."ogv";
+				
+				
+				$createWebmVersion = "/usr/bin/ffmpeg -i /home/swarmtvn/public_html/assets/video/".$full_name." -acodec libvorbis -ac 2 -ab 96k -ar 44100 -b 345k -s /home/swarmtvn/public_html/assets/video/".$filename."webm";
+                $execute = shell_exec($createWebMVersion);
+                
                 //Jem's URLs
                 //$videoDirectory = "/Users/media/Sites/digitaldialogues/www/assets/video/";
                 //$videopostersDirectory = "/Users/media/Sites/digitaldialogues/www/assets/videoposters/";
