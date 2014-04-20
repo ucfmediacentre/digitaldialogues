@@ -1,17 +1,17 @@
 <html>
   <head>
-	<link rel="stylesheet" href="http://localhost/~media/swarmtvNet/public_html/css/normalize.css">
-	<link rel="stylesheet" href="http://localhost/~media/swarmtvNet/public_html/css/iframe.css">
-	<link rel="stylesheet" href="http://localhost/~media/swarmtvNet/public_html/libraries/fineuploader.jquery-3.0/fineuploader.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="http://localhost/~media/swarmtvNet/public_html/libraries/jquery-ui-1.9.2.custom/css/eggplant/jquery-ui-1.9.2.custom.min.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="http://localhost/~media/swarmtvNet/public_html/css/colorPicker.css" type="text/css" />
-	<script src="http://localhost/~media/swarmtvNet/public_html/js/vendor/jquery-1.8.3.min.js"></script>
-	<script src="http://localhost/~media/swarmtvNet/public_html/libraries/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js"></script>
-	<script src="http://localhost/~media/swarmtvNet/public_html/js/vendor/jquery.ui.touch-punch.min.js"></script>
-	<script src="http://localhost/~media/swarmtvNet/public_html/js/vendor/modernizr-2.6.2.min.js"></script>
-	<script src="http://localhost/~media/swarmtvNet/public_html/js/jquery.colorPicker.min.js"></script>
-	<script type="text/javascript" src="http://localhost/~media/swarmtvNet/public_html/libraries/fancybox2/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-	<script type="text/javascript" src="http://localhost/~media/swarmtvNet/public_html/js/jquery.form.min.js"></script>
+	<link rel="stylesheet" href="http://swarmtv.net/css/normalize.css">
+	<link rel="stylesheet" href="http://swarmtv.net/css/iframe.css">
+	<link rel="stylesheet" href="http://swarmtv.net/libraries/fineuploader.jquery-3.0/fineuploader.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="http://swarmtv.net/libraries/jquery-ui-1.9.2.custom/css/eggplant/jquery-ui-1.9.2.custom.min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="http://swarmtv.net/css/colorPicker.css" type="text/css" />
+	<script src="http://swarmtv.net/js/vendor/jquery-1.8.3.min.js"></script>
+	<script src="http://swarmtv.net/libraries/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js"></script>
+	<script src="http://swarmtv.net/js/vendor/jquery.ui.touch-punch.min.js"></script>
+	<script src="http://swarmtv.net/js/vendor/modernizr-2.6.2.min.js"></script>
+	<script src="http://swarmtv.net/js/jquery.colorPicker.min.js"></script>
+	<script type="text/javascript" src="http://swarmtv.net/libraries/fancybox2/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+	<script type="text/javascript" src="http://swarmtv.net/js/jquery.form.min.js"></script>
 	
 	<style>
 	  form { display: block; margin: 20px auto; background: #eee; border-radius: 10px; padding: 15px }
@@ -49,7 +49,7 @@
 		  var groupVal = $('input[name="group"]').val();
 		  var currentPageVal = $('input[name="current_page_title"]').val();
 		  var currentPageIdVal = $('input[name="current_page_id"]').val();
-		  var base_url = "http://localhost/~media/swarmtvNet/public_html/";
+		  var base_url = "http://swarmtv.net/";
 		  
 		  // Post the values to the pages controller
 		  $.post(base_url + "index.php/pages/add_page", { title: titleVal, group: groupVal, currentPageTitle: currentPageVal, currentPageId: currentPageIdVal },

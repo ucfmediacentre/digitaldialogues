@@ -132,6 +132,7 @@ class Elements_model extends CI_Model {
 		$unique_name = $folder_from_mime_type . '-' . uniqid();
 		
 		$full_name = $unique_name . '.' . $extension;
+        $filename = substr($full_name, 0, -4);
 		
 		$this->data['filename'] = $full_name;
 		$this->data['type'] = $folder_from_mime_type;
@@ -151,35 +152,34 @@ class Elements_model extends CI_Model {
                 //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/audio/".$full_name;
                  
                 //Public server's URL
-                $createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/audio/".$full_name;
+                $createOgvVersion = "/usr/bin/ffmpeg -i /home/swarmtvn/public_html/assets/audio/".$full_name." -acodec libvorbis -ab 128k /home/swarmtvn/public_html/assets/audio/".$filename.".ogv";
                 
                 $execute = shell_exec($createOgvVersion);
-                $renameOgvToOga = "mv /var/www/assets/audio/".$unique_name.".ogv /var/www/assets/audio/".$unique_name.".oga";
+                $renameOgvToOga = "mv /home/swarmtvn/public_html/assets/audio/".$unique_name.".ogv /home/swarmtvn/public_html/assets/audio/".$unique_name.".oga";
                 $execute = shell_exec($renameOgvToOga);
                 break;
             case 'video':
                 //set string variables for ffmpeg string
-                $filename = $full_name;
-                $filename = substr($filename, 0, -4);
+                //$filename = $full_name;
+                //$filename = substr($filename, 0, -4);
                 //create OGV version
                 //Jem's URL
                 //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/video/".$full_name;
   
                 //Public server's URL
                 //$createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$full_name;
-				$createOgvVersion = "/usr/bin/ffmpeg -i /home/swarmtvn/public_html/assets/video/".$full_name." -acodec libvorbis -ac 2 -ab 96k -ar 44100 -b 345k -s /home/swarmtvn/public_html/assets/video/".$filename."ogv";
-				
-				
-				$createWebmVersion = "/usr/bin/ffmpeg -i /home/swarmtvn/public_html/assets/video/".$full_name." -acodec libvorbis -ac 2 -ab 96k -ar 44100 -b 345k -s /home/swarmtvn/public_html/assets/video/".$filename."webm";
-                $execute = shell_exec($createWebmVersion);
+				$createOgvVersion = "/usr/bin/ffmpeg -i /home/swarmtvn/public_html/assets/video/".$full_name." -acodec libvorbis -ac 2 -ab 96k -ar 44100 -b 345k /home/swarmtvn/public_html/assets/video/".$filename.".ogv";
+				//echo $createOgvVersion;
+				//exit;
+                $execute = shell_exec($createOgvVersion);
                 
                 //Jem's URLs
                 //$videoDirectory = "/Users/media/Sites/digitaldialogues/www/assets/video/";
                 //$videopostersDirectory = "/Users/media/Sites/digitaldialogues/www/assets/videoposters/";
                 
                 //Public server URLs
-                $videoDirectory = "/public_html/assets/video/";
-                $videopostersDirectory = "/public_html/assets/videoposters/";
+                $videoDirectory = "/home/swarmtvn/public_html/assets/video/";
+                $videopostersDirectory = "/home/swarmtvn/public_html/assets/videoposters/";
                 $sizeString = "";
                 
                 //get width & height from the file
