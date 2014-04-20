@@ -30,6 +30,7 @@ audio,
 canvas,
 video {
     display: inline-block;
+	padding: 16px;
     *display: inline;
     *zoom: 1;
 }

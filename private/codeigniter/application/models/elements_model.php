@@ -8,7 +8,7 @@ class Elements_model extends CI_Model {
 	var $valid_file = false;
 	
 	var $current_mime_type_index = -1;
-	var $excepted_mime_types = array 	(
+	var $accepted_mime_types = array 	(
 										array('image/jpeg;'	, 'image'),
 										array('image/png;'	, 'image'),
 										array('image/gif;'	, 'image'),
@@ -32,8 +32,8 @@ class Elements_model extends CI_Model {
         $config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']	= '100';
-		$config['max_width'] = '1024';
-		$config['max_height'] = '768';
+		$config['max_width'] = '2048';
+		$config['max_height'] = '1536';
 
 		$this->load->library('upload', $config);
     }
@@ -91,26 +91,28 @@ class Elements_model extends CI_Model {
 		// interesting article on magicbytes here: 
 		// http://designshack.net/articles/php-articles/smart-file-type-detection-using-php/
 		// Get the file mime type
-		$file_info = new finfo(FILEINFO_MIME);  
+		/*$file_info = new finfo(FILEINFO_MIME);  
 		$mime_type_string = $file_info->buffer(file_get_contents($file['tmp_name']));
 		$mime_type_parts = explode(' ', $mime_type_string);
 		
-		$file_mime_type = $mime_type_parts[0]; 
+		$file_mime_type = $mime_type_parts[0]; */
 		
-		// check mime type against a list of excepted mime types
-		foreach($this->excepted_mime_types as  $index => $type) 
-        { 
-            if (in_array($file_mime_type, $type))
+		$file_mime_type = $file['type'];
+		// check mime type against a list of accepted mime types
+		foreach($this->accepted_mime_types as $index => $type) 
+        {
+		  if ($file_mime_type.";" == $type[0])
             {
-            	$this->current_mime_type_index = $index;
+				$this->current_mime_type_index = $index;
             	break;
             }
         } 
 		
+		
 		// send error if the file does not validate
 		if ($this->current_mime_type_index < 0) 
 		{
-			$this->file_errors = "This file type is not allowed! - " . $file_mime_type;
+			$this->file_errors = "This file type is not allowed! - " . $type[0];
 			return false;
 			exit;
 		}
@@ -123,7 +125,7 @@ class Elements_model extends CI_Model {
 	{	 
 		// Consider creating a folder every new month so that elements are easier to find? 
 		// construct the location from the data
-		$folder_from_mime_type = $this->excepted_mime_types[$this->current_mime_type_index][1];  // image / audio / video folder
+		$folder_from_mime_type = $this->accepted_mime_types[$this->current_mime_type_index][1];  // image / audio / video folder
 		$uploads_dir = base_url() . 'assets/' . $folder_from_mime_type . '/';
 		
 		$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
@@ -156,25 +158,28 @@ class Elements_model extends CI_Model {
                 $execute = shell_exec($renameOgvToOga);
                 break;
             case 'video':
-                //create OGV version
-                //Jem's URL
-                //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/video/".$full_name;
-                 
-                //Public server's URL
-                $createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$full_name;
-                
-                $execute = shell_exec($createOgvVersion);
-                
                 //set string variables for ffmpeg string
                 $filename = $full_name;
                 $filename = substr($filename, 0, -4);
+                //create OGV version
+                //Jem's URL
+                //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/video/".$full_name;
+  
+                //Public server's URL
+                //$createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$full_name;
+				$createOgvVersion = "/usr/bin/ffmpeg -i /home/swarmtvn/public_html/assets/video/".$full_name." -acodec libvorbis -ac 2 -ab 96k -ar 44100 -b 345k -s /home/swarmtvn/public_html/assets/video/".$filename."ogv";
+				
+				
+				$createWebmVersion = "/usr/bin/ffmpeg -i /home/swarmtvn/public_html/assets/video/".$full_name." -acodec libvorbis -ac 2 -ab 96k -ar 44100 -b 345k -s /home/swarmtvn/public_html/assets/video/".$filename."webm";
+                $execute = shell_exec($createWebmVersion);
+                
                 //Jem's URLs
                 //$videoDirectory = "/Users/media/Sites/digitaldialogues/www/assets/video/";
                 //$videopostersDirectory = "/Users/media/Sites/digitaldialogues/www/assets/videoposters/";
                 
                 //Public server URLs
-                $videoDirectory = "/var/www/assets/video/";
-                $videopostersDirectory = "/var/www/assets/videoposters/";
+                $videoDirectory = "/public_html/assets/video/";
+                $videopostersDirectory = "/public_html/assets/videoposters/";
                 $sizeString = "";
                 
                 //get width & height from the file
@@ -264,7 +269,7 @@ class Elements_model extends CI_Model {
 				break;
 		}
 		
-		$uploads_dir = '/var/www/assets/' . $folder . '/';
+		$uploads_dir = '/public_html/assets/' . $folder . '/';
 		$unique_name = $folder . '-' . uniqid();
 		$full_name = $unique_name . '.' . $extension;
 		

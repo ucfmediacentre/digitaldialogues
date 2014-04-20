@@ -74,6 +74,7 @@ class Pages extends CI_Controller {
 	  $page_details= $this->Pages_model->get_page(urldecode($group), URLdecode($page_title));
 	  
 	  $data['page_info'] = $page_details;
+	  $data['user_id'] = $user_id;
 	  
 	  if($page_details) 
 	  {
@@ -87,14 +88,8 @@ class Pages extends CI_Controller {
 		
 		// load view with data
 		$this->load->view('header', $data);
-		$this->load->view('pages_view/page_view');
+		$this->load->view('pages_view/page_view', $data);
 		$this->load->view('pages_view/new_element_form');
-		$this->load->view('pages_view/new_text_form');
-		$this->load->view('pages_view/new_image_form');
-		$this->load->view('pages_view/new_audio_form');
-		$this->load->view('pages_view/new_video_form');
-		$this->load->view('pages_view/new_page_form');
-		$this->load->view('pages_view/new_group_form');
 		$this->load->view('pages_view/page_info_form');
 		$this->load->view('pages_view/page_view_scripts');
 		$this->load->view('footer');

@@ -46,7 +46,7 @@ class Shortcodes{
 	{
 		$this->original_string = $string;
 		$this->adapted_string = $string;
-		$pattern = "/(?<=\[\[)([\w \!\?\(\)~\&\+=@:;\/\.\\\-]|<br>)+(?=\]\])/"; // [[ ... ]] regex
+		$pattern = "/(?<=\[\[)([\w \!\?\(\)~\&\+=@:;\/\.,\\\-]|<br>)+(?=\]\])/"; // [[ ... ]] regex
 		$short_code_info = null;
 			
 		// find all the links in $string

@@ -242,8 +242,6 @@ class Pages_model extends CI_Model {
 		// first insert user's requirements in to database
 		//collect variables from the form
    		$title = $this->input->post('title');
-   		//$description = $this->input->post('description');
-   		//$keywords = $this->input->post('keywords');
    		$group = $this->input->post('group');
    		$currentPageTitle = $this->input->post('currentPageTitle');
    		$currentPageId = $this->input->post('currentPageId');

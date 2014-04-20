@@ -13,113 +13,11 @@
 		
 		// as soon as the page is ready initiate all elements on the page
 		initElements();
-        
-		// sets dblclick to open page_info fancy box
-		$('#page_title_wrapper').dblclick(function(e){
-		        $("#page_info_form_trigger").trigger('click');
-			$('textarea').focus();
-			clearSelection();
-		});
-        
-		// inits page_info fancy box
-		$("a#page_info_form_trigger").fancybox({
-			'overlayOpacity':0,
-			'autoDimensions':true,
-			'showCloseButton':false,
-		});
-        
-		// sets click to open text fancy box
-		$('#add_text_form_wrapper').click(function(e){
-			$("a#add_text_form_trigger").trigger('click');
-			$('input[name="x"]').val(e.pageX);
-			$('input[name="y"]').val(e.pageY);
-			clearSelection();
-		});
 		
-		// inits text fancy box
-		$("a#add_text_form_trigger").fancybox({
-			'overlayOpacity':0,
-			'autoDimensions':true,
-			'showCloseButton':false,
-			'afterShow': function(){
-				$('#text_form_text').focus();
-			}
-		});
-		
-		// sets click to open image fancy box
-		$('#add_image_form_wrapper').click(function(e){
-			$("a#add_image_form_trigger").trigger('click');
-			$('input[name="x"]').val(e.pageX);
-			$('input[name="y"]').val(e.pageY);
-			clearSelection();
-		});
-		
-		// inits image fancy box
-		$("a#add_image_form_trigger").fancybox({
-			'overlayOpacity':0,
-			'autoSize':true,
-		});
-		
-		// sets click to open audio fancy box
-		$('#add_audio_form_wrapper').click(function(e){
-			$("a#add_audio_form_trigger").trigger('click');
-			$('input[name="x"]').val(e.pageX);
-			$('input[name="y"]').val(e.pageY);
-			clearSelection();
-		});
-		
-		// inits audio fancy box
-		$("a#add_audio_form_trigger").fancybox({
-			'overlayOpacity':0,
-			'autoSize':true,
-		});
-		
-		// sets click to open video fancy box
-		$('#add_video_form_wrapper').click(function(e){
-			$("a#add_video_form_trigger").trigger('click');
-			$('input[name="x"]').val(e.pageX);
-			$('input[name="y"]').val(e.pageY);
-			clearSelection();
-		});
-		
-		// inits video fancy box
-		$("a#add_video_form_trigger").fancybox({
-			'overlayOpacity':0,
-			'autoSize':true,
-		});
-		
-		// sets click to open page form fancy box
-		$('#add_page_form_wrapper').click(function(e){
-			$("a#add_page_form_trigger").trigger('click');
-			$('input[name="x"]').val(e.pageX);
-			$('input[name="y"]').val(e.pageY);
-			clearSelection();
-		});
-		
-		// inits page form fancy box
-		$("a#add_page_form_trigger").fancybox({
-			'overlayOpacity':0,
-			'autoSize':true,
-			'afterShow': function(){
-				$('#new_page_title').focus();
-			}
-		});
-		
-		// sets click to open group form fancy box
-		$('#add_group_form_wrapper').click(function(e){
-			$("a#add_group_form_trigger").trigger('click');
-			$('input[name="x"]').val(e.pageX);
-			$('input[name="y"]').val(e.pageY);
-			clearSelection();
-		});
-		
-		// inits group form fancy box
-		$("a#add_group_form_trigger").fancybox({
-			'overlayOpacity':0,
-			'autoSize':true,
-			'afterShow': function(){
-				$('#new_group_title').focus();
-			}
+		$(".iframe").fancybox({
+			'width':510,
+			'type':'iframe',
+			'autoScale':'false'
 		});
 	
 		// triggers the element fancy box on double click
@@ -157,152 +55,6 @@
 				  // Refresh page
                     window.location.href = base_url+"index.php/pages/view/"+groupVal+"/"+titleVal;
 			});
-            
-		});
-		
-		// submits Ajax for updating new page into database
-		$('#submit_new_page').click(function(e){
-			// Stop the page from navigating away from this page
-			e.preventDefault();		
-			
-		        // get the values from the form
-			var titleVal = $('input[name="new_page_title"]').val();
-            //var descriptionVal = $('textarea[name="new_page_description"]').val();
-			//var keywordsVal = $('input[name="new_page_keywords"]').val();
-			var groupVal = $('input[name="group"]').val();
-			var currentPageVal = $('input[name="current_page_title"]').val();
-			var currentPageIdVal = $('input[name="current_page_id"]').val();
-			
-			// Post the values to the pages controller
-                        $.post(base_url + "index.php/pages/add_page", { title: titleVal, group: groupVal, currentPageTitle: currentPageVal, currentPageId: currentPageIdVal },
-		        function(data) {
-                    window.location.href = base_url+"index.php/pages/view/"+groupVal+"/"+currentPageVal;
-			});
-            
-		});
-		
-		// submits Ajax for updating new group into the database
-		$('#submit_new_group').click(function(e){
-			// Stop the page from navigating away from this page
-			e.preventDefault();		
-			
-		    // get the values from the form
-			var newGroupVal = $('input[name="new_group_title"]').val();
-            var participationVal = $('input[name="participation"]:checked').val();
-			var currentPageVal = $('input[name="current_page"]').val();
-			var currentGroupVal = $('input[name="current_group"]').val();
-			var currentPageIdVal = $('input[name="current_page_id"]').val();
-			var userIdVal = $('input[name="userId"]').val();
-			
-			//alert(newGroupVal + " | " + participationVal + " | " + currentPageVal + " | " + currentGroupVal + " | " + currentPageIdVal);
-			
-			// Post the values to the pages controller
-                        $.post(base_url + "index.php/groups/add_group", { newGroup: newGroupVal, participation: participationVal, currentPage: currentPageVal, currentGroup: currentGroupVal, currentPageId: currentPageIdVal, userId: userIdVal },
-		        function(data) {
-                window.location.href = base_url+"index.php/pages/view/"+currentGroupVal+"/"+currentPageVal;
-			});
-            
-		});
-		
-		//fills out element form from TEXT submit 
-		$('#submit_text').click(function(e){
-			// Stop the page from navigating away from this page
-			e.preventDefault();		
-			
-		        // get the values from the text form and put them into the element form
-			$('#element_text').val($('#text_form_text').val());
-			$('#element_colour').val($('#text_colour').val());
-			// work out whether user's text should be editable.
-			var text_editable;
-			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
-			text_editable = "N";
-			$('#element_editable').val(text_editable);
-			$('#element_x').val(parseInt(100+(Math.random()*200)));
-			$('#element_y').val(parseInt(200+(Math.random()*300)));
-			
-			//trigger element form click
-			$("#submit_element").trigger('click');    
-            
-		});
-		
-		//fills out element form from IMAGE submit 
-		$('#submit_image').click(function(e){
-			// Stop the page from navigating away from this page
-			e.preventDefault();
-			
-		    // get the values from the image form and put them into the element form
-			$('#mediaType').val("image");
-			// work out whether user's image should be editable.
-			var image_editable;
-			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
-			if (loggedIn != 1) {
-				image_editable = "Y";
-			} else if ($( "input:checked" ).length > 5) {
-				//there are 6 checked items on the page - most of them are hidden
-				image_editable = "Y";
-			} else {
-				image_editable = "N";
-			}
-			$('#element_editable').val(image_editable);
-			$('#element_x').val(parseInt(100+(Math.random()*200)));
-			$('#element_y').val(parseInt(200+(Math.random()*300)));
-			
-			//trigger element form click
-			$("#submit_element").trigger('click');    
-            
-		});
-		
-		//fills out element form from AUDIO submit 
-		$('#submit_audio').click(function(e){
-			// Stop the page from navigating away from this page
-			e.preventDefault();
-			
-		    // get the values from the audio form and put them into the element form
-			$('#mediaType').val("audio");
-			// work out whether user's audio should be editable.
-			var audio_editable;
-			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
-			if (loggedIn != 1) {
-				audio_editable = "Y";
-			} else if ($( "input:checked" ).length > 5) {
-				//there are 6 checked items on the page - most of them are hidden
-				audio_editable = "Y";
-			} else {
-				audio_editable = "N";
-			}
-			$('#element_editable').val(audio_editable);
-			$('#element_x').val(parseInt(100+(Math.random()*200)));
-			$('#element_y').val(parseInt(200+(Math.random()*300)));
-			
-			//trigger element form click
-			$("#submit_element").trigger('click');    
-            
-		});
-		
-		//fills out element form from VIDEO submit 
-		$('#submit_video').click(function(e){
-			// Stop the page from navigating away from this page
-			e.preventDefault();
-			
-		    // get the values from the video form and put them into the element form
-			$('#mediaType').val("video");
-			// work out whether user's video should be editable.
-			var video_editable;
-			var loggedIn = <?php if ($this->session->userdata('logged_in') == 1) {echo '1'; }else{ echo '0';} ?>;
-			if (loggedIn != 1) {
-				video_editable = "Y";
-			} else if ($( "input:checked" ).length > 5) {
-				//there are 6 checked items on the page - most of them are hidden
-				video_editable = "Y";
-			} else {
-				video_editable = "N";
-			}
-			$('#element_editable').val(video_editable);
-			$('#element_x').val(parseInt(100+(Math.random()*200)));
-			$('#element_y').val(parseInt(200+(Math.random()*300)));
-			
-			//trigger element form click
-			$("#submit_element").trigger('click');    
             
 		});
 		
@@ -561,6 +313,7 @@
 			// MAKES DRAGGABLE unless the author specified that it shouldn't be editable
 			if (page_elements_json[i].editable == 'Y' || page_elements_json[i].author == username) {
 				$(elm).draggable({
+					snap: "div", grid: [ 10, 10 ],
 					stack: "div",
 					stop: function(event, ui) {
 						updateElement(ui.helper[0].id , 'position');
@@ -608,7 +361,7 @@
 				}
 			}		 
             
-			if ($(elm).hasClass('video')) $(elm).css({'height':'195', 'width':'240'});
+			if ($(elm).hasClass('video')) $(elm).css({'height':'155', 'width':'240'});
             
 			// Adds delete button unless the author made it uneditable
 			
@@ -644,7 +397,8 @@
 	function initAudio(elm, index)
 	{
         
-		$(elm).css("height","30px");
+		$(elm).css("height","62px");
+		$(elm).css("width", "352px"); 
 		var filename_NoExt = page_elements_json[index].filename.split('.');
 		var audio_html = '<audio controls preload="none" style="width:320px";>';
 		audio_html = audio_html + '<source src="' + base_url + 'assets/audio/' + filename_NoExt[0] + '.mp3" type="audio/mpeg">';
@@ -658,6 +412,7 @@
 	// ----------------------------------------------- VIDEO
 	function initVideo(elm, index)
 	{
+	  
 		var filename_NoExt = page_elements_json[index].filename.split('.');
         var video_html = '<a class="videoLink" videofile="' + filename_NoExt[0];
 		video_html = video_html + '" videowidth="640" videoheight="'+(Math.round((640/page_elements_json[index].width)*page_elements_json[index].height)+65)+'"';
