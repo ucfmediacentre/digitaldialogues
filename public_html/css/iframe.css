@@ -14,6 +14,14 @@
      -khtml-user-select: none; // webkit browsers
 }
 
+
+.bar {
+	background-color: #c0c0e0;
+	width:0%;
+	height:20px;
+	border-radius: 3px;
+}
+
 html,
 button,
 input,
@@ -177,6 +185,22 @@ img {
     text-shadow: none;
 }
 
+.percent {
+	position:absolute;
+	display:inline-block;
+	top:3px;
+	left:48%;
+}
+
+.progress {
+	position:relative;
+	width:465px;
+	border: 1px solid #ddd;
+	padding: 1px;
+	border-radius: 3px;
+	margin-left: auto ;
+	margin-right: auto;
+}
 
 ::selection {
     background: #b3d4fc;

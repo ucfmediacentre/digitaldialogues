@@ -244,6 +244,7 @@ class Pages_model extends CI_Model {
    		$title = $this->input->post('title');
    		$group = $this->input->post('group');
    		$currentPageTitle = $this->input->post('currentPageTitle');
+   		$description = $this->input->post('description');
    		$currentPageId = $this->input->post('currentPageId');
 		
 		// check to see if this page name already exists

@@ -403,7 +403,7 @@
 		var audio_html = '<audio controls preload="none" style="width:320px";>';
 		audio_html = audio_html + '<source src="' + base_url + 'assets/audio/' + filename_NoExt[0] + '.mp3" type="audio/mpeg">';
 		audio_html = audio_html + '<source src="' + base_url + 'assets/audio/' + filename_NoExt[0] + '.oga" type="audio/ogg">';
-		audio_html = audio_html + '</audio>';	
+		audio_html = audio_html + '</audio><span>'+page_elements_json[index].description+'</span>';	
 		//audio_html = audio_html + '<p><strong>Download Audio: </strong><a href="' + base_url + 'assets/audio/' + filename_NoExt[0] + '.mp3">MP3</a></p>';
 		
 		var audio_element = $(audio_html);

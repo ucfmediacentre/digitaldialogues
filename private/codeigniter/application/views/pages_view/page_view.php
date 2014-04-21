@@ -23,13 +23,14 @@
 	</form>
   </div>
   <div id="editButtons">
-	<p>Add: <a href="<?php echo base_url(); ?>assets/html/iframe_text_form.php?page_id=<?php echo $page_info->id ?>" class="iframe">Text</a>&nbsp;|&nbsp;
-	<a href="<?php echo base_url(); ?>assets/html/iframe_image_form.php?page_id=<?php echo $page_info->id ?>" class="iframe">Image</a>&nbsp;|&nbsp;
-	<a href="<?php echo base_url(); ?>assets/html/iframe_audio_form.php?page_id=<?php echo $page_info->id ?>" class="iframe">Audio</a>&nbsp;|&nbsp;
-	<a href="<?php echo base_url(); ?>assets/html/iframe_video_form.php?page_id=<?php echo $page_info->id ?>" class="iframe">Video</a>&nbsp;|&nbsp;
-	<a href="<?php echo base_url(); ?>assets/html/iframe_page_form.php?title=<?php echo urlencode($page_info->title) ?>&id=<?php echo $page_info->id ?>&group=<?php echo urlencode($page_info->group) ?>" class="iframe">Page</a>&nbsp;|&nbsp;
-	<a href="<?php echo base_url(); ?>assets/html/iframe_group_form.php?title=<?php echo urlencode($page_info->title) ?>&id=<?php echo $page_info->id ?>&group=<?php echo $page_info->group ?>&uid=<?php echo $user_id; ?>" class="iframe">Group</a>
+	<p>Add:
+	<a href="<?php echo base_url(); ?>index.php/iframe/view/newText/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Text</a>&nbsp;|&nbsp;
+	<a href="<?php echo base_url(); ?>index.php/iframe/view/newImage/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Image</a>&nbsp;|&nbsp;
+	<a href="<?php echo base_url(); ?>index.php/iframe/view/newAudio/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Audio</a>&nbsp;|&nbsp;
+	<a href="<?php echo base_url(); ?>index.php/iframe/view/newVideo/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Video</a>&nbsp;|&nbsp;
+	<a href="<?php echo base_url(); ?>index.php/iframe/view/newPage/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Page</a>&nbsp;|&nbsp;
+	<a href="<?php echo base_url(); ?>index.php/iframe/view/newGroup/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Group</a>
 	<br /><br />
-	<span style="font-size:10px;"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://swarmtv.net/img/ccLogo.png" /></a><br />Any contributions made to this website will come under a <br /><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons License Attribution 3.0</a></span>
+	<span style="font-size:10px;"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="<?php echo base_url(); ?>img/ccLogo.png" /></a><br />Any contributions made to this website will come under a <br /><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons License Attribution 3.0</a></span>
   </div>
 </div>

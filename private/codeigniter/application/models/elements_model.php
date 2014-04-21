@@ -520,11 +520,11 @@ class Elements_model extends CI_Model {
                         $jasonArray = json_encode($element);
                         break;
                     case 'audio':
-                        $elementInHtml = '<audio style="width:320px" controls tabindex="0"><source type="audio/mpeg" src="' . base_url() . 'assets/audio/'.$justName.'.mp3"></source><source type="audio/ogg" src="' . base_url() . 'assets/audio/'.$justName.'.oga"></source></audio>';
+                        $elementInHtml = '<div style="text-align: center"><audio style="width:320px" controls tabindex="0"><source type="audio/mpeg" src="' . base_url() . 'assets/audio/'.$justName.'.mp3"></source><source type="audio/ogg" src="' . base_url() . 'assets/audio/'.$justName.'.oga"></source></audio>'.$element->description.'</div>';
 +                       $jasonArray = json_encode($element);
                         break;
                     case 'video':
-                        $elementInHtml = '<video controls tabindex="0"><source type="video/mp4" src="' . base_url() . 'assets/video/'.$justName.'.mp4"></source><source type="video/webm" src="' . base_url() . 'assets/video/'.$justName.'.webm"></source><source type="video/ogg" src="' . base_url() . 'assets/video/'.$justName.'.ogv"></source></video>';
+                        $elementInHtml = '<div style="text-align: center"><video controls tabindex="0"><source type="video/mp4" src="' . base_url() . 'assets/video/'.$justName.'.mp4"></source><source type="video/webm" src="' . base_url() . 'assets/video/'.$justName.'.webm"></source><source type="video/ogg" src="' . base_url() . 'assets/video/'.$justName.'.ogv"></source></video>'.$element->description.'</div>';
                         $jasonArray = json_encode($element);
                         break;
 		}
