@@ -29,6 +29,13 @@
 	  $.fancybox.showLoading();
 	  
 	  var text_form_text = $('#text_form_text').val();
+	  window.parent.$("#textSizer").text(text_form_text);
+	  window.parent.$("#textSizer").css("fontSize", "15px");
+	  if (window.parent.$("#textSizer").width()>320){
+		window.parent.$("#textSizer").width(320);
+	  }
+	  var widthVal = window.parent.$("#textSizer").width()+20;
+	  var heightVal = window.parent.$("#textSizer").height()+20;
 	  var text_colour = $('#text_colour').val();
 	  var currentPageIdVal = $('input[name="pages_id"]').val();
 	  var xVal = $('input[name="x"]').val();
@@ -37,7 +44,7 @@
 	  $.ajax({
 		type: "POST",
 		url: base_url +"index.php/elements/add",
-		data: { contents: text_form_text, color: text_colour, pages_id: currentPageIdVal, x: xVal, y: yVal }
+		data: { contents: text_form_text, color: text_colour, pages_id: currentPageIdVal, width: widthVal, height: heightVal, x: xVal, y: yVal }
 	  })
 	  .done(function( msg ) {
 		window.top.location.reload();

@@ -127,6 +127,35 @@ div.element:hover {
 	cursor:hand; cursor:pointer;
 	color:#fff;
 }
+
+#editingContent {
+	text-align: center;
+}
+
+#editingObject {
+	text-align: left;
+	width: 212px;
+	float: right; 
+    display:block; 
+}
+
+#editingStyle {
+	text-align: left;
+	margin-left: 4px;
+	width: 212px;
+	float: left; 
+    display:block; 
+}
+
+#editingSubmit {
+    display: inline-block; 
+}
+
+input[type=text] {
+	width: 200px;
+}
+
+
 .element{
 	position:relative;
 	font-size:15px;
@@ -215,8 +244,20 @@ img {
   color:#ccc;  
   border:none;  
   display:block;  
-  float:right; 
-  margin-right:6px;  
+  margin-right:8px;  
+  background-color:#006;   
+  -moz-border-radius:8px;  
+  -webkit-border-radius:8px;  
+  border-radius:8px;  
+}
+
+.submit_button {
+  width: 85px;
+  height: 25px;  
+  font-weight:bold; 
+  color:#ccc;  
+  border:none;    
+  margin-right:6px;    
   background-color:#006;   
   -moz-border-radius:8px;  
   -webkit-border-radius:8px;  
@@ -246,6 +287,12 @@ textarea#element_description{
 	margin:auto;
 	height:100px;
 	float:right;
+}
+
+#textContents {
+  height: 100px;
+  margin-left: 4px;
+  width: 436px;
 }
 
 .top-align{ 

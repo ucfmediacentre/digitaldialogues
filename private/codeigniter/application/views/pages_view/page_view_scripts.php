@@ -11,6 +11,19 @@
 	
 	$(document).ready(function(){
 		
+		
+		var shiftPressed = false;
+		
+		$(window).keydown(function(evt) {
+		  if (evt.which == 16) { // shift
+			shiftPressed = true;
+		  }
+		}).keyup(function(evt) {
+		  if (evt.which == 16) { // shift
+			shiftPressed = false;
+		  }
+		});
+		
 		// as soon as the page is ready initiate all elements on the page
 		initElements();
 		
@@ -60,6 +73,17 @@
 		
 		// creates functions for double clicking elements
 		$('.element').dblclick(function(){
+		  
+		  //if SHIFT is pressed then open full editing
+		  if(shiftPressed){
+			  $.fancybox.open({
+				  padding : 20,
+				  href:'<?php echo base_url(); ?>index.php/iframe/edit/textEditor/'+$(this).attr('id') ,
+				  type: 'iframe',
+				  'width':506,
+				  'autoScale':'false'
+			  });
+		  } else {
 			
 			$(this).find('.delete_button').fadeIn();
 			
@@ -99,6 +123,7 @@
                     },250);
 				});
 			}
+		  }
 		});
 		
 		// adds an element to the page with ajax when submit button is clicked
@@ -169,9 +194,20 @@
 			{
 				fd.append('file', element_file);
 				fd.append('description', element_description);
-			}else
-			{
+			} else {
 				fd.append('contents', element_description);
+				
+				var text_form_text = element_description;
+				$("#textSizer").text(text_form_text);
+				$("#textSizer").css("fontSize", "15px");
+				if ($("#textSizer").width()>320){
+				  $("#textSizer").width(320);
+				}
+				var widthVal = $("#textSizer").width()+20;
+				var heightVal = $("#textSizer").height()+20;
+				
+				fd.append('width', widthVal);
+				fd.append('height', heightVal);
 			}
 			
 			fd.append('author', username);
@@ -434,11 +470,23 @@
 		switch(change)
 		{
 			case 'size':
+				var textContents = $('#' + elementId).val();
+				window.parent.$("#textSizer").text(textContents);
+				window.parent.$("#textSizer").css("fontSize", $('#' + elementId).css('font-size')+"px");
+				if (window.parent.$("#textSizer").width()>320){
+				  window.parent.$("#textSizer").width(320);
+				}
+				var widthVal = window.parent.$("#textSizer").width()+20;
+				var heightVal = window.parent.$("#textSizer").height()+20;
+	  
+	  
 				// updates width and height
-				changes.width = parseInt($('#' + elementId).css('width'), 10);
-				changes.height = parseInt($('#' + elementId).css('height'), 10);
+				changes.width = parseInt($("#textSizer").css('width'), 10);
+				changes.height = parseInt($("#textSizer").css('height'), 10);
 				// only update font size if the element type is text (found some problems with positions otherwise)
-				if ($('#' + elementId).hasClass('text')) changes.fontSize = $('#' + elementId).css('font-size');
+				if ($('#' + elementId).hasClass('text')) {
+				  changes.fontSize = $('#' + elementId).css('font-size');
+				}
 				break;
 			case 'position':
 				// changes the x and y for left and top ( tut tut  for mixing up terminology from data base to css )

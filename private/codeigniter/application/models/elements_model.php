@@ -410,11 +410,15 @@ class Elements_model extends CI_Model {
 		{
 			$contents = $post_data['contents'];
 			$colour = $post_data['color'];
+			$width = $post_data['width'];
+			$height = $post_data['height'];
             //$contents = htmlspecialchars($contents, ENT_QUOTES); Do we need this?
             $contents = str_replace ("\n", "<br>", $contents );
 			
 			$this->data['contents'] = $contents;
 			$this->data['color'] = $colour;
+			$this->data['width'] = $width;
+			$this->data['height'] = $height;
 			$this->data['type'] = 'text';
 		}
 		
@@ -464,6 +468,8 @@ class Elements_model extends CI_Model {
 	// inserts element into the database
     function add_element_to_database()
 	{
+	  
+	  
 		if (!$this->db->insert('elements', $this->data))
 		{
 			// should probably check to see if a page exist with this id as well?
@@ -574,8 +580,10 @@ class Elements_model extends CI_Model {
 	// updates an element in the `element` table and creates a new update in the `updates` table
 	public function update_element()
 	{
+	  
         //If anything is updated get the post data
 		$post_data = $this->input->post(NULL, TRUE); // return all post data filtered XSS - SCRIPT SAFE
+		
 		//finds the id of the element
    		$elementId = $this->input->post('id');
 
