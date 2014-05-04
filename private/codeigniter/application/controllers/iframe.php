@@ -30,10 +30,19 @@ class Iframe extends CI_Controller {
 	  $this->load->model('Elements_model');
 	  
 	  $urlString = $_SERVER['HTTP_REFERER'];
+	  //echo "$ urlString = ".$urlString."<br />";
 	  $urlParameters = explode('/', $urlString);
+	  //print_r("$ urlParameters = ".$urlParameters."<br />");
 	  $numOfParas = count($urlParameters);
-	  $groupName = $urlParameters[9];
-	  $pageName = $urlParameters[10];
+	  //echo "$ numOfParas = ".$numOfParas."<br />";
+	  $baseUrlParams = explode('/', base_url());
+	  //print_r("$ baseUrlParams = ".$baseUrlParams."<br />");
+	  $numOfBaseUrlParas = count($baseUrlParams);
+	  //echo "$ numOfBaseUrlParas = ".$numOfBaseUrlParas."<br />";
+	  $groupName = $urlParameters[$numOfBaseUrlParas+2];
+	  //echo "$ groupName = ".$groupName."<br />";
+	  $pageName = $urlParameters[$numOfBaseUrlParas+3];
+	  //echo "$ pageName = ".$pageName."<br />";
 	  
 	  $data['toolName'] = $toolName;
 	  $data['elementId'] = $elementId;
