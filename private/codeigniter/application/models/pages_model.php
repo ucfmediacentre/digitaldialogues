@@ -129,7 +129,7 @@ class Pages_model extends CI_Model {
 		return $listview;
 	}
 	
-	// returns a json array of all pages to do with a specified group
+	// returns a json array of all pages in a specified group
 	function get_titles($group)
 	{
    		$this->db->select('title');
@@ -139,7 +139,7 @@ class Pages_model extends CI_Model {
 		return json_encode($result);
 	}
 	
-	// gets the page title of a page with a specified id
+	// gets the page title of a page with a specified page id
 	function get_title($id)
 	{
    		$this->db->where('id', $id);
@@ -174,7 +174,7 @@ class Pages_model extends CI_Model {
 		}
 	}
 	
-	// gets the group details from a specified id
+	// gets the group details from a specified page id
 	function get_group($id)
 	{
    		$this->db->where('id', $id);
@@ -198,14 +198,8 @@ class Pages_model extends CI_Model {
    		$this->db->select('pages_id');
    		$query = $this->db->get('elements');
 		
-		if ($query->num_rows() > 0)
-		{
-			$row = $query->row(); 
-			$pageId = $row->pages_id;
-		} else
-		{
-			return null;
-		}
+		$row = $query->row(); 
+		$pageId = $row->pages_id;
 		
    		$this->db->where('id', $pageId);
    		$this->db->select('title');
@@ -214,12 +208,11 @@ class Pages_model extends CI_Model {
 		if ($query->num_rows() > 0)
 		{
 			$row = $query->row(); 
-			return $row->title;
+			return $row;
 		} else
 		{
 			return null;
 		}
-		
 	}
 	
 	// creates a page with a specified title

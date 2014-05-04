@@ -382,6 +382,22 @@ img {
     text-shadow: none;
 }
 
+#selectable .ui-selecting {
+	cursor:hand; cursor:pointer;
+	border-width:1px;
+	border-color:#fff;
+	border-radius:10px;
+	border-style:dashed;
+}
+
+#selectable .ui-selected {
+	cursor:hand; cursor:pointer;
+	border-width:1px;
+	border-color:#ccc;
+	border-radius:10px;
+	border-style:dashed;
+}
+
 .submit_element {
   float:right;  
   width: 85px;

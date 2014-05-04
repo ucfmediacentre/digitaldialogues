@@ -1,7 +1,7 @@
 <div id="editingContent">
   <form name="editorForm" id="editorForm" class="input_form">
 	<br />
-	<textarea name="textContents" id="textContents"><?php echo $contents; ?></textarea><br />
+	<textarea name="contents" id="textContents"><?php echo $contents; ?></textarea><br />
 	  <!--PAGE-->
 	  <!--<label>
 		Place on page:
@@ -93,7 +93,7 @@
 	  </div><br /><br />
 	  <div id="editingSubmit"><br />
 		<input type="submit" id="remove_element" value="Remove" class="submit_button"  />
-		<input type="submit" id="duplicate_element" value="Duplicate" class="submit_button"  />
+		<input type="submit" id="copy_element" value="Copy" class="submit_button"  />
 		<input type="submit" id="submit_element" value="Update" class="submit_button"  />
 	  </div>
 	  <br />
@@ -110,14 +110,16 @@
 	<input type="hidden" name="editable" value="<?php echo $editable; ?>">
 	<input type="hidden" name="filename" value="<?php echo $filename; ?>">
 	<!--<input type="hidden" name="fontFamily" value="<?php echo $fontFamily; ?>">
-	<input type="hidden" name="fontSize" value="<?php echo $fontSize; ?>">
-	<input type="hidden" name="height" value="<?php echo $height; ?>">//-->
+	<input type="hidden" name="fontSize" value="<?php echo $fontSize; ?>">//-->
+	<input type="hidden" name="height" value="<?php echo $height; ?>">
+	<input type="hidden" name="groupName" value="<?php echo $groupName; ?>">
 	<input type="hidden" name="id" value="<?php echo $elementId; ?>">
 	<input type="hidden" name="keywords" value="<?php echo $keywords; ?>">
 	<input type="hidden" name="license" value="<?php echo $license; ?>">
 	<input type="hidden" name="linkPageIds" value="<?php echo $linkPageIds; ?>">
 	<!--<input type="hidden" name="opacity" value="<?php echo $opacity; ?>">//-->
 	<input type="hidden" name="pages_id" value="<?php echo $pages_id; ?>">
+	<input type="hidden" name="pageName" value="<?php echo $pageName; ?>">
 	<input type="hidden" name="textAlign" value="<?php echo $textAlign; ?>">
 	<input type="hidden" name="timeline" value="<?php echo $timeline; ?>">
 	<input type="hidden" name="type" value="<?php echo $type; ?>">
@@ -129,18 +131,6 @@
 </div>
 <script language="JavaScript" type="text/javascript">
   <!--
-  var elementId = <?php echo $elementId; ?>;
-  var backgroundColor = "<?php echo $backgroundColor; ?>";
-  var color="<?php echo $color; ?>";
-  var fontFamily="<?php echo $fontFamily; ?>";
-  var fontSize=<?php echo $fontSize; ?>;
-  var height=<?php echo $height; ?>;
-  var opacity=<?php echo $opacity; ?>;
-  var textAlign="<?php echo $textAlign; ?>";
-  var width=<?php echo $width; ?>;
-  var x=<?php echo $x; ?>;
-  var y=<?php echo $y; ?>;
-
   $(function() {
 	  //initialize the form with focus on color
 	  updateSlider();
@@ -163,47 +153,31 @@
 $('#submit_element').click(function(e){
   e.preventDefault();
   
-  
   calculateTextArea();
   
   // get the values from the form
-  var variableString = "";
   var backgroundColorVal = $('#backgroundColor').val();
-  variableString +="backgroundColorVal = "+backgroundColorVal+"\n";
   var colorVal = $('#color').val();
-  variableString += "colorVal = "+colorVal+"\n";
   var contentsVal = $('textarea#textContents').val();
-  variableString +="contentsVal = "+contentsVal+"\n";
   var fontFamilyVal = $('#fontFamily').val();
-  variableString +="fontFamilyVal = "+fontFamilyVal+"\n";
   var fontSizeVal = $('input[name="fontSize"]').val();
-  variableString +="fontSizeVal = "+fontSizeVal+"\n";
   var heightVal = $('input[name="height"]').val();
-  variableString +="heightVal = "+heightVal+"\n";
   var idVal = $('input[name="id"]').val();
-  variableString += "idVal = "+idVal+"\n";
   var opacityVal = $('input[name="opacity"]').val();
-  variableString +="opacityVal = "+opacityVal+"\n";
-  var pageTitleVal = $('select[name="pageTitle"]').val();
-  variableString +="pageTitleVal = "+pageTitleVal+"\n";
+  var pageTitleVal = $('input[name="pageTitle"]').val();
+  var pagesIdVal = $('input[name="pages_id"]').val();
   var textAlignVal = $('#textAlign').val();
-  variableString +="textAlignVal = "+textAlignVal+"\n";
   var widthVal = $('input[name="width"]').val();
-  variableString +="widthVal = "+widthVal+"\n";
   var xVal = $('input[name="x"]').val();
-  variableString +="xVal = "+xVal+"\n";
   var yVal = $('input[name="y"]').val();
-  variableString +="yVal = "+yVal+"\n";
-  alert(variableString);
   
   // Post the values to the pages controller
   var base_url = "<?php echo base_url(); ?>";
-  $.post(base_url + "index.php/elements/update", { backgroundColor: backgroundColorVal, color: colorVal, contents: contentsVal, fontFamily: fontFamilyVal, fontSize: fontSizeVal, height: heightVal, id: idVal, opacity: opacityVal, pageTitle: pageTitleVal, textAlign: textAlignVal, width: widthVal, x: xVal, y: yVal },
+  $.post(base_url + "index.php/elements/update", { backgroundColor: backgroundColorVal, color: colorVal, contents: contentsVal, fontFamily: fontFamilyVal, fontSize: fontSizeVal, height: heightVal, id: idVal, opacity: opacityVal, pages_id: pagesIdVal, textAlign: textAlignVal, width: widthVal, x: xVal, y: yVal },
 	function(data) {
 	// Refresh page
 	window.top.location.reload();
   });
-	
 });
 
 
@@ -211,6 +185,19 @@ $('#remove_element').click(function(e){
   e.preventDefault();
   removeElement();
 });
+
+
+$('#copy_element').click(function(e){
+  e.preventDefault();
+  
+  var base_url = "<?php echo base_url(); ?>";
+  var idVal = $('input[name="id"]').val();
+  //change the action and method of the form and then submit it
+  $("#editorForm").attr("action", base_url + "index.php/iframe/copyText/"+idVal);
+  $("#editorForm").attr("method", "post");
+  $("#editorForm").submit();
+});
+
 
 function updateSlider(){
   //check the field that is selected
@@ -371,7 +358,7 @@ function calculateTextArea(){
 	  $("#height").val( heightVal );
 }
 
-function removeElement(){
+function removeElement(elementId){
   inputClick=confirm("Are you sure you want to remove this text?");
   if (inputClick) {
 	var base_url = "<?php echo base_url(); ?>";

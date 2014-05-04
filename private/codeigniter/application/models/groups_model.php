@@ -26,6 +26,25 @@ class Groups_model extends CI_Model {
 	  }
    }
    
+   // get the group from a specified element id
+   public function get_group_from_element_id($id)
+   {
+	  $this->load->model('Elements_model');
+	  
+	  $this->db->where('id', $id);
+	  $this->db->select('pages_id');
+	  $query = $this->db->get('elements');
+	  
+	  if ($query->num_rows() > 0)
+	  {
+		 $row = $query->row(); 
+		  return $row->pages_id;
+	  }else
+	  {
+		  return null;
+	  }
+   }
+   
    // updates user_info in the `groups` table
    public function addUserToGroup($requesterId, $group)
    {

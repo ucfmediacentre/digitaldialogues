@@ -409,33 +409,63 @@ class Elements_model extends CI_Model {
 		if (array_key_exists('contents', $post_data))
 		{
 			$contents = $post_data['contents'];
-			$colour = $post_data['color'];
-			$width = $post_data['width'];
-			$height = $post_data['height'];
             //$contents = htmlspecialchars($contents, ENT_QUOTES); Do we need this?
             $contents = str_replace ("\n", "<br>", $contents );
-			
 			$this->data['contents'] = $contents;
-			$this->data['color'] = $colour;
-			$this->data['width'] = $width;
-			$this->data['height'] = $height;
+			if (array_key_exists('backgroundColor', $post_data))
+			{	
+				$this->data['backgroundColor'] = $post_data['backgroundColor'];
+			}
+			if (array_key_exists('color', $post_data))
+			{	
+				$this->data['color'] = $post_data['color'];
+			}
+			if (array_key_exists('fontFamily', $post_data))
+			{	
+				$this->data['fontFamily'] = $post_data['fontFamily'];
+			}
+			if (array_key_exists('fontSize', $post_data))
+			{	
+				$this->data['fontSize'] = $post_data['fontSize'];
+			}
+			if (array_key_exists('height', $post_data))
+			{	
+				$this->data['height'] = $post_data['height'];
+			}
+			if (array_key_exists('opacity', $post_data))
+			{	
+				$this->data['opacity'] = $post_data['opacity'];
+			}
+			if (array_key_exists('textAlign', $post_data))
+			{	
+				$this->data['textAlign'] = $post_data['textAlign'];
+			}
+			if (array_key_exists('width', $post_data))
+			{	
+				$this->data['width'] = $post_data['width'];
+			}
+			if (array_key_exists('x', $post_data))
+			{	
+				$this->data['x'] = $post_data['x'];
+			}
+			if (array_key_exists('y', $post_data))
+			{	
+				$this->data['y'] = $post_data['y'];
+			} 
+			
 			$this->data['type'] = 'text';
 		}
 		
-        // if the contents was used (i.e. a text element)..
-		if (array_key_exists('author', $post_data))
+        if (array_key_exists('author', $post_data))
 		{
-			$author = $post_data['author'];
-			$editable = $post_data['editable'];
-			$this->data['author'] = $author;
-			$this->data['editable'] = $editable;
+			$this->data['author'] = $post_data['author'];
+			$this->data['editable'] = $post_data['editable'];
 		}
 		
 		// check pages_id
 		if (array_key_exists('pages_id', $post_data))
 		{	
-			$pages_id = $post_data['pages_id'];
-			$this->data['pages_id'] = $pages_id;
+			$this->data['pages_id'] = $post_data['pages_id'];
 		}else
 		{
 			// should probably check to see if a page exist with this id as well?
