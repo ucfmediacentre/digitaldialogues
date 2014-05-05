@@ -470,7 +470,7 @@
 		switch(change)
 		{
 			case 'size':
-				var textContents = $('#' + elementId).val();
+				var textContents = $('#' + elementId).text();
 				window.parent.$("#textSizer").text(textContents);
 				window.parent.$("#textSizer").css("fontSize", $('#' + elementId).css('font-size')+"px");
 				if (window.parent.$("#textSizer").width()>320){
@@ -498,6 +498,7 @@
 				changes.contents = alt;
 				break; 
 		}
+
 		
 		// Ajax the values to the pages controller  
 		$.ajax({
