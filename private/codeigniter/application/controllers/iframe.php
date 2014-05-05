@@ -86,10 +86,52 @@ class Iframe extends CI_Controller {
 	  
 	  $this->load->helper('url');
 	  $this->load->model('Elements_model');
+	  $this->load->model('Groups_model');
+	  $this->load->model('Pages_model');
 	  
 	  $post_data = $this->input->post(NULL, TRUE); // return all post data filtered XSS - SCRIPT SAFE
 	  
+	  $groups_list= $this->Groups_model->list_all();
+
+	  $i = 0;
+	  $groupsString = "";
+	  
+	  foreach ($groups_list as $group) {
+		
+		$pagesString = "";
+		
+		// print each group title as an selectable option 
+		$groupsString =  $groupsString .'<option id="'.$i.'" value="'.$groups_list[$i]['id'].'" ';
+		if (strtoupper($groups_list[$i]['title']) == strtoupper($post_data['groupName'])) {
+		  // select the current group as default
+		  $groupsString =  $groupsString .'selected';
+		}
+		$groupsString =  $groupsString.'>'.$groups_list[$i]['title'].'</option>';
+		
+		//get all pages from each group
+		$pages_list = $this->Pages_model->get_all_pages($groups_list[$i]['title']);
+		$j = 0;
+		
+		foreach ($pages_list as $page) {
+		  $pagesString = $pagesString.'<option value="'.$pages_list[$j]['id'].'" ';
+		  if ($pages_list[$j]['id'] == $post_data['pages_id']) {
+			// select the current group as default
+			$pagesString = $pagesString.'selected';
+		  }
+		  $pagesString = $pagesString.'>'.$pages_list[$j]['title'].'</option>';
+		  
+		  $j++;
+		}
+		
+		//save each pages option string for each group
+		$groups_list[$i]['pages'] = $pagesString;
+		$data['groupString'] = $groupsString;
+		
+		$i++;
+	  }
+	  
 	  $data['elementId'] = $elementId;
+	  $data['groupsList'] = $groups_list;
 	  
 	  //$data['attribution'] = $post_data['attribution'];
 	  //$data['author'] = $post_data['author'];
