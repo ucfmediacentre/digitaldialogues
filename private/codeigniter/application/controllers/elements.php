@@ -10,6 +10,10 @@ class Elements extends CI_Controller {
 	// processes an element and adds it to the `elements` and `updates` table
 	public function add()
 	{
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		$this->load->model('Elements_model');
 		$this->load->model('Links_model');
 		$this->load->model('Pages_model');
@@ -48,8 +52,13 @@ class Elements extends CI_Controller {
 		$update_elements_id = $elements_id;
 		$update_action = 'created';
 		$this->Elements_model->create_update($update_action, $update_elements_id);
+<<<<<<< HEAD
 	}	
 	
+=======
+	}
+
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 	// updates element and creates new update and returns "1" if successful
 	public function update()
 	{

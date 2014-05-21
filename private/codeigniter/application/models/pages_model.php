@@ -129,7 +129,11 @@ class Pages_model extends CI_Model {
 		return $listview;
 	}
 	
+<<<<<<< HEAD
 	// returns a json array of all pages to do with a specified group
+=======
+	// returns a json array of all pages in a specified group
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 	function get_titles($group)
 	{
    		$this->db->select('title');
@@ -139,7 +143,11 @@ class Pages_model extends CI_Model {
 		return json_encode($result);
 	}
 	
+<<<<<<< HEAD
 	// gets the page title of a page with a specified id
+=======
+	// gets the page title of a page with a specified page id
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 	function get_title($id)
 	{
    		$this->db->where('id', $id);
@@ -174,7 +182,11 @@ class Pages_model extends CI_Model {
 		}
 	}
 	
+<<<<<<< HEAD
 	// gets the group details from a specified id
+=======
+	// gets the group details from a specified page id
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 	function get_group($id)
 	{
    		$this->db->where('id', $id);
@@ -198,6 +210,7 @@ class Pages_model extends CI_Model {
    		$this->db->select('pages_id');
    		$query = $this->db->get('elements');
 		
+<<<<<<< HEAD
 		if ($query->num_rows() > 0)
 		{
 			$row = $query->row(); 
@@ -206,6 +219,10 @@ class Pages_model extends CI_Model {
 		{
 			return null;
 		}
+=======
+		$row = $query->row(); 
+		$pageId = $row->pages_id;
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		
    		$this->db->where('id', $pageId);
    		$this->db->select('title');
@@ -214,12 +231,19 @@ class Pages_model extends CI_Model {
 		if ($query->num_rows() > 0)
 		{
 			$row = $query->row(); 
+<<<<<<< HEAD
 			return $row->title;
+=======
+			return $row;
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		} else
 		{
 			return null;
 		}
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 	}
 	
 	// creates a page with a specified title
@@ -242,10 +266,16 @@ class Pages_model extends CI_Model {
 		// first insert user's requirements in to database
 		//collect variables from the form
    		$title = $this->input->post('title');
+<<<<<<< HEAD
    		//$description = $this->input->post('description');
    		//$keywords = $this->input->post('keywords');
    		$group = $this->input->post('group');
    		$currentPageTitle = $this->input->post('currentPageTitle');
+=======
+   		$group = $this->input->post('group');
+   		$currentPageTitle = $this->input->post('currentPageTitle');
+   		$description = $this->input->post('description');
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
    		$currentPageId = $this->input->post('currentPageId');
 		
 		// check to see if this page name already exists

@@ -11,6 +11,7 @@
 	
 	$(document).ready(function(){
 		
+<<<<<<< HEAD
 		// as soon as the page is ready initiate all elements on the page
 		initElements();
         
@@ -120,6 +121,28 @@
 			'afterShow': function(){
 				$('#new_group_title').focus();
 			}
+=======
+		
+		var shiftPressed = false;
+		
+		$(window).keydown(function(evt) {
+		  if (evt.which == 16) { // shift
+			shiftPressed = true;
+		  }
+		}).keyup(function(evt) {
+		  if (evt.which == 16) { // shift
+			shiftPressed = false;
+		  }
+		});
+		
+		// as soon as the page is ready initiate all elements on the page
+		initElements();
+		
+		$(".iframe").fancybox({
+			'width':510,
+			'type':'iframe',
+			'autoScale':'false'
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		});
 	
 		// triggers the element fancy box on double click
@@ -160,6 +183,7 @@
             
 		});
 		
+<<<<<<< HEAD
 		// submits Ajax for updating new page into database
 		$('#submit_new_page').click(function(e){
 			// Stop the page from navigating away from this page
@@ -308,6 +332,21 @@
 		
 		// creates functions for double clicking elements
 		$('.element').dblclick(function(){
+=======
+		// creates functions for double clicking elements
+		$('.element').dblclick(function(){
+		  
+		  //if SHIFT is pressed then open full editing
+		  if(shiftPressed){
+			  $.fancybox.open({
+				  padding : 20,
+				  href:'<?php echo base_url(); ?>index.php/iframe/edit/textEditor/'+$(this).attr('id') ,
+				  type: 'iframe',
+				  'width':506,
+				  'autoScale':'false'
+			  });
+		  } else {
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 			
 			$(this).find('.delete_button').fadeIn();
 			
@@ -347,6 +386,10 @@
                     },250);
 				});
 			}
+<<<<<<< HEAD
+=======
+		  }
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		});
 		
 		// adds an element to the page with ajax when submit button is clicked
@@ -417,9 +460,26 @@
 			{
 				fd.append('file', element_file);
 				fd.append('description', element_description);
+<<<<<<< HEAD
 			}else
 			{
 				fd.append('contents', element_description);
+=======
+			} else {
+				fd.append('contents', element_description);
+				
+				var text_form_text = element_description;
+				$("#textSizer").text(text_form_text);
+				$("#textSizer").css("fontSize", "15px");
+				if ($("#textSizer").width()>320){
+				  $("#textSizer").width(320);
+				}
+				var widthVal = $("#textSizer").width()+20;
+				var heightVal = $("#textSizer").height()+20;
+				
+				fd.append('width', widthVal);
+				fd.append('height', heightVal);
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 			}
 			
 			fd.append('author', username);
@@ -561,6 +621,10 @@
 			// MAKES DRAGGABLE unless the author specified that it shouldn't be editable
 			if (page_elements_json[i].editable == 'Y' || page_elements_json[i].author == username) {
 				$(elm).draggable({
+<<<<<<< HEAD
+=======
+					//snap: "div", grid: [ 10, 10 ],
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 					stack: "div",
 					stop: function(event, ui) {
 						updateElement(ui.helper[0].id , 'position');
@@ -608,7 +672,11 @@
 				}
 			}		 
             
+<<<<<<< HEAD
 			if ($(elm).hasClass('video')) $(elm).css({'height':'195', 'width':'240'});
+=======
+			if ($(elm).hasClass('video')) $(elm).css({'height':'155', 'width':'240'});
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
             
 			// Adds delete button unless the author made it uneditable
 			
@@ -644,12 +712,21 @@
 	function initAudio(elm, index)
 	{
         
+<<<<<<< HEAD
 		$(elm).css("height","30px");
+=======
+		$(elm).css("height","62px");
+		$(elm).css("width", "352px"); 
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		var filename_NoExt = page_elements_json[index].filename.split('.');
 		var audio_html = '<audio controls preload="none" style="width:320px";>';
 		audio_html = audio_html + '<source src="' + base_url + 'assets/audio/' + filename_NoExt[0] + '.mp3" type="audio/mpeg">';
 		audio_html = audio_html + '<source src="' + base_url + 'assets/audio/' + filename_NoExt[0] + '.oga" type="audio/ogg">';
+<<<<<<< HEAD
 		audio_html = audio_html + '</audio>';	
+=======
+		audio_html = audio_html + '</audio><span>'+page_elements_json[index].description+'</span>';	
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		//audio_html = audio_html + '<p><strong>Download Audio: </strong><a href="' + base_url + 'assets/audio/' + filename_NoExt[0] + '.mp3">MP3</a></p>';
 		
 		var audio_element = $(audio_html);
@@ -658,6 +735,10 @@
 	// ----------------------------------------------- VIDEO
 	function initVideo(elm, index)
 	{
+<<<<<<< HEAD
+=======
+	  
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		var filename_NoExt = page_elements_json[index].filename.split('.');
         var video_html = '<a class="videoLink" videofile="' + filename_NoExt[0];
 		video_html = video_html + '" videowidth="640" videoheight="'+(Math.round((640/page_elements_json[index].width)*page_elements_json[index].height)+65)+'"';
@@ -679,11 +760,31 @@
 		switch(change)
 		{
 			case 'size':
+<<<<<<< HEAD
 				// updates width and height
 				changes.width = parseInt($('#' + elementId).css('width'), 10);
 				changes.height = parseInt($('#' + elementId).css('height'), 10);
 				// only update font size if the element type is text (found some problems with positions otherwise)
 				if ($('#' + elementId).hasClass('text')) changes.fontSize = $('#' + elementId).css('font-size');
+=======
+				var textContents = $('#' + elementId).text();
+				window.parent.$("#textSizer").text(textContents);
+				window.parent.$("#textSizer").css("fontSize", $('#' + elementId).css('font-size')+"px");
+				if (window.parent.$("#textSizer").width()>320){
+				  window.parent.$("#textSizer").width(320);
+				}
+				var widthVal = window.parent.$("#textSizer").width()+20;
+				var heightVal = window.parent.$("#textSizer").height()+20;
+	  
+	  
+				// updates width and height
+				changes.width = parseInt($("#textSizer").css('width'), 10);
+				changes.height = parseInt($("#textSizer").css('height'), 10);
+				// only update font size if the element type is text (found some problems with positions otherwise)
+				if ($('#' + elementId).hasClass('text')) {
+				  changes.fontSize = $('#' + elementId).css('font-size');
+				}
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 				break;
 			case 'position':
 				// changes the x and y for left and top ( tut tut  for mixing up terminology from data base to css )
@@ -695,6 +796,10 @@
 				changes.contents = alt;
 				break; 
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		
 		// Ajax the values to the pages controller  
 		$.ajax({

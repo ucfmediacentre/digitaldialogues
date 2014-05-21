@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+<span id="content">here this is very [[thankkyou]] hard to read we new [[for]] working </span>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	var content = $('#content').html();
+	
+	$('#content').html( processShortCodes(content));
+	
+function processShortCodes(string){
+
+	while(string.indexOf('[[') > 0)
+	{
+		// get the beginning and end of the shortcode declaration
+		var openCodeIndex = string.indexOf('[[');
+		var closeCodeIndex = string.indexOf(']]') + 2;
+		
+		// get the shortcode content
+		var link = string.substr(openCodeIndex + 2, (closeCodeIndex) - (openCodeIndex+4));
+		
+		var leftOfShortCode = string.slice(0,openCodeIndex);	
+		var rightOfShortCode = string.slice(closeCodeIndex);
+	
+		var linkHTML = '<a href="' + link + '">' + link + '</a>';
+		
+		string = leftOfShortCode + linkHTML + rightOfShortCode;
+	
+	}
+	
+	return string;
+}
+	
+});
+</script>
+</body>
+</html>

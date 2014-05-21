@@ -23,6 +23,20 @@
 	</form>
   </div>
   <div id="editButtons">
+<<<<<<< HEAD
 	<p>Add: <a id="add_text_form_trigger" href="#add_text_form">Comment</a>&nbsp;|&nbsp;<a id="add_image_form_trigger" href="#add_image_form">Image</a>&nbsp;|&nbsp;<a id="add_audio_form_trigger" href="#add_audio_form">Audio</a>&nbsp;|&nbsp;<a id="add_video_form_trigger" href="#add_video_form">Video</a>&nbsp;|&nbsp;<a id="add_page_form_trigger" href="#add_page_form">Story</a>
   </div>
+=======
+	<p>Add:
+	<a href="<?php echo base_url(); ?>index.php/iframe/create/newText/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Text</a>&nbsp;|&nbsp;
+	<a href="<?php echo base_url(); ?>index.php/iframe/create/newImage/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Image</a>&nbsp;|&nbsp;
+	<a href="<?php echo base_url(); ?>index.php/iframe/create/newAudio/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Audio</a>&nbsp;|&nbsp;
+	<a href="<?php echo base_url(); ?>index.php/iframe/create/newVideo/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Video</a>&nbsp;|&nbsp;
+	<a href="<?php echo base_url(); ?>index.php/iframe/create/newPage/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Page</a>&nbsp;|&nbsp;
+	<a href="<?php echo base_url(); ?>index.php/iframe/create/newGroup/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Group</a>
+	<br /><br />
+	<span style="font-size:10px;"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="<?php echo base_url(); ?>img/ccLogo.png" /></a><br />Any contributions made to this website will come under a <br /><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons License Attribution 3.0</a></span>
+  </div>
+  <span id="textSizer">textSizer</span>
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 </div>

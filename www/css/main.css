@@ -23,19 +23,19 @@ textarea {
 }
 
 A:link {
-  color:#c90;
+  color:#36c;
   font-weight:bold;
   text-decoration:none;
 }
 
 A:visited {
-  color:#960;
+  color:#339;
   font-weight:bold;
   text-decoration:none;
 }
 
 A:hover {
-  color:#fc3;
+  color:#39f;
   font-weight:bold;text-decoration:none;
 }
 
@@ -44,18 +44,18 @@ A:active {
 }
 
 a.navbar:link {
-  color:#c90;
+  color:#36c;
   text-decoration:none;
   font-weight: bold;
 }
 
 a.navbar:visited {
-  color:#960;
+  color:#339;
   text-decoration:none;font-weight: bold;
 }
 
 a.navbar:hover {
-  color:#fc3;
+  color:#39f;
   text-decoration:none;
   font-weight:bold;
 }
@@ -76,7 +76,7 @@ a#main_home_button{
 
 a#main_home_button:hover{
 	background-position:0px 0px;
-	color:#fff;
+	color:#ccc;
 }
 
 .error {
@@ -240,12 +240,11 @@ div.element:hover {
 	z-index:2000;
 	background-color:transparent;
 	overflow:visible;
-	color: #ccc;
+	color: #666;
 }
 
 #editButtons:hover {
 	cursor:hand; cursor:pointer;
-	color:#fff;
 }
 .element{
 	position:relative;
@@ -315,10 +314,10 @@ img {
 	z-index:2010;
 	background-color:transparent;
 	overflow:visible;
-	color: #ccc;
+	color: #666;
 }
 #page_description{
-	color:#999;
+	color:#666;
 	margin:0px;
 	padding:0px;
 }
@@ -336,12 +335,12 @@ img {
 	z-index:2000;
 	background-color:transparent;
 	overflow:visible;
-	color: #ccc;
+	color: #666;
 }
 
 #page_title_wrapper:hover {
 	cursor:hand; cursor:pointer;
-	color:#fff;
+	color:#999;
 }
 
 #page_info_form_wrap{
@@ -359,7 +358,7 @@ img {
 }
 
 #recentChanges{
-	color:#ccc;
+	color:#999;
 	width:500px;
 	position:absolute;
 	left:460px;
@@ -373,7 +372,7 @@ img {
 	position:fixed;
 	left:20px;
 	top:20px;
-	color:#ccc;
+	color:#999;
 	width:auto;
 }
 

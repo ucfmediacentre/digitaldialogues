@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Flash HTTP Player - Live nDVR Streaming</title>
+
+    <script language="javascript">AC_FL_RunContent = 0;</script>
+    <script src="AC_RunActiveContent.js" language="javascript"></script>	
+    <!-- Framework CSS -->
+	<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="css/wowza.css" type="text/css" />
+        <script type="text/javascript" src="lib/swfobject.js">
+            </script>
+        <script type="text/javascript" src="lib/ParsedQueryString.js">
+            </script>
+        <script type="text/javascript">
+            
+            // Collect query parameters in an object that we can
+            // forward to SWFObject:
+            
+            var pqs = new ParsedQueryString();
+            var parameterNames = pqs.params(false);
+            // Note that the buffer parameters below increase the OSMF defaults by 10 seconds
+            var parameters = {
+                src: "http://localhost:1935/dvr/myStream/manifest.f4m?DVR",
+                autoPlay: "false",
+                verbose: true,
+                controlBarAutoHide: "false",
+                controlBarPosition: "bottom"
+            };
+            
+            for (var i = 0; i < parameterNames.length; i++) {
+                var parameterName = parameterNames[i];
+                parameters[parameterName] = pqs.param(parameterName) ||
+                parameters[parameterName];
+            }
+            
+            // Escape the ampersands so any URL params pass through OSMF into Wowza
+            s = parameters['src'];
+            s = escape(s);
+            parameters['src'] = s; 
+            
+            var wmodeValue = "direct";
+            var wmodeOptions = ["direct", "opaque", "transparent", "window"];
+            if (parameters.hasOwnProperty("wmode"))
+            {
+                if (wmodeOptions.indexOf(parameters.wmode) >= 0)
+                {
+                    wmodeValue = parameters.wmode;
+                }                            
+                delete parameters.wmode;
+            }
+            
+            // Embed the player SWF:                    
+            swfobject.embedSWF(
+                               "StrobeMediaPlayback.swf"
+                               , "StrobeMediaPlayback"
+                               , 640
+                               , 480
+                               , "10.3.0"
+                               , "expressInstall.swf"
+                               , parameters
+                               , {
+                               allowFullScreen: "true",
+                               wmode: wmodeValue
+                               }
+                               , {
+                               name: "StrobeMediaPlayback"
+                               }
+                               );
+            
+            /* Uncomment this code to be notified of playback errors in JavaScript: 
+             
+             function onMediaPlaybackError(playerId, code, message, detail)            
+             {
+             alert(playerId + "\n\n" + code + "\n" + message + "\n" + detail);            
+             }
+             
+             */
+            
+            </script>
+        <style type="text/css">
+            <!-- .Verdana {
+                font-family: Verdana, Geneva, sans-serif;
+            }
+            -->
+            </style>
+</head>
+<body>
+    <div class="container">
+		<!-- HEADER -->
+        <div class="span-18">
+            <h1>Live Wowza nDVR Streaming</h1><h2>Flash HTTP Player</h2>
+        </div>
+        <div class="span-6 last">
+            <img src="img/wowza-logo_1024.png" class="logo" style="height:72px;width:205px" />
+        </div>
+        <hr class="heading">
+		<!-- END HEADER -->
+		<!-- EXAMPLE PLAYER: WIDTH of this player should be 630px, height will vary depending on the example-->
+        <div class="span-16">
+			<!--video width="630" height="357" controls>
+            	<source src="http://localhost:1935/vod/mp4:Sample.mp4/playlist.m3u8" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+            </video-->
+            <table width="100%" border="0" cellspacing="5">
+                <tr>
+                    <td>
+                        <div id="StrobeMediaPlayback">
+                            <p>
+                            Alternative content
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>                
+                        <script type="text/javascript">
+                            
+                            // Construct the HTML required to reload with any of the
+                            // listed media links:
+                            
+                            var linkingCode = '<form > ';
+                            linkingCode = linkingCode + '<b>Stream:</b>&nbsp;&nbsp;';
+                            linkingCode = linkingCode + '<input type="text" name="src" size="75" value="'+unescape(parameters['src'])+'" />';
+                            linkingCode = linkingCode + '<input type="submit" name="playButton" value="Connect" />  </form>';
+                            
+                            document.write(linkingCode);
+                            </script>
+                    </td>
+                </tr>
+                
+            </table>
+	        <h3>To use the source code in Flash Builder</h3>
+			<ol>
+			    <li>Adobe Flex SDK 4.5.1 or later is required. If necessary, install Flex SDK: <a target="_new" href="http://www.adobe.com/devnet/flex/flex-sdk-download.html">Latest Flex SDK</a> or <a target="_new" href="http://sourceforge.net/adobe/flexsdk/wiki/Download%20Flex%204.5/">Flex 4.5 Downloads</a>
+		        <li>Download and unzip Open Source Media Framework (OSMF) 1.6 or later:
+			            <a target="_new" href="http://sourceforge.net/projects/osmf.adobe/">Latest OSMF</a>
+			            
+	            <li>Start Flash Builder, and then select a new workspace location.
+			                
+                <li>Make sure that Flex SDK 4.5.1 or later is the default SDK. You can add or select the SDK under Windows > Preferences > Flash Builder > Installed Flex SDKs
+.			                    
+                <li>From the Flash Builder menu, select File > Import > General > Existing Projects into Workspace.
+			                        
+                <li>Navigate to the unzipped OSMF download, and then select the <strong>samples\ChromeLibrary</strong>, <strong>samples\MediaContainerUIComponentLibrary</strong>, and <strong>framework\OSMF</strong> projects.  
+			                            
+                <li>With all of the above projects selected in Package Explorer, from the Flash Builder menu, select Project > Properties, and then on the Flex Library Compiler tab:
+                    <ul>
+                        <li>In <strong>Flex SDK version</strong>, select the Flex SDK version to use (either the default version or a specific version). The minimum supported version is Flex SDK 4.5.1.</li>
+                        <li>In <strong>Adobe Flash Player options</strong>, specify the Flash Player version to use with the Flex SDK. The minimum version required by Flex SDK 4.6 is <strong>11</strong>.<strong>1</strong>.<strong>0</strong>. For Flex SDK 4.5.x, it is <strong>10</strong>.<strong>2</strong>.<strong>0</strong>.</li>
+                        <li>In <strong>Additional compiler arguments</strong>, add the following (in bold):<BR>
+                            <b>-locale en_US -define CONFIG::LOGGING true -define CONFIG::PLATFORM true -define CONFIG::MOCK false -define CONFIG::FLASH_10_1 true</b></li>
+                        <li>Click Apply</li>
+                    </ul>
+                </li>
+                <li>Create a new Flex project named <strong>FlashHTTPPlayer</strong> (<strong>File</strong> > <strong>New</strong> > <strong>Flex Project</strong>):
+                	<ul>
+                        <li>In <strong>Project Location</strong>, enter <strong>FlashHTTPPlayer</strong> in <strong>Project name</strong>.
+                        <li>In <strong>Build Paths</strong>, on the <strong>Source path</strong> tab, copy the contents of the <strong>FlashHTTPPlayer</strong> example <strong>src</strong> folder to the project <strong>src</strong> folder.
+                        <li>In <strong>Build Paths</strong>, on the <strong>Library path</strong> tab:
+                        <ol>
+                            <li>In the <strong>Framework linkage</strong> list, select <strong>Merged into code</strong>.
+                            <li>Click the <strong>Add Project</strong> button and add the <strong>OSMF</strong>, <strong>MediaContainerUIComponent</strong>, and <strong>ChromeLibrary</strong> projects.
+                        </ol>
+                        </li>
+                    </ul>
+                </li>
+		    </ol>		
+        	</div>
+		<!-- SIDEBAR -->
+        <div class="span-7 prepend-1 last">
+        	<h3>Description</h3>
+			<p>This package contains source code for the Strobe Flash player using the OSMF Framework. It will play single and adaptive bitrate Flash sanjose (HTTP only) streams.</p> 
+            <h3>Installation</h3>
+            <p>In the /examples/LiveDVRStreaming directory:<br>
+            <ul>
+                <li>LINUX<br>
+                    Run <strong>./installall.sh</strong>
+                <li>WINDOWS 7 / WINDOWS 8<br>
+                    Right-click <strong>installall.bat</strong> and then select <strong>Run as administrator</strong>
+                <li>WINDOWS   SERVER<br>
+                    Double-click the <strong>installall.bat</strong> file                 
+                <li>MAC OS X<br>
+                    Double-click the <strong>installall.command</strong> file
+                </ul>
+			<h3>Instructions</h3>
+            <ol>
+                <li>Review the tutorials listed below.               
+                <li>Click the <strong>Play</strong> button next to the <strong>Stream</strong> field.
+                <li>Use the <strong>Pause</strong> button and the video scrub bar to try the DVR functionality.
+</ol>
+            <h3>Tutorials</h3>           
+            <ul>
+            <li><a href="http://www.wowza.com/forums/content.php?300-How-to-set-up-and-run-Wowza-network-DVR-for-live-streaming">How to set-up and run Wowza nDVR for live streaming</a>
+            <li><a href="http://www.wowza.com/forums/content.php?392-Wowza-nDVR-Quick-Start-Guide">Wowza nDVR Quick Start Guide</a>
+            <li><a href="http://www.wowza.com/forums/content.php?415-How-to-plan-your-Wowza-nDVR-Workflow">How to plan your Wowza nDVR Workflow</a><br/>                                    
+            <li><a href="http://www.wowza.com/forums/content.php?303-How-to-do-advanced-configuration-for-Wowza-nDVR-AddOn">nDVR Advanced Configuration</a><br/>
+            </ul>
+            <h3>Additional Resources</h3>   
+            <ul>
+            <li><a href="http://www.wowza.com/resources/WowzanDVRAddOn_UsersGuide.pdf">nDVR User's Guide</a>
+            <li><a href="http://www.wowza.com/forums/forumdisplay.php?74-AddOn-Wowza-nDVR">nDVR on Wowza Forums</a>
+            <li><a href="http://www.wowza.com/forums/content.php?297-addon-wowza-ndvr">nDVR Articles on Wowza.com</a></li>    
+            </ul> 
+        </div>
+		<!-- FOOTER -->
+        <div class="span-24">
+            <hr class="heading">
+            <div class="span-1">
+            	<img src="img/icon-company.png" width="32" height="32" />
+            </div>
+            <div class="span-23 last copyright">
+                &nbsp;&#169;&nbsp;2014 Wowza Media Systems, LLC. All rights reserved.
+            </div>
+        </div>
+		<!-- END FOOTER -->
+	</div>
+</body>
+</html>

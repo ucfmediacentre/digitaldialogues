@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project name="myfirstmodule" default="jar" basedir="..">
+	
+	<property environment="env"/>
+	<property name="app.home" value="${env.WMSAPP_HOME}"/>
+
+	<property name="windows.wowza.lib.dir" 
+		value="${app.home}/lib"/>
+	<property name="osx.wowza.lib.dir" 
+		value="/Library/WowzaStreamingEngine/lib"/>
+	<property name="linux.wowza.lib.dir" 
+		value="/usr/local/WowzaStreamingEngine/lib"/>
+	
+	<property name="jar.filename" value="mymodules.jar"/>
+	<property name="core.build.dir" value="classes"/>
+
+	<target name="jar">
+		<jar jarfile="${windows.wowza.lib.dir}/${jar.filename}">
+			<fileset dir="${core.build.dir}">
+			</fileset>
+		</jar>
+	</target>
+	
+</project>

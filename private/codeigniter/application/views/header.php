@@ -6,7 +6,11 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<<<<<<< HEAD
         <title>Digital Dialogues: <?php echo urldecode($title); ?> </title>
+=======
+        <title>Swarm TV: <?php echo urldecode($title); ?> </title>
+>>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
