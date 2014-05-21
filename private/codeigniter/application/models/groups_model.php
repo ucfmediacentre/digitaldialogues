@@ -2,33 +2,19 @@
 
 class Groups_model extends CI_Model {
 
-<<<<<<< HEAD
     //makes sure all functions load the database and url helper
 	public function __construct()
     {
-=======
-	//makes sure all functions load the database and url helper
-	public function __construct()
-	{
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 	  // Call the Model constructor
 	  parent::__construct();
 	  
 	  $this->load->database();
 	  $this->load->helper('url');
-<<<<<<< HEAD
-    }
-    
-   // gets all the details of a specified page
-   public function get_group_details($group)
-   {
-=======
 	}
     
 	// gets all the details of a specified page
 	public function get_group_details($group)
 	{
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 	  $result = $this->db->get_where('groups', array('title' =>$group), 1);
 	  
 	  if ($result->num_rows() > 0)
@@ -38,7 +24,6 @@ class Groups_model extends CI_Model {
 	  {
 		return false;
 	  }
-<<<<<<< HEAD
    }
    
    // updates user_info in the `groups` table
@@ -118,108 +103,6 @@ class Groups_model extends CI_Model {
    
    public function check_user($group, $user_id)
    {
-	
-=======
-	}
-	
-	// get the group from a specified element id
-	public function get_group_from_element_id($id)
-	{
-	  $this->load->model('Elements_model');
-	  
-	  $this->db->where('id', $id);
-	  $this->db->select('pages_id');
-	  $query = $this->db->get('elements');
-	  
-	  if ($query->num_rows() > 0)
-	  {
-		 $row = $query->row(); 
-		  return $row->pages_id;
-	  }else
-	  {
-		  return null;
-	  }
-	}
-   
-	// updates user_info in the `groups` table
-	public function addUserToGroup($requesterId, $group)
-	{
-	  // get user_id and then add this user
-	  $this->db->select('user_id');
-	  $this->db->where('title', urldecode($group));
-	  $this->db->from('groups');
-	  $query=$this->db->get();
-	  
-	  $row = $query->row(); 
-	  $user_ids = $row->user_id;
-	  
-	  // search user_id access to see if new user_id already exists in the list
-	  $accessList = explode(',', $user_ids);
-	  
-	  foreach($accessList as $key) {    
-		  if ($key == $requesterId) return;    
-	  }
-	  
-	  // add the new user's id to the user_id access list
-	  $user_ids = $user_ids.",".$requesterId;
-	  
-	  $data = array(
-			 'user_id' => $user_ids
-		  );
-	
-	  $this->db->where('title', $group);
-	  $this->db->update('groups', $data);
-	}
-   
-   
-	// queries groups database to see if a user is allowed access to a particular group (returns TRUE or FALSE)
-	public function isUserInGroup($userId, $group)
-	{
-	  // get user_id and then add this user
-	  $this->db->select('user_id');
-	  $this->db->where('title', $group);
-	  $this->db->from('groups');
-	  $query=$this->db->get();
-	  
-	  $row = $query->row(); 
-	  $user_ids = $row->user_id;
-	  
-	  // search user_id access to see if new user_id already exists in the list
-	  $accessList = explode(',', $user_ids);
-	  
-	  foreach($accessList as $key) {    
-		  if ($key == $userId) {
-			  return TRUE;
-		  }
-	  }
-	  
-	  return FALSE;
-	}
-   
-   
-	// queries groups database to see if a user is allowed access to a particular group (returns TRUE or FALSE)
-	public function isGroupPublic($group)
-	{
-	  // get user_id and then add this user
-	  $this->db->select('openness');
-	  $this->db->where('title', $group);
-	  $this->db->from('groups');
-	  $query=$this->db->get();
-	  
-	  $row = $query->row(); 
-	  $openness = $row->openness;
-	  
-	  if ($openness == 'public') {
-		  return TRUE;
-	  } else {
-		  return FALSE;
-	  }
-	}
-   
-  public function check_user($group, $user_id)
-  {
-   
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 	// presume no access
 	$access = false;
 	
@@ -229,23 +112,12 @@ class Groups_model extends CI_Model {
 	
 	// check to see if the user is the creator of the group
 	if ($result->creator_id == $user_id){
-<<<<<<< HEAD
 	    
 	  // allow access
 	  $access = true;
 	    
 	// if not the creator do they have access to the group?    
 	}else{
-	    
-=======
-		
-	  // allow access
-	  $access = true;
-		
-	// if not the creator do they have access to the group?    
-	}else{
-		
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 	  $users = $result->user_id;
 	  
 	  // break user id string into an array
@@ -257,13 +129,7 @@ class Groups_model extends CI_Model {
 		// allow access
 		if ($user == $user_id) $access = true;
 	  }
-<<<<<<< HEAD
 	    
-	}
-	return $access;
-  }
-=======
-		
 	}
 	return $access;
   }
@@ -295,5 +161,4 @@ class Groups_model extends CI_Model {
 	  
 	  return $result;
 	}
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 }

@@ -5,11 +5,7 @@
 		<h2><?php echo $page_info->title; ?></h2>
 		<input type="hidden" value="<?php echo $page_info->title; ?>" name="title" />
 		<input type="hidden" value="<?php echo $page_info->id; ?>" name="id" />
-<<<<<<< HEAD
 		<label for="group"> Digital Dialogues: </label>
-=======
-		<label for="group"> Swarm TV: </label>
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		<input id="group" type="text" name="group" value="<?php echo $page_info->group; ?>" /> <br /><br />
 		<label for="description"> Description: </label>
 		<textarea name="description"><?php echo $page_info->description; ?> </textarea>

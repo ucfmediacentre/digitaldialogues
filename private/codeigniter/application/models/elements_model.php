@@ -8,11 +8,7 @@ class Elements_model extends CI_Model {
 	var $valid_file = false;
 	
 	var $current_mime_type_index = -1;
-<<<<<<< HEAD
-	var $excepted_mime_types = array 	(
-=======
 	var $accepted_mime_types = array 	(
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 										array('image/jpeg;'	, 'image'),
 										array('image/png;'	, 'image'),
 										array('image/gif;'	, 'image'),
@@ -36,13 +32,8 @@ class Elements_model extends CI_Model {
         $config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']	= '100';
-<<<<<<< HEAD
-		$config['max_width'] = '1024';
-		$config['max_height'] = '768';
-=======
 		$config['max_width'] = '2048';
 		$config['max_height'] = '1536';
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 
 		$this->load->library('upload', $config);
     }
@@ -100,20 +91,6 @@ class Elements_model extends CI_Model {
 		// interesting article on magicbytes here: 
 		// http://designshack.net/articles/php-articles/smart-file-type-detection-using-php/
 		// Get the file mime type
-<<<<<<< HEAD
-		$file_info = new finfo(FILEINFO_MIME);  
-		$mime_type_string = $file_info->buffer(file_get_contents($file['tmp_name']));
-		$mime_type_parts = explode(' ', $mime_type_string);
-		
-		$file_mime_type = $mime_type_parts[0]; 
-		
-		// check mime type against a list of excepted mime types
-		foreach($this->excepted_mime_types as  $index => $type) 
-        { 
-            if (in_array($file_mime_type, $type))
-            {
-            	$this->current_mime_type_index = $index;
-=======
 		/*$file_info = new finfo(FILEINFO_MIME);  
 		$mime_type_string = $file_info->buffer(file_get_contents($file['tmp_name']));
 		$mime_type_parts = explode(' ', $mime_type_string);
@@ -127,23 +104,14 @@ class Elements_model extends CI_Model {
 		  if ($file_mime_type.";" == $type[0])
             {
 				$this->current_mime_type_index = $index;
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
             	break;
             }
         } 
-		
-<<<<<<< HEAD
-		// send error if the file does not validate
-		if ($this->current_mime_type_index < 0) 
-		{
-			$this->file_errors = "This file type is not allowed! - " . $file_mime_type;
-=======
 		
 		// send error if the file does not validate
 		if ($this->current_mime_type_index < 0) 
 		{
 			$this->file_errors = "This file type is not allowed! - " . $type[0];
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 			return false;
 			exit;
 		}
@@ -156,21 +124,14 @@ class Elements_model extends CI_Model {
 	{	 
 		// Consider creating a folder every new month so that elements are easier to find? 
 		// construct the location from the data
-<<<<<<< HEAD
-		$folder_from_mime_type = $this->excepted_mime_types[$this->current_mime_type_index][1];  // image / audio / video folder
-=======
 		$folder_from_mime_type = $this->accepted_mime_types[$this->current_mime_type_index][1];  // image / audio / video folder
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		$uploads_dir = base_url() . 'assets/' . $folder_from_mime_type . '/';
 		
 		$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 		$unique_name = $folder_from_mime_type . '-' . uniqid();
 		
 		$full_name = $unique_name . '.' . $extension;
-<<<<<<< HEAD
-=======
         $filename = substr($full_name, 0, -4);
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		
 		$this->data['filename'] = $full_name;
 		$this->data['type'] = $folder_from_mime_type;
@@ -190,7 +151,6 @@ class Elements_model extends CI_Model {
                 //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/audio/".$full_name;
                  
                 //Public server's URL
-<<<<<<< HEAD
                 $createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/audio/".$full_name;
                 
                 $execute = shell_exec($createOgvVersion);
@@ -210,41 +170,14 @@ class Elements_model extends CI_Model {
                 //set string variables for ffmpeg string
                 $filename = $full_name;
                 $filename = substr($filename, 0, -4);
-=======
-                $createOgvVersion = "/usr/bin/ffmpeg -i /home/swarmtvn/public_html/assets/audio/".$full_name." -acodec libvorbis -ab 128k /home/swarmtvn/public_html/assets/audio/".$filename.".ogv";
-                
-                $execute = shell_exec($createOgvVersion);
-                $renameOgvToOga = "mv /home/swarmtvn/public_html/assets/audio/".$unique_name.".ogv /home/swarmtvn/public_html/assets/audio/".$unique_name.".oga";
-                $execute = shell_exec($renameOgvToOga);
-                break;
-            case 'video':
-                //set string variables for ffmpeg string
-                //$filename = $full_name;
-                //$filename = substr($filename, 0, -4);
-                //create OGV version
-                //Jem's URL
-                //$createOgvVersion = "/usr/local/bin/ffmpeg2theora ~/Sites/digitaldialogues/www/assets/video/".$full_name;
-  
-                //Public server's URL
-                //$createOgvVersion = "/usr/local/bin/ffmpeg2theora /var/www/assets/video/".$full_name;
-				$createOgvVersion = "/usr/bin/ffmpeg -i /home/swarmtvn/public_html/assets/video/".$full_name." -acodec libvorbis -ac 2 -ab 96k -ar 44100 -b 345k /home/swarmtvn/public_html/assets/video/".$filename.".ogv";
-				//echo $createOgvVersion;
-				//exit;
-                $execute = shell_exec($createOgvVersion);
-                
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
+				
                 //Jem's URLs
                 //$videoDirectory = "/Users/media/Sites/digitaldialogues/www/assets/video/";
                 //$videopostersDirectory = "/Users/media/Sites/digitaldialogues/www/assets/videoposters/";
                 
                 //Public server URLs
-<<<<<<< HEAD
                 $videoDirectory = "/var/www/assets/video/";
                 $videopostersDirectory = "/var/www/assets/videoposters/";
-=======
-                $videoDirectory = "/home/swarmtvn/public_html/assets/video/";
-                $videopostersDirectory = "/home/swarmtvn/public_html/assets/videoposters/";
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
                 $sizeString = "";
                 
                 //get width & height from the file
@@ -333,12 +266,7 @@ class Elements_model extends CI_Model {
 				$extension = "mp4";
 				break;
 		}
-		
-<<<<<<< HEAD
 		$uploads_dir = '/var/www/assets/' . $folder . '/';
-=======
-		$uploads_dir = '/public_html/assets/' . $folder . '/';
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		$unique_name = $folder . '-' . uniqid();
 		$full_name = $unique_name . '.' . $extension;
 		
@@ -478,24 +406,6 @@ class Elements_model extends CI_Model {
 		if (array_key_exists('contents', $post_data))
 		{
 			$contents = $post_data['contents'];
-<<<<<<< HEAD
-			$colour = $post_data['color'];
-            //$contents = htmlspecialchars($contents, ENT_QUOTES); Do we need this?
-            $contents = str_replace ("\n", "<br>", $contents );
-			
-			$this->data['contents'] = $contents;
-			$this->data['color'] = $colour;
-			$this->data['type'] = 'text';
-		}
-		
-        // if the contents was used (i.e. a text element)..
-		if (array_key_exists('author', $post_data))
-		{
-			$author = $post_data['author'];
-			$editable = $post_data['editable'];
-			$this->data['author'] = $author;
-			$this->data['editable'] = $editable;
-=======
             //$contents = htmlspecialchars($contents, ENT_QUOTES); Do we need this?
             $contents = str_replace ("\n", "<br>", $contents );
 			$this->data['contents'] = $contents;
@@ -547,18 +457,12 @@ class Elements_model extends CI_Model {
 		{
 			$this->data['author'] = $post_data['author'];
 			$this->data['editable'] = $post_data['editable'];
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		}
 		
 		// check pages_id
 		if (array_key_exists('pages_id', $post_data))
 		{	
-<<<<<<< HEAD
-			$pages_id = $post_data['pages_id'];
-			$this->data['pages_id'] = $pages_id;
-=======
 			$this->data['pages_id'] = $post_data['pages_id'];
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		}else
 		{
 			// should probably check to see if a page exist with this id as well?
@@ -591,11 +495,6 @@ class Elements_model extends CI_Model {
 	// inserts element into the database
     function add_element_to_database()
 	{
-<<<<<<< HEAD
-=======
-	  
-	  
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		if (!$this->db->insert('elements', $this->data))
 		{
 			// should probably check to see if a page exist with this id as well?
@@ -652,19 +551,11 @@ class Elements_model extends CI_Model {
                         $jasonArray = json_encode($element);
                         break;
                     case 'audio':
-<<<<<<< HEAD
-                        $elementInHtml = '<audio style="width:320px" controls tabindex="0"><source type="audio/mpeg" src="' . base_url() . 'assets/audio/'.$justName.'.mp3"></source><source type="audio/ogg" src="' . base_url() . 'assets/audio/'.$justName.'.oga"></source></audio>';
-+                       $jasonArray = json_encode($element);
-                        break;
-                    case 'video':
-                        $elementInHtml = '<video controls tabindex="0"><source type="video/mp4" src="' . base_url() . 'assets/video/'.$justName.'.mp4"></source><source type="video/webm" src="' . base_url() . 'assets/video/'.$justName.'.webm"></source><source type="video/ogg" src="' . base_url() . 'assets/video/'.$justName.'.ogv"></source></video>';
-=======
                         $elementInHtml = '<div style="text-align: center"><audio style="width:320px" controls tabindex="0"><source type="audio/mpeg" src="' . base_url() . 'assets/audio/'.$justName.'.mp3"></source><source type="audio/ogg" src="' . base_url() . 'assets/audio/'.$justName.'.oga"></source></audio>'.$element->description.'</div>';
 +                       $jasonArray = json_encode($element);
                         break;
                     case 'video':
                         $elementInHtml = '<div style="text-align: center"><video controls tabindex="0"><source type="video/mp4" src="' . base_url() . 'assets/video/'.$justName.'.mp4"></source><source type="video/webm" src="' . base_url() . 'assets/video/'.$justName.'.webm"></source><source type="video/ogg" src="' . base_url() . 'assets/video/'.$justName.'.ogv"></source></video>'.$element->description.'</div>';
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
                         $jasonArray = json_encode($element);
                         break;
 		}
@@ -714,15 +605,10 @@ class Elements_model extends CI_Model {
 	// updates an element in the `element` table and creates a new update in the `updates` table
 	public function update_element()
 	{
-<<<<<<< HEAD
-        //If anything is updated get the post data
-		$post_data = $this->input->post(NULL, TRUE); // return all post data filtered XSS - SCRIPT SAFE
-=======
 	  
         //If anything is updated get the post data
 		$post_data = $this->input->post(NULL, TRUE); // return all post data filtered XSS - SCRIPT SAFE
 		
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		//finds the id of the element
    		$elementId = $this->input->post('id');
 

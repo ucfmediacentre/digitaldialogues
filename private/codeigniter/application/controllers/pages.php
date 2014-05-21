@@ -17,32 +17,20 @@ class Pages extends CI_Controller {
     }
 	
 	// initial testing to display page name
-<<<<<<< HEAD
 	public function index($group = "community", $page_name = "home")
-=======
-	public function index($group = "public", $page_name = "home")
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 	{
 	  header('Location: ' . base_url() . 'index.php/pages/view/' . $group . '/' . $page_name);
 	}
 	
 	
 	// set up the page in HTML
-<<<<<<< HEAD
 	public function view($group = "community", $page_title = NULL)
-=======
-	public function view($group = "public", $page_title = NULL)
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 	{
 	  $this->load->helper('url');
 	  
 	  if ($page_title === NULL){
 		$page_title = "home";
-<<<<<<< HEAD
 		$group = "community";
-=======
-		$group = "public";
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		redirect('/pages/view/'.$group.'/'.$page_title, 'location');
 	  }
 	  
@@ -86,10 +74,7 @@ class Pages extends CI_Controller {
 	  $page_details= $this->Pages_model->get_page(urldecode($group), URLdecode($page_title));
 	  
 	  $data['page_info'] = $page_details;
-<<<<<<< HEAD
-=======
 	  $data['user_id'] = $user_id;
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 	  
 	  if($page_details) 
 	  {
@@ -103,19 +88,8 @@ class Pages extends CI_Controller {
 		
 		// load view with data
 		$this->load->view('header', $data);
-<<<<<<< HEAD
-		$this->load->view('pages_view/page_view');
-		$this->load->view('pages_view/new_element_form');
-		$this->load->view('pages_view/new_text_form');
-		$this->load->view('pages_view/new_image_form');
-		$this->load->view('pages_view/new_audio_form');
-		$this->load->view('pages_view/new_video_form');
-		$this->load->view('pages_view/new_page_form');
-		$this->load->view('pages_view/new_group_form');
-=======
 		$this->load->view('pages_view/page_view', $data);
 		$this->load->view('pages_view/new_element_form');
->>>>>>> 6c98abe1772eba027aad12d429005e0cf1143103
 		$this->load->view('pages_view/page_info_form');
 		$this->load->view('pages_view/page_view_scripts');
 		$this->load->view('footer');
