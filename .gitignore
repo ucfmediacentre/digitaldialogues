@@ -22,3 +22,5 @@ www/assets/image
 www/assets/video
 www/assets/videoposters
 private/codeigniter/application/cache/rss/
+
+www/libraries/fancybox2/lib/jquery-1.9.0.min.js

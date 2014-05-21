@@ -17,20 +17,20 @@ class Pages extends CI_Controller {
     }
 	
 	// initial testing to display page name
-	public function index($group = "public", $page_name = "home")
+	public function index($group = "community", $page_name = "home")
 	{
 	  header('Location: ' . base_url() . 'index.php/pages/view/' . $group . '/' . $page_name);
 	}
 	
 	
 	// set up the page in HTML
-	public function view($group = "public", $page_title = NULL)
+	public function view($group = "community", $page_title = NULL)
 	{
 	  $this->load->helper('url');
 	  
 	  if ($page_title === NULL){
 		$page_title = "home";
-		$group = "public";
+		$group = "community";
 		redirect('/pages/view/'.$group.'/'.$page_title, 'location');
 	  }
 	  
