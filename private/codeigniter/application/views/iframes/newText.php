@@ -1,7 +1,7 @@
 <form id="add_text_form" class="input_form">
   <h2>New Text</h2>
   Color of text:
-  <input id="text_colour" type="text" value="#cccccc" name="text_colour" style="visibility: hidden; position: absolute;">
+  <input id="text_colour" type="text" value="#666" name="text_colour" style="visibility: hidden; position: absolute;">
   <br>
   <br>
   <textarea id="text_form_text" name="text_form_text"></textarea>

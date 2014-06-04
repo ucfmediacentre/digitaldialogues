@@ -4,8 +4,8 @@
 		<label for="new_page_title">Page Title:</label>
 		<input id="new_page_title" type="text" name="new_page_title" />
 		<br /><br />
-		<!--<label>Description:</label>
-		<input name="description" id="description" />//-->
+		<label>Description:</label>
+		<input name="description" id="description" />
 		<input type="submit" id="submit_new_page" value="Submit" class="submit_element submit_button"  />
 		<!-- hidden values -->
 		<input type="hidden" name="current_page_title" value="<?php echo urldecode($pageTitle); ?> "/>
@@ -34,7 +34,6 @@
 		  // Post the values to the pages controller
 		  $.post(base_url + "index.php/pages/add_page", { title: titleVal, description: descriptionVal, group: groupVal, currentPageTitle: currentPageVal, currentPageId: currentPageIdVal },
 			  function(data) {
-				  alert(data);
 				  window.top.location.reload();
 		  });
 		  

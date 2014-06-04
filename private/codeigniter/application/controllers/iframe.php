@@ -92,7 +92,7 @@ class Iframe extends CI_Controller {
 	  $post_data = $this->input->post(NULL, TRUE); // return all post data filtered XSS - SCRIPT SAFE
 	  
 	  $groups_list= $this->Groups_model->list_all();
-
+	  
 	  $i = 0;
 	  $groupsString = "";
 	  

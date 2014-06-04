@@ -158,17 +158,18 @@ a#main_home_button:hover{
  *	pages_view
  */
 #background {
-	position:absolute;
+	/*position:absolute;
 	left:0px;
 	top:0px;
 	width:100%;
 	height:100%;
-	padding:20px;
+	padding:20px;*/
 	z-index:0;
 	color:#fff;
 }
 
 body {
+    /*
 	font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
     font-size: 1em;
     line-height: 1.4;
@@ -176,15 +177,16 @@ body {
 	left:0px;
 	top:0px;
 	width:100%;
-	height:100%;
-	/*background: #000033 url(../img/default_background.jpg) center center fixed no-repeat;*/
+	height:100%;*/
+	/*background: #000033 url(../img/default_background.jpg) center center fixed no-repeat;
 	-moz-background-size: cover;
 	background-size: cover;
 	-webkit-background-size: cover;
 	-o-background-size: cover;
-	z-index:1;
-	color:#333;
 	padding:2em;
+	color:#333;
+	*/
+	z-index:1;
 }
 
 /* ==========================================================================
@@ -196,7 +198,7 @@ body,html{
 	left:0px;
 	top:0px;
 	overflow:auto;
-	color:#fff;
+	color:#333;
 }
 
 /* ==========================================================================

@@ -93,11 +93,12 @@ class Pages extends CI_Controller {
 		$this->load->view('pages_view/page_info_form');
 		$this->load->view('pages_view/page_view_scripts');
 		$this->load->view('footer');
-	  }else
-	  {
+	  } else {
 		//Page was not found, so create a new one
-		$page_id=$this->Pages_model->insert_page(urldecode($group), urldecode($page_title));
-		redirect('/pages/view/'.urldecode($group).'/'.urldecode($page_title), 'location');
+		//$page_id=$this->Pages_model->insert_page(urldecode($group), urldecode($page_title));
+		//redirect('/pages/view/'.urldecode($group).'/'.urldecode($page_title), 'location');
+		// - No, dont create a new one! Tell people there is nothing there
+		show_404('page');
 		  
 	  }
 	}

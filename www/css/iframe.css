@@ -60,7 +60,7 @@ textarea {
 }
 
 .input_form textarea {  
-	width:450px;  
+	width:445px;  
 	font-size:15px;   
 	margin-bottom:10px;  
 	padding:4px;   
@@ -152,7 +152,7 @@ div.element:hover {
 }
 
 input[type=text] {
-	width: 200px;
+	width: 300px;
 }
 
 
@@ -223,7 +223,7 @@ img {
 
 .progress {
 	position:relative;
-	width:465px;
+	width:400px;
 	border: 1px solid #ddd;
 	padding: 1px;
 	border-radius: 3px;
@@ -292,7 +292,7 @@ textarea#element_description{
 #textContents {
   height: 100px;
   margin-left: 4px;
-  width: 436px;
+  width: 400px;
 }
 
 .top-align{ 
