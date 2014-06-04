@@ -7,19 +7,19 @@
         <script src="<?php echo base_url(); ?>js/vendor/jquery-1.8.3.min.js"></script>
         <style type="text/css">
             html, body {
-                width:100%;
+				width:100%;
                 height:100%;
                 padding:0px;
                 overflow:hidden;
-                background-color:#000022;
+                background-color:#fff;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;
                 background-size: cover;
-                color: #ccc;
+                color: #666;
                 font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
                 font-size: 1em
-            }
+            }*/
         }
         #the-swarm {}
 		
@@ -33,19 +33,19 @@
         }
 
 		A:link {
-		  color:#c90;
+		  color:#36c;
 		  font-weight:bold;
 		  text-decoration:none;
 		}
 		
 		A:visited {
-		  color:#960;
+		  color:#339;
 		  font-weight:bold;
 		  text-decoration:none;
 		}
 		
 		A:hover {
-		  color:#fc3;
+		  color:#39f;
 		  font-weight:bold;text-decoration:none;
 		}
         </style>
@@ -67,7 +67,7 @@
     </div><br /><br />
 			<div id="oldBrowser" style="display:none" width="600px">This website is a project designed to work with <strong>HTML5</strong>, so please download a modern browser if you can (its worth the wait!). If you haven't got IT permissions to do this, try Chrome portable (<a href="http://portableapps.com/apps/internet/google_chrome_portable">Chrome Portable</a>). You should be able to use that, OK. Otherwise, go straight to the home page here: <a href="<?php echo base_url(); ?>index.php/pages/view/<?php echo $group; ?>/home">Home</a>, and have a play around there. Thanks very much!<br /><br /><?php echo $listview; ?></div>
         <canvas class="" style="opacity: 1; display: inline;" id="the-swarm" width="1680" height="350"></canvas>
-        <img id="bg" src="<?php echo base_url(); ?>img/default_background.jpg" style="display:none;" />
+        <img id="bg" src="<?php echo base_url(); ?>img/white.gif" style="display:none;" />
         <script src="<?php echo base_url(); ?>libraries/arbor/lib/arbor.js"></script>
         <script src="<?php echo base_url(); ?>libraries/arbor/lib/arbor-tween.js"></script>
         <script src="<?php echo base_url(); ?>libraries/arbor/lib/arbor-graphics.js"></script>
@@ -123,21 +123,21 @@
                             ctx.drawImage(img, 0, 0, canvas.width, canvas.height); //from Al's code
                             sys.eachEdge(function (edge, p1, p2) {
                                 gfx.line(p1, p2, {
-                                    stroke: "silver",
+                                    stroke: "gray",
                                     width: 2
                                 });
                             })
                             sys.eachNode(function (node, pt) {
                                 var w = Math.max(20, 20 + gfx.textWidth(node.name))
                                 gfx.rect(pt.x - w / 2, pt.y - 8, w, 20, 4, {
-                                    fill: '#000022',
+                                    fill: "#3366cc",
                                     width: 2,
 									stroke: node.data.stroke
                                 });
                                 //gfx.rect(pt.x-w/2, pt.y-8, w, 20, 4, {});
                                 //gfx.text(node.name, pt.x, pt.y+5, {color:"orange", align:"center", font:"Arial", size:12});
                                 gfx.text(node.name, pt.x, pt.y + 7, {
-                                    color: "orange",
+                                    color: "silver",
                                     align: "center",
                                     font: "Arial",
                                     size: 12
@@ -325,7 +325,7 @@
 							}
 						}
 						if(count>2){
-							this.stroke = "white";
+							this.stroke = "black";
 						}
 					});
 					
