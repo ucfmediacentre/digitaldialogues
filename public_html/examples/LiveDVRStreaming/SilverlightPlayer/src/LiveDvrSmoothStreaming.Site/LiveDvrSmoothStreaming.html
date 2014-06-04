@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+    <title>nDVR Smooth Streaming</title>
+
+    <style type="text/css">
+        html {
+            height: 100%;
+            overflow: auto;
+        }
+        body {
+            height: 100%;
+        }
+        #silverlightControlHost {
+            height: 100%;
+        }
+    </style>
+    <script type="text/javascript" src="ParsedQueryString.js">
+    </script>
+    <script type="text/javascript">
+        var pqs = new ParsedQueryString();
+
+        var mediaUrl = "http://localhost:1935/dvr/myStream/Manifest?dvr";
+
+        mediaUrl = pqs.param('src') || mediaUrl;
+
+        // Escape the ampersands so any URL params pass through
+        mediaUrl = escape(mediaUrl);
+            
+    </script>
+    <script type="text/javascript" src="Silverlight.js"></script>
+    <script type="text/javascript">
+        function onSilverlightError(sender, args) {
+
+            var appSource = "";
+            if (sender != null && sender != 0) {
+                appSource = sender.getHost().Source;
+            }
+            var errorType = args.ErrorType;
+            var iErrorCode = args.ErrorCode;
+
+            if (errorType == "ImageError" || errorType == "MediaError")
+                return;
+
+            var errMsg = "Unhandled Error in Silverlight Application " + appSource + "\n";
+
+            errMsg += "Code: " + iErrorCode + "    \n";
+            errMsg += "Category: " + errorType + "       \n";
+            errMsg += "Message: " + args.ErrorMessage + "     \n";
+
+            if (errorType == "ParserError") {
+                errMsg += "File: " + args.xamlFile + "     \n";
+                errMsg += "Line: " + args.lineNumber + "     \n";
+                errMsg += "Position: " + args.charPosition + "     \n";
+            }
+            else if (errorType == "RuntimeError") {
+                if (args.lineNumber != 0) {
+                    errMsg += "Line: " + args.lineNumber + "     \n";
+                    errMsg += "Position: " + args.charPosition + "     \n";
+                }
+                errMsg += "MethodName: " + args.methodName + "     \n";
+            }
+            throw new Error(errMsg);
+        }
+    </script>   
+
+
+</head>
+<body>
+    <table width="660" style="border-style:solid; border-width: 1px; border-color: #cccccc;">
+        <tr >
+            <td align="left" style="padding-left: 20px;">
+                <span style="font-family: Arial, San-serif; font-weight: bold; font-size: 20px;">nDVR Streaming with Silverlight</span>
+            </td>
+            <td align="right" style="padding-right: 10px;">
+                <img src="header.gif" style="width: 205px; height: 57px; border: 0px;" alt="Wowza Media Systems"/>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Runtime errors from Silverlight will be displayed here.
+    This will contain debugging information and should be removed or hidden when debugging is completed -->
+    <div id='errorLocation' style="font-size: small;color: Gray;"></div>
+
+    <div id="silverlightControlHost">
+        <object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="660" height="500">
+            <param name="source" value="ClientBin/LiveDvrSmoothStreaming.xap"/>
+            <param name="onError" value="onSilverlightError" />
+            <param name="background" value="white" />
+            <param name="minRuntimeVersion" value="5.0.61118.0" />
+            <param name="autoUpgrade" value="true" />
+            <script type="text/javascript">
+                // Construct the HTML to init the params with provided mediaUrl
+                var linkingCode = '<param name="InitParams" value="autoplay=true,deliverymethod=adaptivestreaming,mediaurl=';
+                linkingCode = linkingCode + unescape(mediaUrl) + '" />';
+                document.write(linkingCode);
+            </script>
+
+            <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=5.0.61118.0" style="text-decoration:none">
+               <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style:none"/>
+            </a>
+        </object>
+        <script type="text/javascript">
+            // Construct the HTML to submit Manifest to load
+            var linkingCode =           '<form > ';
+            linkingCode = linkingCode + '  <table width="660" >';
+            linkingCode = linkingCode + '    <tr>';
+            linkingCode = linkingCode + '      <td align="left" style="padding-left: 0px;">';
+            linkingCode = linkingCode + '        <input type="text" name="src" size="90" value="' + unescape(mediaUrl) + '" />';
+            linkingCode = linkingCode + '      </td>';
+            linkingCode = linkingCode + '      <td align="right" style="padding-right: 0px;">';
+            linkingCode = linkingCode + '        <input type="submit" name="playButton" value="Play" />';
+            linkingCode = linkingCode + '      </td>';
+            linkingCode = linkingCode + "    </tr>";
+            linkingCode = linkingCode + "  </table>";
+            linkingCode = linkingCode + '</form>';
+            document.write(linkingCode);
+        </script>
+        <iframe id="_sl_historyFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe>
+    </div>
+</body>
+</html>
+
+
+

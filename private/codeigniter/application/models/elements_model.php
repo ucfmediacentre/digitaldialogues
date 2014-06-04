@@ -8,7 +8,7 @@ class Elements_model extends CI_Model {
 	var $valid_file = false;
 	
 	var $current_mime_type_index = -1;
-	var $excepted_mime_types = array 	(
+	var $accepted_mime_types = array 	(
 										array('image/jpeg;'	, 'image'),
 										array('image/png;'	, 'image'),
 										array('image/gif;'	, 'image'),
@@ -32,8 +32,8 @@ class Elements_model extends CI_Model {
         $config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']	= '100';
-		$config['max_width'] = '1024';
-		$config['max_height'] = '768';
+		$config['max_width'] = '2048';
+		$config['max_height'] = '1536';
 
 		$this->load->library('upload', $config);
     }
@@ -91,18 +91,19 @@ class Elements_model extends CI_Model {
 		// interesting article on magicbytes here: 
 		// http://designshack.net/articles/php-articles/smart-file-type-detection-using-php/
 		// Get the file mime type
-		$file_info = new finfo(FILEINFO_MIME);  
+		/*$file_info = new finfo(FILEINFO_MIME);  
 		$mime_type_string = $file_info->buffer(file_get_contents($file['tmp_name']));
 		$mime_type_parts = explode(' ', $mime_type_string);
 		
-		$file_mime_type = $mime_type_parts[0]; 
+		$file_mime_type = $mime_type_parts[0]; */
 		
-		// check mime type against a list of excepted mime types
-		foreach($this->excepted_mime_types as  $index => $type) 
-        { 
-            if (in_array($file_mime_type, $type))
+		$file_mime_type = $file['type'];
+		// check mime type against a list of accepted mime types
+		foreach($this->accepted_mime_types as $index => $type) 
+        {
+		  if ($file_mime_type.";" == $type[0])
             {
-            	$this->current_mime_type_index = $index;
+				$this->current_mime_type_index = $index;
             	break;
             }
         } 
@@ -110,7 +111,7 @@ class Elements_model extends CI_Model {
 		// send error if the file does not validate
 		if ($this->current_mime_type_index < 0) 
 		{
-			$this->file_errors = "This file type is not allowed! - " . $file_mime_type;
+			$this->file_errors = "This file type is not allowed! - " . $type[0];
 			return false;
 			exit;
 		}
@@ -123,13 +124,14 @@ class Elements_model extends CI_Model {
 	{	 
 		// Consider creating a folder every new month so that elements are easier to find? 
 		// construct the location from the data
-		$folder_from_mime_type = $this->excepted_mime_types[$this->current_mime_type_index][1];  // image / audio / video folder
+		$folder_from_mime_type = $this->accepted_mime_types[$this->current_mime_type_index][1];  // image / audio / video folder
 		$uploads_dir = base_url() . 'assets/' . $folder_from_mime_type . '/';
 		
 		$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 		$unique_name = $folder_from_mime_type . '-' . uniqid();
 		
 		$full_name = $unique_name . '.' . $extension;
+        $filename = substr($full_name, 0, -4);
 		
 		$this->data['filename'] = $full_name;
 		$this->data['type'] = $folder_from_mime_type;
@@ -168,6 +170,7 @@ class Elements_model extends CI_Model {
                 //set string variables for ffmpeg string
                 $filename = $full_name;
                 $filename = substr($filename, 0, -4);
+				
                 //Jem's URLs
                 //$videoDirectory = "/Users/media/Sites/digitaldialogues/www/assets/video/";
                 //$videopostersDirectory = "/Users/media/Sites/digitaldialogues/www/assets/videoposters/";
@@ -263,7 +266,6 @@ class Elements_model extends CI_Model {
 				$extension = "mp4";
 				break;
 		}
-		
 		$uploads_dir = '/var/www/assets/' . $folder . '/';
 		$unique_name = $folder . '-' . uniqid();
 		$full_name = $unique_name . '.' . $extension;
@@ -404,29 +406,63 @@ class Elements_model extends CI_Model {
 		if (array_key_exists('contents', $post_data))
 		{
 			$contents = $post_data['contents'];
-			$colour = $post_data['color'];
             //$contents = htmlspecialchars($contents, ENT_QUOTES); Do we need this?
             $contents = str_replace ("\n", "<br>", $contents );
-			
 			$this->data['contents'] = $contents;
-			$this->data['color'] = $colour;
+			if (array_key_exists('backgroundColor', $post_data))
+			{	
+				$this->data['backgroundColor'] = $post_data['backgroundColor'];
+			}
+			if (array_key_exists('color', $post_data))
+			{	
+				$this->data['color'] = $post_data['color'];
+			}
+			if (array_key_exists('fontFamily', $post_data))
+			{	
+				$this->data['fontFamily'] = $post_data['fontFamily'];
+			}
+			if (array_key_exists('fontSize', $post_data))
+			{	
+				$this->data['fontSize'] = $post_data['fontSize'];
+			}
+			if (array_key_exists('height', $post_data))
+			{	
+				$this->data['height'] = $post_data['height'];
+			}
+			if (array_key_exists('opacity', $post_data))
+			{	
+				$this->data['opacity'] = $post_data['opacity'];
+			}
+			if (array_key_exists('textAlign', $post_data))
+			{	
+				$this->data['textAlign'] = $post_data['textAlign'];
+			}
+			if (array_key_exists('width', $post_data))
+			{	
+				$this->data['width'] = $post_data['width'];
+			}
+			if (array_key_exists('x', $post_data))
+			{	
+				$this->data['x'] = $post_data['x'];
+			}
+			if (array_key_exists('y', $post_data))
+			{	
+				$this->data['y'] = $post_data['y'];
+			} 
+			
 			$this->data['type'] = 'text';
 		}
 		
-        // if the contents was used (i.e. a text element)..
-		if (array_key_exists('author', $post_data))
+        if (array_key_exists('author', $post_data))
 		{
-			$author = $post_data['author'];
-			$editable = $post_data['editable'];
-			$this->data['author'] = $author;
-			$this->data['editable'] = $editable;
+			$this->data['author'] = $post_data['author'];
+			$this->data['editable'] = $post_data['editable'];
 		}
 		
 		// check pages_id
 		if (array_key_exists('pages_id', $post_data))
 		{	
-			$pages_id = $post_data['pages_id'];
-			$this->data['pages_id'] = $pages_id;
+			$this->data['pages_id'] = $post_data['pages_id'];
 		}else
 		{
 			// should probably check to see if a page exist with this id as well?
@@ -515,11 +551,11 @@ class Elements_model extends CI_Model {
                         $jasonArray = json_encode($element);
                         break;
                     case 'audio':
-                        $elementInHtml = '<audio style="width:320px" controls tabindex="0"><source type="audio/mpeg" src="' . base_url() . 'assets/audio/'.$justName.'.mp3"></source><source type="audio/ogg" src="' . base_url() . 'assets/audio/'.$justName.'.oga"></source></audio>';
+                        $elementInHtml = '<div style="text-align: center"><audio style="width:320px" controls tabindex="0"><source type="audio/mpeg" src="' . base_url() . 'assets/audio/'.$justName.'.mp3"></source><source type="audio/ogg" src="' . base_url() . 'assets/audio/'.$justName.'.oga"></source></audio>'.$element->description.'</div>';
 +                       $jasonArray = json_encode($element);
                         break;
                     case 'video':
-                        $elementInHtml = '<video controls tabindex="0"><source type="video/mp4" src="' . base_url() . 'assets/video/'.$justName.'.mp4"></source><source type="video/webm" src="' . base_url() . 'assets/video/'.$justName.'.webm"></source><source type="video/ogg" src="' . base_url() . 'assets/video/'.$justName.'.ogv"></source></video>';
+                        $elementInHtml = '<div style="text-align: center"><video controls tabindex="0"><source type="video/mp4" src="' . base_url() . 'assets/video/'.$justName.'.mp4"></source><source type="video/webm" src="' . base_url() . 'assets/video/'.$justName.'.webm"></source><source type="video/ogg" src="' . base_url() . 'assets/video/'.$justName.'.ogv"></source></video>'.$element->description.'</div>';
                         $jasonArray = json_encode($element);
                         break;
 		}
@@ -569,8 +605,10 @@ class Elements_model extends CI_Model {
 	// updates an element in the `element` table and creates a new update in the `updates` table
 	public function update_element()
 	{
+	  
         //If anything is updated get the post data
 		$post_data = $this->input->post(NULL, TRUE); // return all post data filtered XSS - SCRIPT SAFE
+		
 		//finds the id of the element
    		$elementId = $this->input->post('id');
 

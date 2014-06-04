@@ -10,11 +10,11 @@ class Groups_model extends CI_Model {
 	  
 	  $this->load->database();
 	  $this->load->helper('url');
-    }
+	}
     
-   // gets all the details of a specified page
-   public function get_group_details($group)
-   {
+	// gets all the details of a specified page
+	public function get_group_details($group)
+	{
 	  $result = $this->db->get_where('groups', array('title' =>$group), 1);
 	  
 	  if ($result->num_rows() > 0)
@@ -103,7 +103,6 @@ class Groups_model extends CI_Model {
    
    public function check_user($group, $user_id)
    {
-	
 	// presume no access
 	$access = false;
 	
@@ -119,7 +118,6 @@ class Groups_model extends CI_Model {
 	    
 	// if not the creator do they have access to the group?    
 	}else{
-	    
 	  $users = $result->user_id;
 	  
 	  // break user id string into an array
@@ -135,4 +133,32 @@ class Groups_model extends CI_Model {
 	}
 	return $access;
   }
+  
+  
+	public function list_all()
+	{
+	  //check whether user is logged in
+	  $this->load->library('session');
+	  $user_id = $this->session->userdata('user_id');
+	  
+	  // check whether the user has logged in
+	  if ($this->session->userdata('logged_in') == 1) {
+		//if so collect all groups accessible by the user
+		// create list of all groups where they are either public or accessible by the user
+		$query = $this->db->query('SELECT * FROM groups WHERE user_id LIKE "%,'.$user_id.',%" OR openness LIKE "public";');
+		$result = $query->result_array();
+	  } else {
+		//if not, collect only public groups
+   		$this->db->select('id');
+   		$this->db->select('title');
+		$this->db->where('openness', 'public');
+		$query = $this->db->get('groups');
+		$result = $query->result_array();
+	  }
+	  
+	  // encode the reulst s a json object
+	  //$groupList = json_encode($result);
+	  
+	  return $result;
+	}
 }

@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<title>webcamRecorder</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css" media="screen">
+		html, body { height:100%; background-color: #666666;}
+		body { margin:0; padding:0; overflow:hidden; }
+		#flashContent { width:100%; height:100%; }
+		</style>
+	</head>
+	<script src="../../js/vendor/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript">
+		function saveRecording(updateUrl) {
+			$.ajax({
+				url: updateUrl,
+				context: document.body,
+				success: function(){
+					//document.getElementById("webcamRecorder").notifyFlash;
+					window.top.location.reload();
+				},
+				error: function(obj) {
+					var out = '';
+					for (var i in obj) {
+						out += i + ": " + obj[i] + "\n";
+					}
+				
+					alert(out);
+					//document.getElementById("webcamRecorder").notifyFlash;
+					window.top.location.reload();
+				}
+			});
+		}
+	</script>
+	<body>
+		<div id="flashContent">
+			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="340" height="292" id="webcamRecorder" name="webcamRecorder" align="middle">
+				<param name="movie" value="webcamRecorder.swf" />
+				<param name="quality" value="high" />
+				<param name="bgcolor" value="#666666" />
+				<param name="play" value="true" />
+				<param name="loop" value="true" />
+				<param name="wmode" value="window" />
+				<param name="scale" value="showall" />
+				<param name="menu" value="true" />
+				<param name="devicefont" value="false" />
+				<param name="salign" value="" />
+				<param name="allowScriptAccess" value="sameDomain" />
+				<param name="allowFullScreen" value="true" />
+				<!--[if !IE]>-->
+				<object type="application/x-shockwave-flash" data="webcamRecorder.swf" width="340" height="292" id="webcamRecorder" name="webcamRecorder" >
+					<param name="movie" value="webcamRecorder.swf" />
+					<param name="quality" value="high" />
+					<param name="bgcolor" value="#666666" />
+					<param name="play" value="true" />
+					<param name="loop" value="true" />
+					<param name="wmode" value="window" />
+					<param name="scale" value="showall" />
+					<param name="menu" value="true" />
+					<param name="devicefont" value="false" />
+					<param name="salign" value="" />
+					<param name="allowScriptAccess" value="sameDomain" />
+					<param name="allowFullScreen" value="true" />
+				<!--<![endif]-->
+					<a href="https://www.adobe.com/go/getflash">
+						<img src="https://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+					</a>
+				<!--[if !IE]>-->
+				</object>
+				<!--<![endif]-->
+			</object>
+		</div>
+	</body>
+</html>

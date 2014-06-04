@@ -74,6 +74,7 @@ class Pages extends CI_Controller {
 	  $page_details= $this->Pages_model->get_page(urldecode($group), URLdecode($page_title));
 	  
 	  $data['page_info'] = $page_details;
+	  $data['user_id'] = $user_id;
 	  
 	  if($page_details) 
 	  {
@@ -87,22 +88,17 @@ class Pages extends CI_Controller {
 		
 		// load view with data
 		$this->load->view('header', $data);
-		$this->load->view('pages_view/page_view');
+		$this->load->view('pages_view/page_view', $data);
 		$this->load->view('pages_view/new_element_form');
-		$this->load->view('pages_view/new_text_form');
-		$this->load->view('pages_view/new_image_form');
-		$this->load->view('pages_view/new_audio_form');
-		$this->load->view('pages_view/new_video_form');
-		$this->load->view('pages_view/new_page_form');
-		$this->load->view('pages_view/new_group_form');
 		$this->load->view('pages_view/page_info_form');
 		$this->load->view('pages_view/page_view_scripts');
 		$this->load->view('footer');
-	  }else
-	  {
+	  } else {
 		//Page was not found, so create a new one
-		$page_id=$this->Pages_model->insert_page(urldecode($group), urldecode($page_title));
-		redirect('/pages/view/'.urldecode($group).'/'.urldecode($page_title), 'location');
+		//$page_id=$this->Pages_model->insert_page(urldecode($group), urldecode($page_title));
+		//redirect('/pages/view/'.urldecode($group).'/'.urldecode($page_title), 'location');
+		// - No, dont create a new one! Tell people there is nothing there
+		show_404('page');
 		  
 	  }
 	}
