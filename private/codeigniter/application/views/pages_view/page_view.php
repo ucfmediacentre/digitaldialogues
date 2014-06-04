@@ -31,5 +31,5 @@
 	<a href="<?php echo base_url(); ?>index.php/iframe/create/newVideo/<?php echo $page_info->title ?>/<?php echo $page_info->id ?>/<?php echo $user_id ?>" class="iframe">Video</a>
 	<br /><br />
   </div>
-  <span id="textSizer">textSizer</span>
+  <div id="textSizer">textSizer</div>
 </div>

@@ -2,7 +2,7 @@
 	<form id="add_page_form" class="input_form">
 		<h2>New Page</h2>	
 		<label for="new_page_title">Page Title:</label>
-		<input id="new_page_title" type="text" name="new_page_title" />
+		<input id="new_page_title" type="text" name="new_page_title" style="width:300px" />
 		<br /><br />
 		<!--<label>Description:</label>
 		<input name="description" id="description" />//-->

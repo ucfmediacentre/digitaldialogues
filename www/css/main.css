@@ -416,6 +416,14 @@ textarea {
     resize: vertical;
 }
 
+#textSizer {
+    position: absolute;
+    left: -999em;
+	display: table;
+	width: auto;
+	height: auto;
+}
+
 textarea#element_description{
 	width:98%;
 	margin:auto;
