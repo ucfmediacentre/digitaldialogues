@@ -13,9 +13,12 @@ class RecentChanges extends CI_Controller {
 		
 		//Set up simplepie
 		$data['group'] = $this->input->get('group');
+		echo "$ data[group] = ".$data['group']."\n";
 		$feedUrl = base_url().'index.php/feed?group=' . $data['group'];
+		echo "$ feedUrl = ".$feedUrl."\n";
 		$this->simplepie->set_feed_url($feedUrl);
 		$this->simplepie->set_cache_location(APPPATH.'cache/rss');
+		echo "APPPATH.'cache/rss' = ".APPPATH.'cache/rss';
 		$this->simplepie->set_cache_duration(0);
 		$this->simplepie->init();
 		$this->simplepie->handle_content_type();
