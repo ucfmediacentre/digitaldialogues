@@ -8,6 +8,7 @@
 		<input name="description" id="description" />//-->
 		<input type="submit" id="submit_new_page" value="Submit" class="submit_element submit_button"  />
 		<!-- hidden values -->
+		<input type="hidden" name="author" id="author" value="<?php echo $this->session->userdata('username'); ?>" />
 		<input type="hidden" name="current_page_title" value="<?php echo urldecode($pageTitle); ?> "/>
 	    <input type="hidden" name="current_page_id" id="element_pages_id" value="<?php echo $pageId; ?> "/>
 		<input type="hidden" name="group" value="<?php echo urldecode($group); ?> "/>
@@ -28,11 +29,12 @@
 		  var groupVal = $('input[name="group"]').val();
 		  var currentPageVal = $('input[name="current_page_title"]').val();
 		  var descriptionVal = $('input[name="description"]').val();
+		  var authorVal = $('#author').val();
 		  var currentPageIdVal = $('input[name="current_page_id"]').val();
 		  var base_url = "<?php echo base_url(); ?>";
 		  
 		  // Post the values to the pages controller
-		  $.post(base_url + "index.php/pages/add_page", { title: titleVal, description: descriptionVal, group: groupVal, currentPageTitle: currentPageVal, currentPageId: currentPageIdVal },
+		  $.post(base_url + "index.php/pages/add_page", { title: titleVal, author: authorVal, description: descriptionVal, group: groupVal, currentPageTitle: currentPageVal, currentPageId: currentPageIdVal },
 			  function(data) {
 				  alert(data);
 				  window.top.location.reload();

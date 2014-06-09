@@ -236,11 +236,13 @@ class Pages_model extends CI_Model {
 		//collect variables from the form
    		$newTitle = $this->input->post('title');
 		//$response = "$ newTitle = ".$newTitle."<br />";
+   		$author = $this->input->post('author');
+		//$response = "$ author = ".$author."<br />";
    		$group = $this->input->post('group');
 		//$response = $response."$ group = ".$group."<br />";
    		$currentPageTitle = $this->input->post('currentPageTitle');
 		//$response = $response."$ currentPageTitle = ".$currentPageTitle."<br />";
-   		$description = $this->input->post('description');
+   		//$description = $this->input->post('description');
 		//$response = $response."$ description = ".$description."<br />";
    		$currentPageId = $this->input->post('currentPageId');
 		//$response = $response."$ currentPageId = ".$currentPageId."<br />";
@@ -330,6 +332,18 @@ class Pages_model extends CI_Model {
 		);
 		$this->db->where('id', $linkBack_id);
 		$this->db->update('links', $data);
+		
+		//create new record for 'updates' table 
+		$data = array(
+			'pages_id' => $added_page_id,
+			'group' => $group,
+			'jsonArray' => json_encode($this->get_page($group, URLdecode($newTitle))),
+			'summary' => "New page created: ".URLdecode($newTitle),
+			'page' => URLdecode($newTitle),
+			'elementInhtml' => "<div style='color: rgb(204, 204, 204); font-size: 15px; font-family: Arial; height: auto; opacity: 1; text-align: center; width: 320px; '>".URLdecode($newTitle)."</div>",
+			'username' => $author
+		);
+		$this->db->insert('updates', $data);
 		
 		echo 'You have successfully created a page called "' . $newTitle . '"';
 			

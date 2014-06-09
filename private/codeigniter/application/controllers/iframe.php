@@ -8,7 +8,7 @@ class Iframe extends CI_Controller {
 	}
 	
 	//
-	public function create($toolName="newText", $pageTitle=NULL, $pageId=NULL, $group="public", $userId="1")
+	public function create($toolName="newText", $pageTitle=NULL, $pageId=NULL, $group="community", $userId="1")
 	{
 	  $this->load->helper('url');
 	  

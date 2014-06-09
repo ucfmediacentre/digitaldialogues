@@ -105,7 +105,8 @@ class RSSParser {
 				$data['pubDate'] = (string)$item->pubDate;
 				$data['link'] = (string)$item->link;
 				$dc = $item->children('http://purl.org/dc/elements/1.1/');
-				$data['author'] = (string)$dc->creator;
+				//$data['author'] = (string)$dc->creator;
+				$data['username'] = (string)$item->username;
 				
 				if ($this->callback)
 				{

@@ -12,6 +12,7 @@
 	  <input type="hidden" name="y" id="element_y" value="<?php echo rand (100, 500 ); ?>" />
 	  
 	  <div id="loadingPrompt">Loading...</div>
+		
 	</form>
 	<br />
 	<div id="progressbox" class="progress">

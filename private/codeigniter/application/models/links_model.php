@@ -189,9 +189,9 @@ class Links_model extends CI_Model {
 												}
 												
 												if ($access == TRUE){
-													$this->shortcodes->replaceShortCode($i, '<a href="' . base_url() . 'index.php/pages/view/' . $linkGroup . '/home">' . $linkGroup . ' : Home</a>');
+													$this->shortcodes->replaceShortCode($i, '<a href="' . base_url() . 'index.php/pages/view/' . $linkGroup . '/home">' . $linkGroup . ' : Group</a>');
 												} else {
-													$this->shortcodes->replaceShortCode($i, '<a href="' . base_url() . 'index.php/pages/view/' . $linkGroup . '/home">' . $linkGroup . ' : Home</a>&nbsp;<img src="' . base_url() . 'img/padlock.gif">');
+													$this->shortcodes->replaceShortCode($i, '<a href="' . base_url() . 'index.php/pages/view/' . $linkGroup . '/home">' . $linkGroup . ' : Group</a>&nbsp;<img src="' . base_url() . 'img/padlock.gif">');
 												}
 												break;
 										case "twitter":
