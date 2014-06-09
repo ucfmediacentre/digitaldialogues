@@ -1,8 +1,8 @@
 <?php
 
 	$changesList = '';
-		//print_r($res_feed);
-		//exit;
+		print_r($res_feed);
+		exit;
 	foreach($res_feed as $item):
 		//get page name
 		$url = $item->get_link();
@@ -123,7 +123,7 @@
 	</div>
 		
 	<div>
-		<div id="recentChangesText"><strong>RSS feed: http://digitaldialogues.org/index.php/feed?group=<?php echo $group; ?></strong><br /><br /><?php echo $changesList; ?></div>
+		<div id="recentChangesText"><strong>RSS feed: http://digitaldialogues.org/index.php/feed?group=<?php echo $group; ?></strong><br /><br /><?php echo "$ changesList =".$changesList; ?></div>
 	</div>
 
         <script src="<?php echo base_url(); ?>js/plugins.js"></script>
