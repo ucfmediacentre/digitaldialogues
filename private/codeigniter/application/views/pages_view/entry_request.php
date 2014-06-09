@@ -1,6 +1,6 @@
 <!-- replaces old Page View look (page_view original.php) /-->
 <div id="navbar">
-  <table style="display: inline-table;" border="0" cellpadding="0" cellspacing="0" width="800">
+  <table style="display: inline-table;" border="0" cellpadding="0" cellspacing="0" width="550">
   <tr>
    <td><img src="../../../../img/spacer.gif" width="125" height="1" alt="" /></td>
    <td><img src="../../../../img/spacer.gif" width="50" height="1" alt="" /></td>
