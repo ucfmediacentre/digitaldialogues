@@ -46,7 +46,7 @@ class Groups_model extends CI_Model {
 		}
 		
 		// add the new user's id to the user_id access list
-		$user_ids = $user_ids.",".$requesterId;
+		$user_ids = $user_ids.",".$requesterId.",";
 		
 	   	$data = array(
                'user_id' => $user_ids
