@@ -73,3 +73,12 @@
 		window.location.replace("<?php echo base_url() . 'index.php/messages/mark_as_read/' ?>" + message_id + "/" + username);
 	}
 </script>
+
+
+<script language="JavaScript1.2" type="text/javascript">
+  <!--
+  $( "#search" ).click(function() {
+	  $( "#searchForm" ).submit();
+  });
+  //-->
+</script>

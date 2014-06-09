@@ -208,7 +208,7 @@
                                 //gfx.rect(pt.x-w/2, pt.y-8, w, 20, 4, {});
                                 //gfx.text(node.name, pt.x, pt.y+5, {color:"orange", align:"center", font:"Arial", size:12});
                                 gfx.text(node.name, pt.x, pt.y + 7, {
-                                    color: "silver",
+                                    color: "white",
                                     align: "center",
                                     font: "Arial",
                                     size: 12

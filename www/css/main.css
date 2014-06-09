@@ -318,6 +318,16 @@ img {
 	color: #666;
 }
 
+#messages_page_wrapper{
+	position:absolute;
+	left:60px;
+	top:130px;
+	z-index:2010;
+	background-color:transparent;
+	overflow:visible;
+	color: #666;
+}
+
 #navbar{
 	position:absolute;
 	left:0px;

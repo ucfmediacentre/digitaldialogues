@@ -242,7 +242,7 @@ class Pages_model extends CI_Model {
 		//$response = $response."$ group = ".$group."<br />";
    		$currentPageTitle = $this->input->post('currentPageTitle');
 		//$response = $response."$ currentPageTitle = ".$currentPageTitle."<br />";
-   		//$description = $this->input->post('description');
+   		$description = $this->input->post('description');
 		//$response = $response."$ description = ".$description."<br />";
    		$currentPageId = $this->input->post('currentPageId');
 		//$response = $response."$ currentPageId = ".$currentPageId."<br />";
