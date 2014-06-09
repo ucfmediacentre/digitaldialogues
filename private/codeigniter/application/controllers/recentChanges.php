@@ -22,6 +22,8 @@ class RecentChanges extends CI_Controller {
 		$data['res_feed'] = $this->simplepie->get_items();
 		$data['searchResults'] = $this->simplepie->get_items();
 		
+		print_r($data);
+		
 		//pass data into rssInHtml.php
 		$this->load->view('rssInHtml', $data);
 		

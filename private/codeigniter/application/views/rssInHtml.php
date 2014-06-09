@@ -1,8 +1,9 @@
 <?php
 
 	$changesList = '';
+	echo "$ res_feed =\n";
 		print_r($res_feed);
-		exit;
+		
 	foreach($res_feed as $item):
 		//get page name
 		$url = $item->get_link();
