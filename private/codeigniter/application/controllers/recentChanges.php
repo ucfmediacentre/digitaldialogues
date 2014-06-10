@@ -16,8 +16,7 @@ class RecentChanges extends CI_Controller {
 		$feedUrl = "http://digitaldialogues.org/index.php/feed?group=community";
 		//$feedUrl = base_url().'index.php/feed?group=' . $data['group'];
 		$this->simplepie->set_feed_url($feedUrl);
-		echo "$ feedUrl = ".$feedUrl."\n";
-		$this->simplepie->set_cache_location('https://digitaldialogues.org/rss/cache');
+		$this->simplepie->set_cache_location('/var/public_html/rss/cache');
 		$this->simplepie->set_cache_duration(60);
 		$this->simplepie->init();
 		$this->simplepie->handle_content_type();
