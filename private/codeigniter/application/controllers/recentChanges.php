@@ -9,7 +9,7 @@ class RecentChanges extends CI_Controller {
     function index()  
     {
 		$this->load->helper('url');
-		$this->load->library('Simplepie');
+		$this->load->library('simplepie');
 		
 		//Set up simplepie
 		$data['group'] = $this->input->get('group');
@@ -19,7 +19,7 @@ class RecentChanges extends CI_Controller {
 		$this->simplepie->set_cache_duration(60);
 		$this->simplepie->init();
 		$this->simplepie->handle_content_type();
-		$data['res_feed'] = $this->simplepie->get_items();
+		$data['res_feed'] = $this->simplepie->get_items(0,5);
 		$data['searchResults'] = $this->simplepie->get_items();
 
 		
