@@ -34,6 +34,7 @@ class Elements extends CI_Controller {
 		// gets more page details
 		$pages_id = $this->Elements_model->return_pages_id();
 		$pages_title = $this->Pages_model->get_title($pages_id);
+		$this->session->set_userdata('group', $this->Pages_model->get_group($pages_id));
 		
 		// gets the CONTENTS as a string
 		$contents = $this->Elements_model->return_contents();

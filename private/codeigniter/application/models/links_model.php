@@ -9,7 +9,7 @@ class Links_model extends CI_Model {
         
         $this->load->database();
         $this->load->helper('url');
-	$this->load->library('Shortcodes');
+		$this->load->library('Shortcodes');
     }
 	
 	// saves the new links to the database
@@ -52,7 +52,7 @@ class Links_model extends CI_Model {
 	}
 	
 	// swaps the link Titles for link ids from the `links` table
-	function process_codes($string, $forWhat, $pages_title, $elements_id)
+	function process_codes($string, $forWhat, $page_title, $elements_id)
 	{
 		
 		$this->load->library('Shortcodes');
@@ -62,7 +62,9 @@ class Links_model extends CI_Model {
 		// compiles the common data string
 		$data = array(
 			'elementsId' => $elements_id,
-			'pageTitle' => $pages_title
+			'pageTitle' => $page_title,
+			'pageTitleGroup' => $this->session->userdata('group'),
+			'linkTitleGroup' => $this->session->userdata('group')
 		);
 		
 		$i=0;
@@ -81,6 +83,16 @@ class Links_model extends CI_Model {
 														// replaces the link title with the replacement code
 														$this->shortcodes->replaceShortCode($i, "[[internal::".$this->db->insert_id()."]]");
 												}
+												
+												$newPageGroup = $data["linkTitleGroup"];
+												$newPageTitle = $data["linkTitle"];
+												// create new page;
+												$data = array(
+													'group' => urldecode($this->session->userdata('group')),
+													'title' => URLdecode($newPageTitle)
+													);
+										
+												$this->db->insert('pages', $data); 
 												
 												break;
 										case "external":
