@@ -18,11 +18,11 @@ class RecentChanges extends CI_Controller {
 		$this->simplepie->set_feed_url($feedUrl);
 		echo "$ feedUrl = "."\n";
 		
-		echo "APPATH = "."\n";
-		echo APPATH."\n";
+		echo "APPPATH = "."\n";
+		echo APPPATH."\n";
 		print_r($feedUrl);
 		echo "\n";
-		$this->simplepie->set_cache_location(APPPATH.'cache/rss');
+		$this->simplepie->set_cache_location('http://digitaldialogues.org/cache/rss');
 		$this->simplepie->set_cache_duration(60);
 		$this->simplepie->init();
 		$this->simplepie->handle_content_type();
