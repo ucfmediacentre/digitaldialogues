@@ -165,7 +165,8 @@ a#main_home_button:hover{
 	height:100%;
 	padding:20px;*/
 	z-index:0;
-	color:#ccf;
+	//color:#ccf;
+	background-color:#f66;
 }
 
 body {
@@ -178,7 +179,7 @@ body {
 	top:0px;
 	width:100%;
 	height:100%;*/
-	/*background: #000033 url(../img/default_background.jpg) center center fixed no-repeat;
+	background: #f66 url(../img/cream.gif);
 	-moz-background-size: cover;
 	background-size: cover;
 	-webkit-background-size: cover;
@@ -288,6 +289,13 @@ hr {
     padding: 0;
 }
 
+html { 
+  background: url(../img/cream.gif) repeat; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 /*
  * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
@@ -335,6 +343,17 @@ img {
 	width:100%;
 	height:51px;
 	background-color:#339;
+	margin:0px;
+	padding:0px;
+}
+
+#navbarBlocked{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	height:51px;
+	background-color:#333;
 	margin:0px;
 	padding:0px;
 }
@@ -412,6 +431,15 @@ img {
 	height:46px;
 	z-index:2000;
 	background-color:#339;
+}
+#searchFieldBlocked{
+	vertical-align: middle;
+	color:#fff
+	width:270px;
+	text-align: center;
+	height:46px;
+	z-index:2000;
+	background-color:#333;
 }
 
 ::selection {

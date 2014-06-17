@@ -16,9 +16,11 @@ tmp
 !www/*
 private/codeigniter/application/config/database.php
 private/codeigniter/application/config/config.php
+private/codeigniter/application/controllers
 *.DS_Store
 www/assets/audio
 www/assets/image
 www/assets/video
 www/assets/videoposters
 private/codeigniter/application/cache/rss/
+.gitignore
