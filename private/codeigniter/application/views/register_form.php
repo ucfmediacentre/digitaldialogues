@@ -78,7 +78,7 @@
   </tr>
 
   <tr>
-   <td><img name="logo" src="../../img/logoBLocked.gif" width="125" height="80" id="logo" alt="Website Home" /></td>
+   <td><img name="logo" src="../../img/logoBlocked.gif" width="125" height="80" id="logo" alt="Website Home" /></td>
    <td><img name="recentChanges" src="../../img/recentChangesBlocked.gif" width="50" height="80" id="recentChanges" alt="Recent changes" /></td>
    <td><a href="../../index.php/verifylogin?controller=pages&group=community&title=home" onmouseout="MM_swapImgRestore();" onmouseover="MM_swapImage('logIn','','../../img/logIn_s2.gif',1);"><img name="logIn" src="../../img/logIn.gif" width="50" height="80" id="logIn" alt="Log in" /></a></td>
    <td><img name="mail" src="../../img/mailBlocked.gif" width="50" height="80" id="mail" alt="Mail" /></td>
