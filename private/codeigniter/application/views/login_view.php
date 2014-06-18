@@ -78,7 +78,7 @@
   </tr>
 
   <tr>
-   <td><img name="logo" src="../img/logoBLocked.gif" width="125" height="80" id="logo" alt="Website Home" /></td>
+   <td><img name="logo" src="../img/logoBlocked.gif" width="125" height="80" id="logo" alt="Website Home" /></td>
    <td><img name="recentChanges" src="../img/recentChangesBlocked.gif" width="50" height="80" id="recentChanges" alt="Recent changes" /></td>
    <td><img name="logIn" src="../img/logInBlocked.gif" width="50" height="80" id="logIn" alt="Log in" /></td>
    <td><img name="mail" src="../img/mailBlocked.gif" width="50" height="80" id="mail" alt="Mail" /></td>
