@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Iframe extends CI_Controller {
 
 	public function index()
@@ -11,12 +10,13 @@ class Iframe extends CI_Controller {
 	public function create($toolName="newText", $pageTitle=NULL, $pageId=NULL, $group="community", $userId="1")
 	{
 	  $this->load->helper('url');
+	  $this->load->model('Users_model');
 	  
 	  $data['toolName'] = $toolName;
 	  $data['pageTitle'] = $pageTitle;
 	  $data['pageId'] = $pageId;
 	  $data['group'] = $group;
-	  $data['userId'] = $userId;
+	  $data['author'] = $this->Users_model->get_user($userId);
 		
 	  $this->load->view('iframes/iframe_header', $data);
 	  $this->load->view('iframes/'.$toolName, $data);
@@ -134,7 +134,7 @@ class Iframe extends CI_Controller {
 	  $data['groupsList'] = $groups_list;
 	  
 	  //$data['attribution'] = $post_data['attribution'];
-	  //$data['author'] = $post_data['author'];
+	  $data['author'] = $session_data['username'];
 	  $data['backgroundColor'] = $post_data['backgroundColor'];
 	  $data['color'] = $post_data['color'];
 	  $data['contents'] = $post_data['contents'];

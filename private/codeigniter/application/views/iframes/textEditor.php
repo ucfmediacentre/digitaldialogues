@@ -156,6 +156,7 @@ $('#submit_element').click(function(e){
   calculateTextArea();
   
   // get the values from the form
+  var authorVal = $('#author').val();
   var backgroundColorVal = $('#backgroundColor').val();
   var colorVal = $('#color').val();
   var contentsVal = $('textarea#textContents').val();
@@ -173,7 +174,7 @@ $('#submit_element').click(function(e){
   
   // Post the values to the pages controller
   var base_url = "<?php echo base_url(); ?>";
-  $.post(base_url + "index.php/elements/update", { backgroundColor: backgroundColorVal, color: colorVal, contents: contentsVal, fontFamily: fontFamilyVal, fontSize: fontSizeVal, height: heightVal, id: idVal, opacity: opacityVal, pages_id: pagesIdVal, textAlign: textAlignVal, width: widthVal, x: xVal, y: yVal },
+  $.post(base_url + "index.php/elements/update", { author: authorVal, backgroundColor: backgroundColorVal, color: colorVal, contents: contentsVal, fontFamily: fontFamilyVal, fontSize: fontSizeVal, height: heightVal, id: idVal, opacity: opacityVal, pages_id: pagesIdVal, textAlign: textAlignVal, width: widthVal, x: xVal, y: yVal },
 	function(data) {
 	// Refresh page
 	window.top.location.reload();

@@ -461,7 +461,10 @@
     {
 	
 		// creates an object with only the id 
-		var changes = {'id':elementId};
+		var changes = {
+		  'id':elementId,
+		  'author':"<?php echo $this->session->userdata('username'); ?>"
+		};
 		
 		// adds the specific changes to the object
 		switch(change)
@@ -470,8 +473,8 @@
 				var textContents = $('#' + elementId).text();
 				window.parent.$("#textSizer").text(textContents);
 				window.parent.$("#textSizer").css("fontSize", $('#' + elementId).css('font-size')+"px");
-				if (window.parent.$("#textSizer").width()>320){
-				  window.parent.$("#textSizer").width(320);
+				if (window.parent.$("#textSizer").width()>500){
+				  window.parent.$("#textSizer").width(500);
 				}
 				var widthVal = window.parent.$("#textSizer").width()+20;
 				var heightVal = window.parent.$("#textSizer").height()+20;

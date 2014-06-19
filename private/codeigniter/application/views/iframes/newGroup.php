@@ -9,6 +9,7 @@
 		<br /><br />
 		<input type="submit" id="submit_new_group" value="Submit" class="submit_element"  />
 		<!-- hidden values -->
+		<input type="hidden" name="author" id="author" value="<?php echo $author; ?> "/>
 		<input type="hidden" name="current_page" value="<?php echo $pageTitle; ?>"/>
 		<input type="hidden" name="current_page_id" value="<?php echo $pageId; ?>"/>
 		<input type="hidden" name="current_group" value="<?php echo $group; ?>"/>

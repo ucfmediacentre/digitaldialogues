@@ -515,7 +515,10 @@ class Elements_model extends CI_Model {
 	// updates the database with the new description
     function update_description($id, $description)
 	{
-		$data = array( 'description' => $description);
+		$data = array(
+			'author' => $this->session->userdata('username'),
+			'description' => $description
+		);
 
 		$this->db->where('id', $id);
 		$this->db->update('elements', $data); 
@@ -589,7 +592,10 @@ class Elements_model extends CI_Model {
 	// updates the database with an id's contents
     function update_contents($id, $contents)
 	{
-		$data = array( 'contents' => $contents);
+		$data = array(
+			'author' => $this->session->userdata('username'),
+			'contents' => $contents
+		);
         
         $this->db->where('id', $id);
         $this->db->update('elements', $data);

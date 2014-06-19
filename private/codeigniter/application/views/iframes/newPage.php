@@ -8,7 +8,7 @@
 		<input name="description" id="description" />//-->
 		<input type="submit" id="submit_new_page" value="Submit" class="submit_element submit_button"  />
 		<!-- hidden values -->
-		<input type="hidden" name="author" id="author" value="<?php echo $this->session->userdata('username'); ?>" />
+	    <input type="hidden" name="author" id="author" value="<?php echo $author; ?> "/>
 		<input type="hidden" name="current_page_title" value="<?php echo urldecode($pageTitle); ?> "/>
 	    <input type="hidden" name="current_page_id" id="element_pages_id" value="<?php echo $pageId; ?> "/>
 		<input type="hidden" name="group" value="<?php echo urldecode($group); ?> "/>
