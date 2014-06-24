@@ -470,22 +470,24 @@
 		switch(change)
 		{
 			case 'size':
-				var textContents = $('#' + elementId).text();
-				window.parent.$("#textSizer").text(textContents);
-				window.parent.$("#textSizer").css("fontSize", $('#' + elementId).css('font-size')+"px");
-				if (window.parent.$("#textSizer").width()>500){
-				  window.parent.$("#textSizer").width(500);
-				}
-				var widthVal = window.parent.$("#textSizer").width()+20;
-				var heightVal = window.parent.$("#textSizer").height()+20;
-	  
-	  
-				// updates width and height
-				changes.width = parseInt($("#textSizer").css('width'), 10);
-				changes.height = parseInt($("#textSizer").css('height'), 10);
 				// only update font size if the element type is text (found some problems with positions otherwise)
 				if ($('#' + elementId).hasClass('text')) {
 				  changes.fontSize = $('#' + elementId).css('font-size');
+				  var textContents = $('#' + elementId).text();
+				  window.parent.$("#textSizer").text(textContents);
+				  window.parent.$("#textSizer").css("fontSize", $('#' + elementId).css('font-size')+"px");
+				  if (window.parent.$("#textSizer").width()>500){
+				    window.parent.$("#textSizer").width(500);
+				  }
+				  var widthVal = window.parent.$("#textSizer").width()+20;
+				  var heightVal = window.parent.$("#textSizer").height()+20;
+				  // updates width and height
+				  changes.width = parseInt($("#textSizer").css('width'), 10);
+				  changes.height = parseInt($("#textSizer").css('height'), 10);
+				} else {
+				  // updates width and height
+				  changes.width = parseInt($('#' + elementId).css('width'), 10);
+				  changes.height = parseInt($('#' + elementId).css('height'), 10);
 				}
 				break;
 			case 'position':
