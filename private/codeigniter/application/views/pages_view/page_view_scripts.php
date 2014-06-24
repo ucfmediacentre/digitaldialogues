@@ -199,8 +199,8 @@
 				var text_form_text = element_description;
 				$("#textSizer").text(text_form_text);
 				$("#textSizer").css("fontSize", "15px");
-				if ($("#textSizer").width()>320){
-				  $("#textSizer").width(320);
+				if ($("#textSizer").width()>500){
+				  $("#textSizer").width(500);
 				}
 				var widthVal = $("#textSizer").width()+20;
 				var heightVal = $("#textSizer").height()+20;
@@ -485,7 +485,7 @@
 				  changes.width = parseInt($("#textSizer").css('width'), 10);
 				  changes.height = parseInt($("#textSizer").css('height'), 10);
 				} else {
-				  // updates width and height
+				  // updates image elements with width and height
 				  changes.width = parseInt($('#' + elementId).css('width'), 10);
 				  changes.height = parseInt($('#' + elementId).css('height'), 10);
 				}
