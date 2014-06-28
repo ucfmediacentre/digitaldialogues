@@ -252,8 +252,8 @@ div.element:hover {
 .element{
 	position:relative;
 	font-size:15px;
-	padding:5px;
-	margin:0px;
+	padding:20px;
+	margin:20px;
 }
 
 .element_box{
