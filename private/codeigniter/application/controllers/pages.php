@@ -30,7 +30,7 @@ class Pages extends CI_Controller {
 	  
 	  if ($page_title === NULL){
 		$page_title = "home";
-		$group = "community";
+		$group = "connectedCommunities";
 		redirect('/pages/view/'.$group.'/'.$page_title, 'location');
 	  }
 	  
