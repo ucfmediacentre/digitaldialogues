@@ -22,7 +22,7 @@
 		//iterate through all the items found in the rss feed and form output
 		//echo $item->get_date() . "\n\n";
 		$changesList = $changesList . "<H2>" . $item->get_title() . " on <a href='" . $item->get_link() . "'>" . urldecode($page_group) . " : " . urldecode($page) . "</a></H2>";
-		$changesList = $changesList . "Changed: " . $item->get_date() . " by " . $author . "<br /><br />";
+		$changesList = $changesList . "Changed: " . $item->get_date();// . " by " . $author . "<br /><br />";
 		$changesList = $changesList . $item->get_content() . "<br /><br />";
 		$changesList = $changesList . "<hr />";	
 	endforeach; 

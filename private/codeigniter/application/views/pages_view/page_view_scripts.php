@@ -111,15 +111,15 @@
 					var content_container = $(this).find('.text-content');
 					var link_id = $(this).attr('id');
 					var new_contents = $(content_container).html();
-                    
-                    // sends edit to database, but waits half a second so that the delete button can be checked
-                    setTimeout(function(){
-                        updateElement(link_id, 'text-content', new_contents);
-                        
-                        $(this).find('.delete_button').fadeOut();
-                        // removes the event
-                        $(this).unbind('focusout', updateTextElementContent);
-                    },250);
+					
+					// sends edit to database, but waits half a second so that the delete button can be checked
+					setTimeout(function(){
+					    updateElement(link_id, 'text-content', new_contents);
+					    
+					    $(this).find('.delete_button').fadeOut();
+					    // removes the event
+					    $(this).unbind('focusout', updateTextElementContent);
+					},250);
 				});
 			}
 		  }
