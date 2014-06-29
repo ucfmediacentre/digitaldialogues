@@ -17,7 +17,7 @@ class Pages extends CI_Controller {
     }
 	
 	// initial testing to display page name
-	public function index($group = "community", $page_name = "home")
+	public function index($group = "connectedCommunities", $page_name = "home")
 	{
 	  header('Location: ' . base_url() . 'index.php/pages/view/' . $group . '/' . $page_name);
 	}
