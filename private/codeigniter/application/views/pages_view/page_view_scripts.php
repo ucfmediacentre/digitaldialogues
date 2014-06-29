@@ -447,11 +447,11 @@
 	function initVideo(elm, index)
 	{
 		var filename_NoExt = page_elements_json[index].filename.split('.');
-        var video_html = '<a class="videoLink" videofile="' + filename_NoExt[0];
-		video_html = video_html + '" videowidth="640" videoheight="'+(Math.round((640/page_elements_json[index].width)*page_elements_json[index].height)+65)+'"';
+		var video_html = '<a class="videoLink" videofile="' + filename_NoExt[0];
+		video_html = video_html + '" videowidth="480" videoheight="'+(Math.round((480/page_elements_json[index].width)*page_elements_json[index].height)+65)+'"';
 		video_html = video_html + ' videocaption="' + page_elements_json[index].description + '"></a>';
-        //video_html = video_html + '<p style="text-align:center;";><strong>Download Video: </strong><a href="' + base_url + 'assets/video/' + filename_NoExt[0] + '.mp4">MP4</a></p>';
-        var video_element = $(video_html);
+		//video_html = video_html + '<p style="text-align:center;";><strong>Download Video: </strong><a href="' + base_url + 'assets/video/' + filename_NoExt[0] + '.mp4">MP4</a></p>';
+		var video_element = $(video_html);
 		
 		$(elm).append(video_element);
 	}

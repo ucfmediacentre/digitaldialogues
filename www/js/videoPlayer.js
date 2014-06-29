@@ -28,31 +28,31 @@ $(document).ready(function() {
 		var parameters = $(this).attr('href').split("/");
 		//codeigniter parameters for width and height
 		var numOfParas = parameters.length;
-        var dWidth  = parseInt(parameters[numOfParas-2]);
+		var dWidth  = parseInt(parameters[numOfParas-2]);
 		var dHeight     =  parseInt(parameters[numOfParas-1]);  
-        $(this).fancybox({  
-			'width':dWidth,  
-			'height':dHeight, 
-			'padding':0,
-			'autoScale'         : false,  
-			'transitionIn'		: 'fade',
-			'transitionOut'		: 'fade',
-			'overlayColor'		: '#000',
-			'overlayOpacity'	: '.6',
-			'type'          : 'iframe',  
-			'onClosed'	:	function() {
-			  window.location.href=window.location.href;
-			  restoreZIndex();
-			}  
+		$(this).fancybox({  
+				'width':dWidth,  
+				'height':dHeight, 
+				'padding':0,
+				'autoScale'         : false,  
+				'transitionIn'		: 'fade',
+				'transitionOut'		: 'fade',
+				'overlayColor'		: '#000',
+				'overlayOpacity'	: '.6',
+				'type'          : 'iframe',  
+				'onClosed'	:	function() {
+					window.location.href=window.location.href;
+					restoreZIndex();
+				}  
+			});  
 		});  
-	});  
 
 	$('a.videoLink').each(function(){
 		var parameters = $(this).attr('href').split("/");
 		//codeigniter parameters for width and height
 		var numOfParas = parameters.length;
-        var dWidth  = parseInt(parameters[numOfParas-2]);
-		var dHeight     =  parseInt(parameters[numOfParas-1]);
+		var dWidth = parseInt(parameters[numOfParas-2]);
+		var dHeight = parseInt(parameters[numOfParas-1]);
 		$(this).fancybox({  
 			'width':dWidth,  
 			'height':dHeight, 

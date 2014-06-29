@@ -106,7 +106,7 @@ function setThumbnail(id){
 <table cellpadding="2">
 	<tr>
 		<td colspan="3" align="center">
-			<video width="640" height="<?php echo intval(640*($height/$width)); ?>" id="clipToShow" controls>
+			<video width="480" height="<?php echo intval(480*($height/$width)); ?>" id="clipToShow" controls>
 				<source src="../../../../../assets/video/<?php echo $filename ?>.mp4">
 				<source src="../../../../../assets/video/<?php echo $filename ?>.ogv">
 			</video>
