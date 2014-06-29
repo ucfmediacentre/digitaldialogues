@@ -8,7 +8,7 @@
 	  <input name="description" id="description" />
 	  <input type="submit" id="submit_video" value="Upload" class="submit_element submit_button"  />
 	  <input type="hidden" name="author" id="author" value="<?php echo $author; ?> "/>
-	  <input type="hidden" name="editable" id="editable" value="N"/>
+	  <input type="hidden" name="editable" id="editable" value="Y"/>
 	  <input type="hidden" name="pages_id" id="element_pages_id" value="<?php echo $pageId; ?> "/>
 	  <input type="hidden" name="x" id="element_x" value="<?php echo rand (100, 500 ); ?>" />
 	  <input type="hidden" name="y" id="element_y" value="<?php echo rand (100, 500 ); ?>" />

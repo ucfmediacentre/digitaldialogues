@@ -11,7 +11,7 @@
   <input type="hidden" name="pages_id" id="element_pages_id" value="<?php echo $pageId; ?> "/>
   <input type="hidden" name="x" id="element_x" value="<?php echo rand (100, 640 ); ?>" />
   <input type="hidden" name="author" id="author" value="<?php echo $this->session->userdata('username'); ?>" />
-  <input type="hidden" name="editable" id="editable" value="N" />
+  <input type="hidden" name="editable" id="editable" value="Y" />
   <input type="hidden" name="y" id="element_y" value="<?php echo rand (100, 480 ); ?>" />
   
   <div id="loadingPrompt">Loading...</div>
