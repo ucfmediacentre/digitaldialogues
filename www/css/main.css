@@ -23,19 +23,19 @@ textarea {
 }
 
 A:link {
-  color:#36c;
+  color:#f90;
   font-weight:bold;
   text-decoration:none;
 }
 
 A:visited {
-  color:#339;
+  color:#f90;
   font-weight:bold;
   text-decoration:none;
 }
 
 A:hover {
-  color:#39f;
+  color:#fc0;
   font-weight:bold;text-decoration:none;
 }
 
@@ -166,7 +166,7 @@ a#main_home_button:hover{
 	padding:20px;*/
 	z-index:0;
 	//color:#ccf;
-	background-color:#f66;
+	background-color:#ffe;
 }
 
 body {
@@ -179,7 +179,7 @@ body {
 	top:0px;
 	width:100%;
 	height:100%;*/
-	background: #f66 url(../img/cream.gif);
+	background: #ffe url(../img/cream.gif);
 	-moz-background-size: cover;
 	background-size: cover;
 	-webkit-background-size: cover;
