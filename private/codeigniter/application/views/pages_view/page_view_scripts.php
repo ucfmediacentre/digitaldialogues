@@ -103,7 +103,7 @@
 				$(this).focusout(function(updateTextElementContent)
 				{
                      
-					// activates the drag and deactivate the content editable
+					// activates the drag and deactivates the contenteditable
 					$(content_container).removeAttr('contenteditable');
 					$(this).draggable({ disabled: false });
 					

@@ -9,24 +9,31 @@ class Links_model extends CI_Model {
         
         $this->load->database();
         $this->load->helper('url');
-		$this->load->library('Shortcodes');
+	$this->load->library('Shortcodes');
+	
     }
 	
 	// saves the new links to the database
 	function add_links($link_info, $page_title, $element_id)
 	{
 		$this->load->library('Shortcodes');
+		$this->load->model('Pages_model');
 		// adds a new key with array to link info
 		$link_info['replace'] = array();
 		// loop through each link
 		for ($i = 0; $i < sizeof($link_info['links']); $i++)
 		{
 			// compile data
+			$page_group = $this->Pages_model->get_group_from_element($element_id);
+		
 			$data = array(
-  				'linkTitle' =>  $link_info['links'][$i][0],
    				'elementsId' => $element_id,
-   				'pageTitle' => $page_title
+  				'linkTitle' =>  $link_info['links'][$i][0],
+   				'pageTitle' => $page_title,
+  				'pageTitleGroup' => $page_group,
+  				'linkTitleGroup' => $page_group
 			);
+			
 			// add to the database
 			if($this->db->insert('links', $data))
 			{
@@ -52,20 +59,26 @@ class Links_model extends CI_Model {
 	}
 	
 	// swaps the link Titles for link ids from the `links` table
-	function process_codes($string, $forWhat, $page_title, $elements_id)
+	function process_codes($string, $forWhat, $page_title, $element_id)
 	{
+		//print_r($pages_title);
+		//echo "links_model.php<br />";
 		
 		$this->load->library('Shortcodes');
+		$this->load->model('Pages_model');
 		// creates an object with all the details about any shortcodes in the specified string
 		$linksObj = $this->shortcodes->process_string($string);
 		
+		$page_group = $this->Pages_model->get_group_from_element($element_id);
+		
 		// compiles the common data string
 		$data = array(
-			'elementsId' => $elements_id,
+			'elementsId' => $element_id,
 			'pageTitle' => $page_title,
-			'pageTitleGroup' => $this->session->userdata('group'),
-			'linkTitleGroup' => $this->session->userdata('group')
+			'pageTitleGroup' => $page_group,
+			'linkTitleGroup' => $page_group
 		);
+		
 		
 		$i=0;
 		foreach($linksObj as $link)
@@ -80,13 +93,13 @@ class Links_model extends CI_Model {
 												// adds the link details to the database if the shortcode is a link
 												if($this->db->insert('links', $data))
 												{
-														// replaces the link title with the replacement code
-														$this->shortcodes->replaceShortCode($i, "[[internal::".$this->db->insert_id()."]]");
+													// replaces the link title with the replacement code
+													$this->shortcodes->replaceShortCode($i, "[[internal::".$this->db->insert_id()."]]");
 												}
 												
 												$newPageGroup = $data["linkTitleGroup"];
 												$newPageTitle = $data["linkTitle"];
-												// create new page;
+												// create new page at the same time;
 												$data = array(
 													'group' => urldecode($this->session->userdata('group')),
 													'title' => URLdecode($newPageTitle)
@@ -112,9 +125,11 @@ class Links_model extends CI_Model {
 						case "forWeb":
 								switch ($link->getKey()) {
 										case "internal":
-												
+												//echo "$ link->getValue()=".$link->getValue();
 												// gets the linkTitle from the stored link id
 												$linkDetails = $this->get_link_by_id($link->getValue());
+												
+												//print_r($linkDetails);
 												
 												$linkTitle = $linkDetails->linkTitle;
 												// replaces the link id with replacement code

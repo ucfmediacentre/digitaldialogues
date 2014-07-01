@@ -194,6 +194,7 @@ class Pages_model extends CI_Model {
 	// gets the page title of a page with a specified id
 	function get_page_from_element($elementId)
 	{
+	    
    		$this->db->where('id', $elementId);
    		$this->db->select('pages_id');
    		$query = $this->db->get('elements');
@@ -201,16 +202,39 @@ class Pages_model extends CI_Model {
 		$row = $query->row(); 
 		$pageId = $row->pages_id;
 		
-   		$this->db->where('id', $pageId);
+		$this->db->where('id', $pageId);
    		$this->db->select('title');
    		$query = $this->db->get('pages');
 		
 		if ($query->num_rows() > 0)
 		{
 			$row = $query->row(); 
-			return $row;
-		} else
+			return $row->title;
+		} else {
+			return null;
+		}
+	}
+	
+	// gets the page title of a page with a specified id
+	function get_group_from_element($elementId)
+	{
+	    
+		$this->db->where('id', $elementId);
+   		$this->db->select('pages_id');
+   		$query = $this->db->get('elements');
+		
+		$row = $query->row(); 
+		$pageId = $row->pages_id;
+		
+		$this->db->where('id', $pageId);
+   		$this->db->select('group');
+   		$query = $this->db->get('pages');
+		
+		if ($query->num_rows() > 0)
 		{
+			$row = $query->row(); 
+			return $row->group;
+		} else {
 			return null;
 		}
 	}
