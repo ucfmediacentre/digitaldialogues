@@ -243,7 +243,7 @@ class Elements_model extends CI_Model {
 		return true;
 	}
 	
-	public function add_recording($group = "public", $page = "sandpit", $media = "videoaudio")
+	public function add_recording($group = "community", $page = "sandpit", $media = "videoaudio")
 	{
 		// Consider creating a folder every new month so that elements are easier to find? 
 		// construct the location from the data

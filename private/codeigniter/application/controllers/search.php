@@ -2,7 +2,7 @@
 
 class Search extends CI_Controller {
 
-	public function index($group="public")
+	public function index($group="community")
 	{
 		$this->load->helper('url');
 		redirect('/search/map/'.$group, 'location');	
