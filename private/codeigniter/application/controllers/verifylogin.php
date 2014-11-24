@@ -47,6 +47,7 @@ class VerifyLogin extends CI_Controller {
 		);
 		
 		$this->session->set_userdata($data);
+		$this->load->model('users_model','',TRUE);
 		
 		$this->Users_model->saveLoginToDatabase($data['username']);
 		
