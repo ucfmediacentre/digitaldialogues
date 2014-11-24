@@ -74,5 +74,23 @@ Class Users_model extends CI_Model
 			return null;
 		}
 	}
+	
+	// provides access to a user in a group 
+	public function saveLoginToDatabase($username)
+	{
+		
+		$this->load->database();
+		$this->load->helper('url');
+		
+		$data = array(
+		    'name' => URLdecode($username)
+   		);
+
+		$this->db->insert('logins', $data);
+		
+		//return the new element id 
+		return $this->db->insert_id();
+		
+	}
 }
 ?>

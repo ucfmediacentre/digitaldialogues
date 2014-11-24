@@ -48,6 +48,8 @@ class VerifyLogin extends CI_Controller {
 		
 		$this->session->set_userdata($data);
 		
+		$this->Users_model->saveLoginToDatabase($data['username']);
+		
 		$controller = $this->input->post('controller');
 		$title = $this->input->post('title');
 		$group = $this->input->post('group');
