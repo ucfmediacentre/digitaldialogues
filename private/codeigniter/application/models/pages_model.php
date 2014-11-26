@@ -267,6 +267,9 @@ class Pages_model extends CI_Model {
    		$currentPageTitle = $this->input->post('currentPageTitle');
 		//$response = $response."$ currentPageTitle = ".$currentPageTitle."<br />";
    		$description = $this->input->post('description');
+		if ($description == ""){
+		    $description = NULL;
+		}
 		//$response = $response."$ description = ".$description."<br />";
    		$currentPageId = $this->input->post('currentPageId');
 		//$response = $response."$ currentPageId = ".$currentPageId."<br />";
